@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+FuzzTester/venv/pyvenv.cfg
+FuzzTester/venv/pip-selfcheck.json
+FuzzTester/venv/Scripts/pywin32_testall.py
+FuzzTester/venv/Scripts/pywin32_postinstall.py
+FuzzTester/venv/Scripts/pip3.exe.manifest
+FuzzTester/venv/Scripts/pip3.6.exe.manifest
+FuzzTester/venv/Scripts/pip3.6-script.py
+FuzzTester/venv/Scripts/pip3-script.py
+FuzzTester/venv/Scripts/pip.exe.manifest
+FuzzTester/venv/Scripts/pip-script.py
+FuzzTester/venv/Scripts/easy_install.exe.manifest
+FuzzTester/venv/Scripts/easy_install-script.py
+FuzzTester/venv/Scripts/easy_install-3.6.exe.manifest
+FuzzTester/venv/Scripts/easy_install-3.6-script.py
+FuzzTester/venv/Scripts/deactivate.bat
+FuzzTester/venv/Scripts/activate.bat
+FuzzTester/venv/Scripts/activate
+FuzzTester/venv/Scripts/Activate.ps1
+FuzzTester/.idea/workspace.xml
+FuzzTester/.idea/modules.xml
+FuzzTester/.idea/misc.xml
+FuzzTester/.idea/FuzzTester.iml
