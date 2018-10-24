@@ -1,0 +1,19 @@
+head {
+    color: white
+}
+
+p {
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}

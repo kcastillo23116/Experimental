@@ -1,0 +1,50 @@
+<!-- 
+    figure out how to include open source api and use it to create a clock
+    interactive, grocery list and weather forcasts
+    probably should find ui framework and use that along with data grabbing apis
+    to create something pretty and functional
+ -->
+<html>
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="script.js" type="text/javascript"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+    <head>
+        <p>Hello Hotdog</p>
+    </head>
+    
+    <!-- <head>
+            <script type="text/javascript">
+            function changeContent(){
+                var x=document.getElementById('myTable').rows
+                var y=x[0].cells
+                y[0].innerHTML="NEW CONTENT"
+            }
+            </script>
+    </head> -->
+
+    <!-- this is like a variable that can get set by javascript -->
+    <p id="txt"></p>
+
+    <body onload="startTime()"></body>
+    <body onload="changeTableData()"></body>
+
+    <iframe src="http://free.timeanddate.com/clock/i69ju64a/n867/szw210/szh210/hbw0/hfc000/cf100/hgr0/fav0/fiv0/mqcfff/mql15/mqw4/mqd94/mhcfff/mhl15/mhw4/mhd94/mmv0/hhcbbb/hmcddd/hsceee" frameborder="0" width="210" height="210"></iframe>
+
+    <!-- <table id="chores">
+        <tr><td><p>test</p></td></tr>
+        <tr><td><p>steam clothes</p></td></tr>
+    </table>  -->
+
+
+    <body>
+            <table id="myTable" border="1">
+                <tr><td><p>test</p></td></tr>
+                <tr><td><p>steam clothes</p></td></tr>
+            </table>
+            <form>
+            <input type="button" onclick="changeContent()" value="Change content">
+            </form>
+            </body>
+</html>
