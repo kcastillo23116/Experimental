@@ -6,7 +6,7 @@ from ctypes import windll
 user32 = windll.user32
 user32.SetProcessDPIAware()
 
-# grab image and scan it for colors
+# grab image and scan it for colors (dump screenshot to directory)
 timeStart = time.time()
 image = ImageGrab.grab()
 image.save("C:\\test\\testGrab.jpg", "JPEG")
