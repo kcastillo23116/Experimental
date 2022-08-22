@@ -1,18 +1,17 @@
 """
 Common functions that could be useful in multiple places
 """
+import datetime
 import time
 import os
 import pyautogui
-
+from pathlib import Path
 
 # sleep timer that displays countdown in console
 def sleep_with_countdown(amt_time):
     for it in range(amt_time):
-        os.system("cls")
-        print(it)
+        print('Sleep: ', it+1, '/', amt_time)
         time.sleep(1)
-
 
 # click item in inventory based on row and column (top left is 1, 1)
 def click_inv_item(row, col):
@@ -46,11 +45,47 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
     pyautogui.moveTo(xcoord, ycoord)
     pyautogui.rightClick()
 
-# for row in range(1, 8):
-#     for col in range(1, 5):
-#         print("{", row, " ", col, "}")
-#         click_inv_item(row, col)
-#         time.sleep(1)
-#         # sleep_with_countdown(1)
-#         # pyautogui.click()
 
+def click_image(image_path, confidence=0.7,
+                time_before_click=0, message='', right_click=False):
+    """
+    Click on specified PNG image with specified confidence, if is right click,
+    Note: Image path is relative to Common.py file
+    sleep before click and console message
+    """
+    sleep_with_countdown(time_before_click)
+    print(message)
+
+    # Get and Install Pillow and opencv-python packages to get this call to work
+    # If the file is not a png file it will not work
+    path = get_relative_file_path(image_path)
+    coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+
+    # If image not found raise error to avoid clicking in undesired places
+    if coordinates is None:
+        raise ValueError('No image found for ', image_path)
+
+    pyautogui.moveTo(coordinates)
+    if right_click:
+        pyautogui.rightClick()
+    else:
+        pyautogui.click()
+
+
+def get_relative_file_path(path):
+    """Get path relative to project file"""
+    base_path = Path(__file__).parent
+
+    # Resolve relative path and convert to posix for forward slashes
+    # Backslashes caused files to not be found in pyautogui calls
+    return (base_path / path).resolve().as_posix()
+
+
+def print_runtime(total_loops, loop_runtime, current_loop):
+    """
+    Prints estimated runtime based on loop counts and loop runtime
+    """
+    print("Loop: ", current_loop, "/", total_loops)
+    runtime = ((total_loops - current_loop) * loop_runtime)
+    dtg = str(datetime.timedelta(seconds=runtime))
+    print("Approx time till done: ", dtg)

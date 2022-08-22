@@ -1,17 +1,18 @@
 """
 How to start:
-client:             RuneLite with resizeable modern layout in runescape settings
-                    and RuneLite Stretched mode enabled with Resizable scaling set to 75%
-                    Runelite sidebar CLOSED
+client:             - RuneLite with resizeable modern layout in runescape settings
+                      and RuneLite Stretched mode enabled with Resizable scaling set to 75%
+                    - Runelite sidebar CLOSED
+                    - Turn on object markers plugin and Shift+Right click bank to mark it
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
 location:           Grand exchange, directly in front of the right bottom bank teller box
-                    click compass, so it's at default north and zoom out all the way
+                    click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
 Menus:              Inventory menu open
 equip items:        None
 items in inventory: Knife at row 1 col 1
-items in bank:  Logs(bank: row 1, column 1)
+items in bank:  Logs(bank: row 1, column 2)
 """
 
 import RunescapeScripts.Common as Common
@@ -23,14 +24,23 @@ itemCountString = input("How many items do you have? ")
 itemCount = int(itemCountString)
 loopsTillDone = round(itemCount / 27)
 
-Common.move_mouse_and_left_click(1876, 1059, 5, "Click on Bank teller")
+try:
+    # Open bank to start
+    Common.click_image('Images/Banker.png', 0.2, 1, 'Right click banker', True)
+    Common.click_image('Images/BankOption.png', 0.7, 1, 'Open bank')
 
-for x in range(loopsTillDone):
-    Common.move_mouse_and_left_click(1188, 275, 5, "Click on item to withdraw")
-    Common.move_mouse_and_left_click(2216, 107, 2, "Click Close button on Bank")
-    Common.move_mouse_and_left_click(3412, 1347, 4, "Click on knife")
-    Common.move_mouse_and_left_click(3499, 1343, 1, "Click on wood")
-    Common.move_mouse_and_left_click(633, 1910, 2, " Click on craft button")
-    Common.move_mouse_and_left_click(1878, 1071, 51, " Wait for all to finish crafting and click bank teller")
-    Common.move_mouse_and_left_click(3499, 1343, 1, "Deposit all processed items")
+    for x in range(loopsTillDone):
+        Common.print_runtime(loopsTillDone, 55, x)
+
+        Common.click_image('Images/Wood.png', 0.5, 1, 'Get wood')
+        Common.click_image('Images/BankClose.png', 0.5, 1, 'Close bank')
+        Common.click_image('Images/Knife.png', 0.5, 1, 'Click knife')
+        Common.click_image('Images/Wood.png', 0.7, 1, 'Click inventory wood')
+        Common.click_image('Images/LongBow.png', 0.7, 1, 'Click longbow craft menu option')
+        Common.click_image('Images/Bank.png', 0.7, 49, 'Click bank')
+        Common.click_image('Images/LongBowInventory.png', 0.7, 1, 'Deposit longbows')
+
+# Image not found error, stop loop and print message
+except ValueError as error:
+    print(error)
 
