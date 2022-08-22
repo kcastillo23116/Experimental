@@ -49,7 +49,7 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
 def click_image(image_paths, confidence=0.7,
                 time_before_click=0, message='', right_click=False):
     """
-    Click on specified PNG images with specified confidence, if is right click,
+    Click on specified list of PNG images with specified confidence, if is right click,
     Note: Image path is relative to Common.py file
     sleep before click and console message
     If multiple images provided tries them all and stops if finds a match
@@ -58,7 +58,7 @@ def click_image(image_paths, confidence=0.7,
     print(message)
 
     coordinate = None
-    # while coordinate is None:
+    # Go through list and try all images
     for image in image_paths:
         # Get and Install Pillow and opencv-python packages to get this call to work
         # If the file is not a png file it will not work
@@ -68,7 +68,7 @@ def click_image(image_paths, confidence=0.7,
         # If image not found raise error to avoid clicking in undesired places
         # Else coordinate found break to stop loop since target found
         if coordinates is None:
-            print('No image found for ', image)
+            print('No image found for ', image, 'trying next image')
         else:
             break
 
