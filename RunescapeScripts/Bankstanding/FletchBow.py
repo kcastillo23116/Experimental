@@ -26,7 +26,9 @@ loopsTillDone = round(itemCount / 27)
 
 try:
     # Open bank to start
-    Common.click_image('Images/Banker.png', 0.2, 1, 'Right click banker', True)
+    images = ['Images/Banker.png', 'Images/Banker2.png', 'Images/Banker3.png']
+    Common.click_image(images, 0.2, 1, 'Right click banker', True)
+
     Common.click_image('Images/BankOption.png', 0.7, 1, 'Open bank')
 
     for x in range(loopsTillDone):
@@ -37,7 +39,8 @@ try:
         Common.click_image('Images/Knife.png', 0.5, 1, 'Click knife')
         Common.click_image('Images/Wood.png', 0.7, 1, 'Click inventory wood')
         Common.click_image('Images/LongBow.png', 0.7, 1, 'Click longbow craft menu option')
-        Common.click_image('Images/Bank.png', 0.7, 49, 'Click bank')
+        Common.click_image('Images/Banker.png', 0.2, 1, 'Right click banker', True)
+        Common.click_image('Images/BankOption.png', 0.7, 1, 'Open bank')
         Common.click_image('Images/LongBowInventory.png', 0.7, 1, 'Deposit longbows')
 
 # Image not found error, stop loop and print message

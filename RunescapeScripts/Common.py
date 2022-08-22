@@ -46,30 +46,44 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
     pyautogui.rightClick()
 
 
-def click_image(image_path, confidence=0.7,
+def click_image(image_paths, confidence=0.7,
                 time_before_click=0, message='', right_click=False):
     """
-    Click on specified PNG image with specified confidence, if is right click,
+    Click on specified PNG images with specified confidence, if is right click,
     Note: Image path is relative to Common.py file
     sleep before click and console message
+    If multiple images provided tries them all and stops if finds a match
     """
     sleep_with_countdown(time_before_click)
     print(message)
 
-    # Get and Install Pillow and opencv-python packages to get this call to work
-    # If the file is not a png file it will not work
-    path = get_relative_file_path(image_path)
-    coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+    coordinate = None
+    # while coordinate is None:
+    for image in image_paths:
+        # Get and Install Pillow and opencv-python packages to get this call to work
+        # If the file is not a png file it will not work
+        path = get_relative_file_path(image)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+
+        # If image not found raise error to avoid clicking in undesired places
+        # Else coordinate found break to stop loop since target found
+        if coordinates is None:
+            print('No image found for ', image)
+        else:
+            break
 
     # If image not found raise error to avoid clicking in undesired places
     if coordinates is None:
-        raise ValueError('No image found for ', image_path)
+        raise ValueError('No image found for ', image_paths)
 
+    # Click on image coordinates
     pyautogui.moveTo(coordinates)
     if right_click:
         pyautogui.rightClick()
     else:
         pyautogui.click()
+
+
 
 
 def get_relative_file_path(path):
