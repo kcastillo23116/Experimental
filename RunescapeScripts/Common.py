@@ -6,6 +6,7 @@ import time
 import os
 import pyautogui
 from pathlib import Path
+import PIL.ImageGrab
 
 # sleep timer that displays countdown in console
 def sleep_with_countdown(amt_time):
@@ -73,7 +74,10 @@ def click_image(image_paths, confidence=0.7,
             break
 
     # If image not found raise error to avoid clicking in undesired places
+    # Take screenshot and show it so we can see what might've gone wrong
     if coordinates is None:
+        im = PIL.ImageGrab.grab()
+        im.show()
         raise ValueError('No image found for ', image_paths)
 
     # Click on image coordinates

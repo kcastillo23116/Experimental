@@ -29,7 +29,8 @@ try:
     # Open bank to start
     banker_images = ['Images/Banker.png', 'Images/Banker2.png',
                      'Images/Banker3.png', 'Images/Banker4.png',
-                     'Images/Banker5.png']
+                     'Images/Banker5.png', 'Images/Banker6.png',
+                     'Images/Banker7.png']
     bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
     wood_images = ['Images/Wood.png', 'Images/Wood2.png']
     Common.click_image(banker_images, 0.2, 1, 'Right click banker', True)
@@ -43,7 +44,7 @@ try:
         Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
         Common.click_image(['Images/Knife.png'], 0.5, 1, 'Click knife')
         Common.click_image(wood_images, 0.7, 1, 'Click inventory wood')
-        Common.click_image(['Images/LongBow.png'], 0.7, 1, 'Click longbow craft menu option')
+        Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, 1, 'Click longbow craft menu option')
         Common.click_image(banker_images, 0.2, 49, 'Right click banker', True)
         Common.click_image(['Images/BankOption.png'], 0.7, 1, 'Open bank')
         Common.click_image(['Images/LongBowInventory.png'], 0.7, 1, 'Deposit longbows')

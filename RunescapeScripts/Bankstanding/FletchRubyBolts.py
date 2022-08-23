@@ -49,19 +49,19 @@ try:
         Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
         Common.click_image(['Images/Chisel.png'], 0.7, 1, 'Click Chisel')
         Common.click_image(['Images/Ruby.png'], 0.7, 1, 'Click inventory ruby')
-        Common.click_image(['Images/RubyTipsCraftIcon.png'], 0.7, 1, 'Click ruby tips craft menu option')
+        Common.click_image(['Images/RubyTipsCraftIcon.png'], 0.5, 1, 'Click ruby tips craft menu option')
         Common.click_image(banker_images, 0.2, 72, 'Right click banker', True)
         Common.click_image(['Images/BankOption.png'], 0.7, 1, 'Open bank')
 
-        # Close bank so don't deposit items in next loop
-        Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
+    # Close bank so don't deposit items in next loop
+    Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
 
     for x in range(craftBoltLoopsTillDone):
         Common.print_runtime(craftBoltLoopsTillDone, 40, x)
 
         Common.click_image(['Images/RubyBoltTips.png'], 0.7, 13, 'Click ruby bolt tips')
         Common.click_image(['Images/AdamantBolts.png'], 0.7, 1, 'Click adamant bolts')
-        Common.click_image(['Images/RubyBoltsCraftIcon.png'], 0.7, 1, 'Click ruby bolts craft menu option')
+        Common.click_image(['Images/RubyBoltsCraftIcon.png'], 0.5, 1, 'Click ruby bolts craft menu option')
 
 
 # Image not found error, stop loop and print message
