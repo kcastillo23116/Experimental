@@ -5,6 +5,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Runelite sidebar CLOSED
                     - Turn on object markers plugin and Shift+Right click bank to mark it
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
+                    - Turn on entity hider in runelite
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -33,8 +34,8 @@ try:
                      'Images/Banker7.png']
     bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
     wood_images = ['Images/Wood.png', 'Images/Wood2.png']
-    Common.click_image(banker_images, 0.2, 1, 'Right click banker', True)
 
+    Common.click_image(banker_images, 0.2, 1, 'Right click banker', True)
     Common.click_image(['Images/BankOption.png'], 0.7, 1, 'Open bank')
 
     for x in range(loopsTillDone):
