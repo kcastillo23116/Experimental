@@ -6,6 +6,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on object markers plugin and Shift+Right click bank to mark it
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite to hide other players
+                    - 117HD off
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -30,10 +31,10 @@ loopsTillDone = round(itemCount / 15)
 try:
     # Open bank to start
     grandexchange_bank_images = ['Images/GrandexchangeBank.png',
-                                 'Images/GrandexchangeBank2.png',
-                                 'Images/GrandexchangeBank3.png']
+                                 'Images/GrandexchangeBank.png',
+                                 'Images/GrandexchangeBank.png']
     bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
-    wood_images = ['Images/OakWood.png', 'Images/OakWood.png']
+    wood_images = ['Images/WillowLogs.png', 'Images/WillowLogs.png']
     bank_pillar_images = ['Images/GrandexchangePillar.png']
     firemaking_tree_images = ['Images/GrandexchangeFiremakingTree.png', 'Images/GrandexchangeFiremakingTreeStump.png']
 
