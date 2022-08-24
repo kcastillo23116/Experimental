@@ -4,6 +4,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       and RuneLite Stretched mode enabled with Resizable scaling set to 75%
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
+                    - Turn on 117HD runelite plugin since took screenshots with it on
 location:           East Ardougne Bakers stall right on top of the baker NPC
                     click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
                     and zoom all the way in

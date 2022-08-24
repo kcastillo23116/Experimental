@@ -6,6 +6,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on object markers plugin and Shift+Right click bank to mark it
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
+                    - 117HD OFF
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
