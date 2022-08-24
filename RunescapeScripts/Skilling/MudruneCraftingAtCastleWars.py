@@ -24,7 +24,7 @@ equip items:        - Steam battlestaff
 items in inventory: - Stack of water runes
 items in bank:      - Rune essence
                     - Rings of dueling
-                    - Binding necklaces
+                    - Binding necklaces (NOTE: if less than 16 charges on necklaces destory one to recharge all others to full charges)
                     - Stamina potions
 Setup:           - Fill up hot air balloon box with bunch of willow logs
                    Note: CAN STORE NOTED LOGS MAX 100 AT A TIME
@@ -48,7 +48,8 @@ try:
     red_rug_images = ['Images/CastleWarsRedRug3.png',
                       'Images/CastleWarsRedRug2.png',
                       'Images/CastleWarsRedRug.png']
-    bank_icon_images = ['Images/BankIcon.png',
+    bank_icon_images = ['Images/BankIcon3.png',
+                        'Images/BankIcon2.png',
                         'Images/BankIcon.png']
     bank_images = ['Images/CastleWarsChest5.png',
                    'Images/CastleWarsChest4.png',
@@ -70,9 +71,13 @@ try:
                              'Images/CastleWarsBalloonBasket.png']
     balloon_map_varrock_images = ['Images/BalloonMapVarrock.png',
                                   'Images/BalloonMapVarrock.png']
-    ruin_images = ['Images/VarrockEarthMysteriousRuin.png',
+    ruin_images = ['Images/VarrockEarthMysteriousRuin4.png',
+                   'Images/VarrockEarthMysteriousRuin3.png',
+                   'Images/VarrockEarthMysteriousRuin2.png',
                    'Images/VarrockEarthMysteriousRuin.png']
-    rune_altar_images = ['Images/VarrockEarthRuneAltar.png',
+    ruin_second_spot_images = ['Images/VarrockEarthMysteriousRuinSecondSpot.png',
+                               'Images/VarrockEarthMysteriousRuinSecondSpot.png']
+    rune_altar_images = ['Images/VarrockEarthRuneAltar2.png',
                          'Images/VarrockEarthRuneAltar.png']
     water_rune = ['Images/WaterRune.png',
                   'Images/WaterRune.png']
@@ -85,6 +90,7 @@ try:
     mud_rune_images = ['Images/MudRune2.png',
                        'Images/MudRune.png']
     stamina_potion_images = ['Images/StaminaPotion.png',
+                             'Images/StaminaPotion2.png',
                              'Images/StaminaPotion4.png']
     vial_images = ['Images/Vial.png',
                    'Images/Vial.png']
@@ -120,7 +126,7 @@ try:
                 Common.click_image(vial_images, 0.9, 1, 'Deposit vial')
 
             # Get stamina potion
-            Common.click_image(stamina_potion_images, 0.7, 1, 'Get Stamina potion', True)
+            Common.click_image(stamina_potion_images, 0.6, 1, 'Get Stamina potion', True)
             Common.click_image(withdraw_one_images, 0.9, 1, 'Withdraw one')
 
             # Get rune essence last since it fills inventory
@@ -143,10 +149,19 @@ try:
         Common.click_image(balloon_basket_images, 0.7, 6, 'Click Balloon')
         Common.click_image(balloon_map_varrock_images, 0.9, 9, 'Click Varrock on Map')
 
-        # Craft mud runes
-        Common.click_image(ruin_images, 0.7, 7, 'Click Mysterious Ruin')
-        Common.click_image(water_rune, 0.9, 5, 'Click Water Rune')
-        Common.click_image(rune_altar_images, 0.9, 1, 'Click Rune Altar')
+        # Go into mysterious ruin
+        Common.click_image(ruin_images, 0.6, 7, 'Click Mysterious Ruin')
+
+        # If earth altar is on screen click on water rune right away and craft runes
+        # Else may still be stuck at ruins check if it's on screen and click it if so
+        if Common.is_image_on_screen(rune_altar_images, 0.6, 7, 'Check if earth altar is on screen'):
+            Common.click_image(water_rune, 0.9, 1, 'Click Water Rune')
+            Common.click_image(rune_altar_images, 0.7, 1, 'Click Rune Altar')
+        elif Common.is_image_on_screen(ruin_second_spot_images, 0.6, 2, 'Check if mysterious Ruin is still on screen'):
+            Common.click_image(ruin_second_spot_images, 0.6, 1, 'Click Mysterious Ruin in second spot')
+            # Craft mud runes right away since already in ruins
+            Common.click_image(water_rune, 0.9, 2, 'Click Water Rune')
+            Common.click_image(rune_altar_images, 0.7, 1, 'Click Rune Altar')
 
         # Teleport back to castle wars and open bank
         Common.click_image(ring_of_dueling, 0.9, 5, 'Right click ring of dueling', True)
@@ -154,7 +169,7 @@ try:
         Common.click_image(castle_wars_teleport, 0.9, 1, 'Teleport to Castle Wars')
 
         # Bank mud runes
-        Common.click_image(bank_icon_images, 0.7, 3, 'Move to bank chest using map')
+        Common.click_image(bank_icon_images, 0.6, 3, 'Move to bank chest using map')
         Common.click_image(bank_images, 0.7, 5, 'Click bank chest')
         Common.click_image(mud_rune_images, 0.7, 4, 'Deposit Mud Runes')
 

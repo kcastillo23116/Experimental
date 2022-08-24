@@ -58,7 +58,8 @@ def click_image(image_paths, confidence=0.7,
     sleep_with_countdown(time_before_click)
     print(message)
 
-    coordinate = None
+    coordinates = None
+
     # Go through list and try all images
     for image in image_paths:
         # Get and Install Pillow and opencv-python packages to get this call to work
@@ -88,6 +89,37 @@ def click_image(image_paths, confidence=0.7,
         pyautogui.click()
 
 
+def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message=''):
+    """
+    Look for specified list of PNG images with specified confidence return true if found false otherwise
+    Note: Image path is relative to Common.py file
+    sleep before click and console message
+    If multiple images provided tries them all and stops if finds a match
+    """
+    sleep_with_countdown(time_before_check)
+    print(message)
+
+    coordinates = None
+
+    # Go through list and try all images
+    for image in image_paths:
+        # Get and Install Pillow and opencv-python packages to get this call to work
+        # If the file is not a png file it will not work
+        path = get_relative_file_path(image)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+
+        # If image not found print and check next image
+        # Else if image is found stop loop
+        if coordinates is None:
+            print(image, 'NOT on screen')
+        else:
+            print(image, 'on screen')
+            break
+
+    if coordinates is None:
+        return False
+    else:
+        return True
 
 
 def get_relative_file_path(path):
