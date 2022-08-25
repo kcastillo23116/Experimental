@@ -9,10 +9,10 @@ startTime = time.time()
 
 
 def on_click(x, y, button, pressed):
-    if not pressed and button == mouse.Button.left:
-        # Declare global variable, so we can update the variable's value in this function
-        global startTime
+    # Declare global variable, so we can update the variable's value in this function
+    global startTime
 
+    if not pressed and button == mouse.Button.left:
         # calculate time elapsed between clicks and print:
         # function name with coordinates
         # time between clicks in seconds for sleeps
@@ -22,6 +22,20 @@ def on_click(x, y, button, pressed):
         x_coordinate = mouse_coords[0]
         y_coordinate = mouse_coords[1]
         print("Common.move_mouse_and_left_click(", x_coordinate, ",", y_coordinate, ",", elapsed, ",",  "\"", "\"", ")")
+
+        # Update start time so we get elapsed time between clicks
+        startTime = time.time()
+
+    elif not pressed and button == mouse.Button.right:
+        # calculate time elapsed between clicks and print:
+        # function name with coordinates
+        # time between clicks in seconds for sleeps
+        # Empty quotes for message output
+        elapsed = time.time() - startTime
+        mouse_coords = pyauto.position();
+        x_coordinate = mouse_coords[0]
+        y_coordinate = mouse_coords[1]
+        print("Common.move_mouse_and_right_click(", x_coordinate, ",", y_coordinate, ",", elapsed, ",",  "\"", "\"", ")")
 
         # Update start time so we get elapsed time between clicks
         startTime = time.time()

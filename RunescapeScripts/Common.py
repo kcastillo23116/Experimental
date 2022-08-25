@@ -8,6 +8,12 @@ import pyautogui
 from pathlib import Path
 import PIL.ImageGrab
 
+All_game_screen_region = (9,47,2926,1882)
+Bottom_right_game_screen_region = (1354,1048,1048,788)
+
+Minimap_region = (2363, 74, 570, 418)
+Inventory_region = (2432, 1145, 499, 690)
+Bank_region = (564, 241, 1193, 1140)
 
 # sleep timer that displays countdown in console
 def sleep_with_countdown(amt_time):
@@ -50,11 +56,14 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
 
 
 def watch_click_image(image_paths, confidence=0.7, message='', right_click=False,
-                      time_between_clicks=0, attempts=10, next_step_image_paths=None):
+                      time_between_clicks=0, attempts=10, next_step_image_paths=None,
+                      current_step_region=All_game_screen_region, next_step_region=All_game_screen_region,
+                      next_step_confidence=0.7):
     """
     Click specified image on screen as soon as it's found
     Keep watching till it's found or timeout after specified attempt count
     Optional time between clicks and next step images to look for
+    Optional region parameters that default to whole game screen
     """
     print(message)
 
@@ -65,20 +74,21 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         count = 0
 
         # If next step is not on screen keep trying current step and checking for next step
-        while is_image_on_screen(next_step_image_paths, 0.9, 1) \
+        while is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "", next_step_region) \
                 is False and count < attempts:
             # Keep looking for image till found or timeout count is reached
             # Go through list and try all current step images
             for image in image_paths:
-                print('Looking for', image)
+                print('\t Looking for', image)
                 path = get_relative_file_path(image)
-                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
                 if coordinates is not None:
                     break
 
             # If image is found move mouse and click it
             if coordinates is not None:
                 # Click on image coordinates
+                print('\t Clicking on', image_paths)
                 pyautogui.moveTo(coordinates)
                 if right_click:
                     pyautogui.rightClick()
@@ -89,11 +99,11 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
             count += 1
 
             # If images not found raise error to avoid clicking in undesired places
-            # Take screenshot and show it so we can see what might've gone wrong
+            # Take screenshot and show it, so we can see what might've gone wrong
             if coordinates is None and count == attempts:
                 im = PIL.ImageGrab.grab()
                 im.show()
-                raise ValueError('No image found for ', image_paths)
+                raise ValueError('\t No image found for ', image_paths)
 
         return
     else:
@@ -103,15 +113,16 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         while coordinates is None and count < attempts:
             # Go through list and try all images
             for image in image_paths:
-                print('Looking for', image)
+                print('\t Looking for', image)
                 path = get_relative_file_path(image)
-                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
                 if coordinates is not None:
                     break
 
             # If image is found move mouse and click it
             if coordinates is not None:
                 # Click on image coordinates
+                print('\t Clicking on', image_paths)
                 pyautogui.moveTo(coordinates)
                 if right_click:
                     pyautogui.rightClick()
@@ -126,7 +137,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         if coordinates is None and count == attempts:
             im = PIL.ImageGrab.grab()
             im.show()
-            raise ValueError('No image found for ', image_paths)
+            raise ValueError('\t No image found for ', image_paths)
 
 
 def click_image(image_paths, confidence=0.7,
@@ -171,12 +182,13 @@ def click_image(image_paths, confidence=0.7,
         pyautogui.click()
 
 
-def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message=''):
+def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message='', region=All_game_screen_region):
     """
     Look for specified list of PNG images with specified confidence return true if found false otherwise
     Note: Image path is relative to Common.py file
     sleep before click and console message
     If multiple images provided tries them all and stops if finds a match
+    Optional region parameter that defaults to whole game screen
     """
     sleep_with_countdown(time_before_check)
     print('Are', image_paths, 'on the screen?')
@@ -188,14 +200,14 @@ def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message
         # Get and Install Pillow and opencv-python packages to get this call to work
         # If the file is not a png file it will not work
         path = get_relative_file_path(image)
-        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=region)
 
         # If image not found print and check next image
         # Else if image is found stop loop
         if coordinates is None:
-            print(image, 'NOT on screen')
+            print(image, '\t NOT on screen')
         else:
-            print(image, 'on screen')
+            print(image, '\t on screen')
             break
 
     if coordinates is None:
