@@ -7,8 +7,9 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on entity hider in runelite to hide other players
                     - 117HD ON
                     - Set Object Markers:
-                      - Border width to 12
+                      - Border width to 6
                       - Marker color to: #FF00FFDD
+                      - Highlight clickbox enabled with all others disabled
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -51,11 +52,7 @@ try:
     bank_icon_images = ['Images/BankIcon3.png',
                         'Images/BankIcon2.png',
                         'Images/BankIcon.png']
-    bank_images = ['Images/CastleWarsChest5.png',
-                   'Images/CastleWarsChest4.png',
-                   'Images/CastleWarsChest3.png',
-                   'Images/CastleWarsChest2.png',
-                   'Images/CastleWarsChest.png']
+    bank_images = ['Images/CastleWarsChest.png']
     bank_close_images = ['Images/BankClose.png',
                          'Images/BankClose2.png']
     rune_essence_images = ['Images/RuneEssence.png',
@@ -67,18 +64,11 @@ try:
     bridge_images = ['Images/CastleWarsBridge3.png',
                      'Images/CastleWarsBridge2.png',
                      'Images/CastleWarsBridge.png']
-    balloon_basket_images = ['Images/CastleWarsBalloonBasket2.png',
-                             'Images/CastleWarsBalloonBasket.png']
+    balloon_basket_images = ['Images/CastleWarsBalloonBasket.png']
     balloon_map_varrock_images = ['Images/BalloonMapVarrock.png',
                                   'Images/BalloonMapVarrock.png']
-    ruin_images = ['Images/VarrockEarthMysteriousRuin4.png',
-                   'Images/VarrockEarthMysteriousRuin3.png',
-                   'Images/VarrockEarthMysteriousRuin2.png',
-                   'Images/VarrockEarthMysteriousRuin.png']
-    ruin_second_spot_images = ['Images/VarrockEarthMysteriousRuinSecondSpot.png',
-                               'Images/VarrockEarthMysteriousRuinSecondSpot.png']
-    rune_altar_images = ['Images/VarrockEarthRuneAltar2.png',
-                         'Images/VarrockEarthRuneAltar.png']
+    ruin_images = ['Images/VarrockEarthMysteriousRuin.png']
+    rune_altar_images = ['Images/VarrockEarthRuneAltar.png']
     water_rune = ['Images/WaterRune.png',
                   'Images/WaterRune.png']
     ring_of_dueling = ['Images/RingOfDueling.png',
@@ -87,91 +77,96 @@ try:
                   'Images/RubOption.png']
     castle_wars_teleport = ['Images/CastleWarsArenaTeleportOption.png',
                             'Images/CastleWarsArenaTeleportOption.png']
-    mud_rune_images = ['Images/MudRune2.png',
+    mud_rune_images = ['Images/MudRune3.png',
+                       'Images/MudRune2.png',
                        'Images/MudRune.png']
     stamina_potion_images = ['Images/StaminaPotion.png',
                              'Images/StaminaPotion2.png',
                              'Images/StaminaPotion4.png']
     vial_images = ['Images/Vial.png',
                    'Images/Vial.png']
-    necklace_of_binding_images = ['Images/NecklaceOfBinding2.png',
+    necklace_of_binding_images = ['Images/NecklaceOfBinding3.png',
+                                  'Images/NecklaceOfBinding2.png',
                                   'Images/NecklaceOfBinding.png']
 
-    # Then open bank to start
-    Common.click_image(bank_icon_images, 0.7, 2, 'Move to bank chest using map')
-    Common.click_image(bank_images, 0.7, 5, 'Click bank chest')
+    # Open bank to start
+    Common.watch_click_image(bank_icon_images, 0.9, 'Move to bank chest using map', False, 0, 10, bank_images)
+    Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images)
 
     for x in range(loopsTillDone):
-        Common.print_runtime(loopsTillDone, 65, x)
+        Common.print_runtime(loopsTillDone, 90, x)
 
         # Get stuff from chest
-        Common.click_image(water_talisman_images, 0.7, 3, 'Right click water talisman', True)
-        Common.click_image(withdraw_one_images, 0.9, 1, 'Withdraw one')
+        Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True)
+        Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one')
 
         # Get new ring of dueling at first run then every 8 runs
         if x % 8 == 0:
-            Common.click_image(ring_of_dueling, 0.7, 1, 'Get new ring of dueling', True)
-            Common.click_image(withdraw_one_images, 0.9, 1, 'Withdraw one')
+            Common.watch_click_image(ring_of_dueling, 0.7, 'Get new ring of dueling', True)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one')
 
         # Get new and equip binding necklace at first run then every 16 runs
         # Also get new stamina potion
         # Otherwise just get rune essence
         if x % 16 == 0:
             # Get new necklace of binding
-            Common.click_image(necklace_of_binding_images, 0.9, 1, 'Get new necklace of binding', True)
-            Common.click_image(withdraw_one_images, 0.9, 1, 'Withdraw one')
+            Common.watch_click_image(necklace_of_binding_images, 0.6, 'Get new necklace of binding', True)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one')
 
             # Deposit vial (Skip on first run since won't have one)
             if x != 0:
-                Common.click_image(vial_images, 0.9, 1, 'Deposit vial')
+                Common.watch_click_image(vial_images, 0.9, 'Deposit vial')
 
             # Get stamina potion
-            Common.click_image(stamina_potion_images, 0.6, 1, 'Get Stamina potion', True)
-            Common.click_image(withdraw_one_images, 0.9, 1, 'Withdraw one')
+            Common.watch_click_image(stamina_potion_images, 0.6, 'Get Stamina potion', True)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one')
 
             # Get rune essence last since it fills inventory
-            Common.click_image(rune_essence_images, 0.7, 1, 'Get rune essence')
+            Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence')
 
             # Close bank and put on binding necklace
-            Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
-            Common.click_image(necklace_of_binding_images, 0.8, 1, 'Equip Binding Necklace')
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
+
+            # Equip necklace of binding
+            Common.watch_click_image(necklace_of_binding_images, 0.6, 'Equip Binding Necklace')
         else:
             # Get rune essence last since it fills inventory
-            Common.click_image(rune_essence_images, 0.7, 1, 'Get rune essence')
-            Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
+            Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence')
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
         # Drink stamina potion at first run then every fourth run
         if x % 4 == 0:
-            Common.click_image(stamina_potion_images, 0.7, 1, 'Drink Stamina potion')
+            Common.watch_click_image(stamina_potion_images, 0.7, 'Drink Stamina potion')
 
-        # Take Balloon to Varrock
-        Common.click_image(bridge_images, 0.9, 1, 'Move to bridge using map')
-        Common.click_image(balloon_basket_images, 0.7, 6, 'Click Balloon')
-        Common.click_image(balloon_map_varrock_images, 0.9, 9, 'Click Varrock on Map')
+        # Move to bridge while looking for balloon basket
+        Common.watch_click_image(bridge_images, 0.8, 'Move to bridge while looking for balloon basket', False, 0,
+                                 10, balloon_basket_images)
 
-        # Go into mysterious ruin
-        Common.click_image(ruin_images, 0.6, 7, 'Click Mysterious Ruin')
+        # Click balloon while looking for varrock on map
+        Common.watch_click_image(balloon_basket_images, 0.7, 'Click balloon while looking for varrock on map', False, 3,
+                                 10, balloon_map_varrock_images)
 
-        # If earth altar is on screen click on water rune right away and craft runes
-        # Else may still be stuck at ruins check if it's on screen and click it if so
-        if Common.is_image_on_screen(rune_altar_images, 0.6, 7, 'Check if earth altar is on screen'):
-            Common.click_image(water_rune, 0.9, 1, 'Click Water Rune')
-            Common.click_image(rune_altar_images, 0.7, 1, 'Click Rune Altar')
-        elif Common.is_image_on_screen(ruin_second_spot_images, 0.6, 2, 'Check if mysterious Ruin is still on screen'):
-            Common.click_image(ruin_second_spot_images, 0.6, 1, 'Click Mysterious Ruin in second spot')
-            # Craft mud runes right away since already in ruins
-            Common.click_image(water_rune, 0.9, 2, 'Click Water Rune')
-            Common.click_image(rune_altar_images, 0.7, 1, 'Click Rune Altar')
+        Common.watch_click_image(balloon_map_varrock_images, 0.9, 'Click Varrock on Map')
+
+        # Click mysterious ruin while looking for earth altar
+        Common.watch_click_image(ruin_images, 0.8, ' Click mysterious ruin while looking for earth altar', False, 1,
+                                 10, rune_altar_images)
+
+        # Earth altar is visible so craft mud runes
+        # Wait till we see mud runes in inventory before moving on to next step
+        while Common.is_image_on_screen(mud_rune_images, 0.9, 0, 'Are mud runes in inventory?') is False:
+            Common.watch_click_image(water_rune, 0.9, 'Click Water Rune')
+            Common.watch_click_image(rune_altar_images, 0.7, 'Click Rune Altar')
 
         # Teleport back to castle wars and open bank
-        Common.click_image(ring_of_dueling, 0.9, 5, 'Right click ring of dueling', True)
-        Common.click_image(rub_option, 0.9, 1, 'Rub ring')
-        Common.click_image(castle_wars_teleport, 0.9, 1, 'Teleport to Castle Wars')
+        Common.watch_click_image(ring_of_dueling, 0.9, 'Right click ring of dueling', True)
+        Common.watch_click_image(rub_option, 0.9, 'Rub ring')
+        Common.watch_click_image(castle_wars_teleport, 0.9, 'Teleport to Castle Wars')
 
         # Bank mud runes
-        Common.click_image(bank_icon_images, 0.6, 3, 'Move to bank chest using map')
-        Common.click_image(bank_images, 0.7, 5, 'Click bank chest')
-        Common.click_image(mud_rune_images, 0.7, 4, 'Deposit Mud Runes')
+        Common.watch_click_image(bank_icon_images, 0.9, 'Move to bank chest using map', False, 1, 10, bank_images)
+        Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 1, 10, bank_close_images)
+        Common.watch_click_image(mud_rune_images, 0.8, 'Deposit Mud Runes')
 
 # Image not found error, stop loop and print message
 except ValueError as error:
