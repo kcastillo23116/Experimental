@@ -28,16 +28,19 @@ items in bank:      - Rune essence
                     - Rings of dueling
                     - Binding necklaces (NOTE: if less than 16 charges on necklaces destory one to recharge all others to full charges)
                     - Stamina potions
-Setup:           - Fill up hot air balloon box with bunch of willow logs
+Setup:           - Set Withdraw-X to 100
+                 - Fill up hot air balloon box with bunch of willow logs
                    Note: CAN STORE NOTED LOGS MAX 100 AT A TIME
 Objects to mark: - Castle wars bank chest
                  - Castle wars air balloon basket
+                 - Castle wars air balloon wood box
                  - Mysterious Ruin near varrock balloon
                  - Earth Run Altar
 
 """
 
 import RunescapeScripts.Common as Common
+import keyboard
 
 # Get how many from user
 itemCountString = input("How many items do you have? ")
@@ -48,9 +51,6 @@ loopsTillDone = round(itemCount / 24)
 
 try:
     # region BANK IMAGES
-    red_rug_images = ['Images/CastleWarsRedRug3.png',
-                      'Images/CastleWarsRedRug2.png',
-                      'Images/CastleWarsRedRug.png']
     bank_icon_images = ['Images/BankIcon3.png',
                         'Images/BankIcon2.png',
                         'Images/BankIcon.png']
@@ -59,7 +59,11 @@ try:
                          'Images/BankClose2.png']
     rune_essence_images = ['Images/RuneEssence.png']
     water_talisman_images = ['Images/WaterTalisman.png']
+    willow_log_images = ['Images/WillowLogs.png']
     withdraw_one_images = ['Images/Withdraw1Option.png']
+    withdraw_one_hundred_images = ['Images/Withdraw100Option.png']
+    withdraw_as_note_images = ['Images/WithdrawAsNote.png']
+    withdraw_as_item_images = ['Images/WithdrawAsItem.png']
     # endregion BANK IMAGES
 
     # region MOVEMENT IMAGES
@@ -67,8 +71,11 @@ try:
                      'Images/CastleWarsBridge2.png',
                      'Images/CastleWarsBridge.png']
     dirt_path_images = ['Images/CastleWarsDirtPath.png']
-    travel_icon_images = ['Images/TravelIcon.png']
+    balloon_wood_storage_images = ['Images/CastleWarsBalloonWoodStorage.png']
+    balloon_store_logs_images = ['Images/StoreLogs.png']
+    balloon_store_logs_prompt_images = ['Images/BalloonDepositLogsPrompt.png']
     balloon_basket_images = ['Images/CastleWarsBalloonBasket.png']
+    balloon_basket_wood_deposit_images = ['Images/CastleWarsBalloonBasketWoodDeposit.png']
     balloon_map_varrock_images = ['Images/BalloonMapVarrock.png']
     ruin_images = ['Images/VarrockEarthMysteriousRuin.png',
                    'Images/VarrockEarthMysteriousRuin2.png']
@@ -115,7 +122,7 @@ try:
 
         # Get new ring of dueling at first run then every 8 runs
         if x % 8 == 0:
-            Common.watch_click_image(ring_of_dueling_bank, 0.7, 'Get new ring of dueling', True, 0, 10, None,
+            Common.watch_click_image(ring_of_dueling_bank, 0.7, 'Right click ring of dueling', True, 0, 10, None,
                                      Common.Bank_region)
             Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
                                      Common.Bank_region)
@@ -131,8 +138,18 @@ try:
             Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
                                      Common.Bank_region)
 
+        # Get 100 willow logs every 100 runs
+        if x % 100 == 0 and x != 0:
+            Common.watch_click_image(withdraw_as_note_images, 0.7, 'Set to withdraw as note', False, 0, 10, None,
+                                     Common.Bank_bottom_options_region)
+            Common.watch_click_image(willow_log_images, 0.7, 'Right click willow logs', True, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_one_hundred_images, 0.9, 'Withdraw one hundred', False, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_as_item_images, 0.7, 'Set to withdraw as item', False, 0, 10, None,
+                                     Common.Bank_bottom_options_region)
+
         # Get new and equip binding necklace at first run then every 16 runs
-        # Also get new stamina potion
         # Otherwise just get rune essence
         if x % 16 == 0:
             # Get new necklace of binding
@@ -173,10 +190,32 @@ try:
         Common.watch_click_image(dirt_path_images, 0.7, 'Click dirt path while looking for balloon', False, 2,
                                  10, balloon_basket_images, Common.Minimap_region, Common.All_game_screen_region, 0.5)
 
-        # Click balloon while looking for varrock on map
-        Common.watch_click_image(balloon_basket_images, 0.3, 'Click balloon while looking for varrock on map', False, 3,
-                                 10, balloon_map_varrock_images, Common.All_game_screen_region,
-                                 Common.All_game_screen_region)
+        # Restock willow logs after 100th run
+        # Else carry on to balloon
+        if x % 100 == 0 and x != 0:
+            Common.watch_click_image(balloon_wood_storage_images, 0.7,
+                                     'Right click wood storage box while looking for store logs option', True, 1,
+                                     10, balloon_store_logs_images, Common.All_game_screen_region,
+                                     Common.All_game_screen_region, 0.9)
+            Common.watch_click_image(balloon_store_logs_images, 0.9,
+                                     'Click on store logs option while looking for store logs prompt', False, 1,
+                                     10, balloon_store_logs_prompt_images, Common.All_game_screen_region,
+                                     Common.Chatbox_region, 0.9)
+
+            Common.sleep_with_countdown(1)
+            keyboard.write('100')
+            keyboard.press('enter')
+
+            Common.watch_click_image(balloon_basket_wood_deposit_images, 0.3,
+                                     'Click balloon from wood deposit box while looking for varrock on map', False, 3,
+                                     10, balloon_map_varrock_images, Common.All_game_screen_region,
+                                     Common.All_game_screen_region)
+        else:
+            # Click balloon from dirt path while looking for varrock on map
+            Common.watch_click_image(balloon_basket_images, 0.3,
+                                     'Click balloon from dirt path while looking for varrock on map', False, 3,
+                                     10, balloon_map_varrock_images, Common.All_game_screen_region,
+                                     Common.All_game_screen_region)
 
         Common.watch_click_image(balloon_map_varrock_images, 0.8, 'Click Varrock Map while looking for ruin', False, 2,
                                  10, ruin_images, Common.All_game_screen_region, Common.All_game_screen_region, 0.5)

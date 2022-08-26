@@ -16,6 +16,9 @@ Bottom_right_game_screen_region = None
 Minimap_region = None
 Inventory_region = None
 Bank_region = None
+Bank_bottom_options_region = None
+
+Chatbox_region = None
 
 
 def set_regions():
@@ -31,6 +34,10 @@ def set_regions():
     global Minimap_region
     global Inventory_region
     global Bank_region
+    global Bank_bottom_options_region
+
+    global Chatbox_region
+
 
     # Set regions for 3K or 4K laptop resolution if neither resolution is set raise an error
     if width == 3000:
@@ -39,14 +46,22 @@ def set_regions():
 
         Minimap_region = (2363, 74, 570, 418)
         Inventory_region = (2432, 1145, 499, 690)
+
         Bank_region = (564, 241, 1193, 1140)
+        Bank_bottom_options_region = (985, 1528, 1263, 120)
+
+        Chatbox_region = (16, 1666, 1333, 356)
     elif width == 3840:
         All_game_screen_region = (8, 43, 3774, 2038)
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
 
         Minimap_region = (3353, 86, 424, 416)
         Inventory_region = (3259, 1288, 514, 692)
+
         Bank_region = (987, 248, 1188, 1280)
+        Bank_bottom_options_region = (985, 1528, 1263, 120)
+
+        Chatbox_region = (16, 1666, 1333, 356)
     else:
         raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
 
@@ -103,7 +118,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
                       next_step_confidence=0.7):
     """
     Click specified image on screen as soon as it's found
-    Keep watching till it's found or timeout after specified attempt count
+    Keep watching till next step is found or timeout after specified attempt count
     Optional time between clicks and next step images to look for
     Optional region parameters that default to whole game screen
     """
