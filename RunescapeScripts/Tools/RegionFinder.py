@@ -11,4 +11,4 @@ height = pos2[1] - pos1[1]
 
 print('Your region is... \n')
 
-print('region=('+str(pos1[0])+','+str(pos1[1])+','+str(width)+','+str(height)+') \n')
+print('region=('+str(pos1[0])+', '+str(pos1[1])+', '+str(width)+', '+str(height)+') \n')

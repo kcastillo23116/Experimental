@@ -7,13 +7,55 @@ import os
 import pyautogui
 from pathlib import Path
 import PIL.ImageGrab
+from win32api import GetSystemMetrics
 
-All_game_screen_region = (9,47,2926,1882)
-Bottom_right_game_screen_region = (1354,1048,1048,788)
+# Regions to be used by  pyautogui functions
+All_game_screen_region = None
+Bottom_right_game_screen_region = None
 
-Minimap_region = (2363, 74, 570, 418)
-Inventory_region = (2432, 1145, 499, 690)
-Bank_region = (564, 241, 1193, 1140)
+Minimap_region = None
+Inventory_region = None
+Bank_region = None
+
+
+def set_regions():
+    """
+    Sets game regions based on current main monitor resolutions
+    """
+    width = GetSystemMetrics(0)
+    height = GetSystemMetrics(1)
+
+    global All_game_screen_region
+    global Bottom_right_game_screen_region
+
+    global Minimap_region
+    global Inventory_region
+    global Bank_region
+
+    # Set regions for 3K or 4K laptop resolution if neither resolution is set raise an error
+    if width == 3000:
+        All_game_screen_region = (9, 47, 2926, 1882)
+        Bottom_right_game_screen_region = (1354, 1048, 1048, 788)
+
+        Minimap_region = (2363, 74, 570, 418)
+        Inventory_region = (2432, 1145, 499, 690)
+        Bank_region = (564, 241, 1193, 1140)
+    elif width == 3840:
+        All_game_screen_region = (8, 43, 3774, 2038)
+        Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
+
+        Minimap_region = (3353, 86, 424, 416)
+        Inventory_region = (3259, 1288, 514, 692)
+        Bank_region = (987, 248, 1188, 1280)
+    else:
+        raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
+
+
+try:
+    set_regions()
+except ValueError as error:
+    raise error
+
 
 # sleep timer that displays countdown in console
 def sleep_with_countdown(amt_time):
@@ -67,77 +109,86 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
     """
     print(message)
 
-    # If next step images provided check if next step is on screen and keep trying current step till next step is
-    # visible then return when next step is visible
-    # Else no next step images provided just find the image we're looking for, so it can be clicked
-    if next_step_image_paths is not None:
+    try:
         count = 0
+        image_was_clicked = False
 
-        # If next step is not on screen keep trying current step and checking for next step
-        while is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "", next_step_region) \
-                is False and count < attempts:
-            # Keep looking for image till found or timeout count is reached
-            # Go through list and try all current step images
-            for image in image_paths:
-                print('\t Looking for', image)
-                path = get_relative_file_path(image)
-                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
-                if coordinates is not None:
-                    break
+        # If next step images not provided set to True since we don't care if it's on the screen
+        if next_step_image_paths is None:
+            is_next_step_image_on_screen = True
+        else:
+            is_next_step_image_on_screen = False
 
-            # If image is found move mouse and click it
-            if coordinates is not None:
-                # Click on image coordinates
-                print('\t Clicking on', image_paths)
-                pyautogui.moveTo(coordinates)
-                if right_click:
-                    pyautogui.rightClick()
-                else:
-                    pyautogui.click()
-                sleep_with_countdown(time_between_clicks)
+        # Look for and click specified image
+        # If image was not already clicked or next step image is not on screen and max attempts not reached
+        while image_was_clicked is False or \
+                is_next_step_image_on_screen is False \
+                and count < attempts:
+            image_was_clicked = click_image_helper(image_paths, confidence, current_step_region,
+                                                   time_between_clicks, right_click)
+            # Check for next step image if one is provided
+            if next_step_image_paths is not None:
+                is_next_step_image_on_screen = is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "",
+                                                                  next_step_region)
+            # Next step is visible no need to keep looking
+            if is_next_step_image_on_screen:
+                break
+            # Break if at max attempts
+            if count > attempts:
+                break
 
             count += 1
 
-            # If images not found raise error to avoid clicking in undesired places
-            # Take screenshot and show it, so we can see what might've gone wrong
-            if coordinates is None and count == attempts:
-                im = PIL.ImageGrab.grab()
-                im.show()
-                raise ValueError('\t No image found for ', image_paths)
-
-        return
-    else:
-        # Keep looking for image till found or timeout count is reached
-        count = 0
-        coordinates = None
-        while coordinates is None and count < attempts:
-            # Go through list and try all images
-            for image in image_paths:
-                print('\t Looking for', image)
-                path = get_relative_file_path(image)
-                coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
-                if coordinates is not None:
-                    break
-
-            # If image is found move mouse and click it
-            if coordinates is not None:
-                # Click on image coordinates
-                print('\t Clicking on', image_paths)
-                pyautogui.moveTo(coordinates)
-                if right_click:
-                    pyautogui.rightClick()
-                else:
-                    pyautogui.click()
-                sleep_with_countdown(time_between_clicks)
-
-            count += 1
-
-        # If image not found raise error to avoid clicking in undesired places
-        # Take screenshot and show it so we can see what might've gone wrong
-        if coordinates is None and count == attempts:
+        # If image not found after all attempts raise error to avoid clicking in undesired places
+        # Take screenshot and show it, so we can see what might've gone wrong
+        if count == attempts:
             im = PIL.ImageGrab.grab()
             im.show()
             raise ValueError('\t No image found for ', image_paths)
+
+        return
+
+    except ValueError as val_error:
+        raise val_error
+
+
+def click_image_helper(image_paths, confidence, current_step_region, time_between_clicks=0, right_click=False):
+    """
+    Updated click image helper function to be used by the watch_click_image function above
+    Click specified image on screen as soon as it's found
+    Optional timeout after specified attempt count
+    Optional time between clicks and next step images to look for
+    Optional region parameters that default to whole game screen
+    """
+
+    coordinates = None
+
+    # Go through list and try all images
+    for image in image_paths:
+        print('\t Looking for', image)
+        path = get_relative_file_path(image)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
+
+        # if coordinates found break loop no need to look at rest of images
+        if coordinates is not None:
+            break
+
+    # If image is found move mouse and click it and return True
+    # Else return false to let know we didn't find anything to click
+    if coordinates is not None:
+        # Click on image coordinates
+        print('\t\tClicking on', image_paths)
+        pyautogui.moveTo(coordinates)
+        if right_click:
+            pyautogui.rightClick()
+            sleep_with_countdown(time_between_clicks)
+            return True
+        else:
+            pyautogui.click()
+            sleep_with_countdown(time_between_clicks)
+            return True
+    else:
+        return False
 
 
 def click_image(image_paths, confidence=0.7,
@@ -168,7 +219,7 @@ def click_image(image_paths, confidence=0.7,
             break
 
     # If image not found raise error to avoid clicking in undesired places
-    # Take screenshot and show it so we can see what might've gone wrong
+    # Take screenshot and show it, so we can see what might've gone wrong
     if coordinates is None:
         im = PIL.ImageGrab.grab()
         im.show()
@@ -190,10 +241,8 @@ def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message
     If multiple images provided tries them all and stops if finds a match
     Optional region parameter that defaults to whole game screen
     """
-    sleep_with_countdown(time_before_check)
-    print('Are', image_paths, 'on the screen?')
-
     coordinates = None
+    sleep_with_countdown(time_before_check)
 
     # Go through list and try all images
     for image in image_paths:
