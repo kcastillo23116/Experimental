@@ -103,7 +103,7 @@ try:
     Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images)
 
     for x in range(loopsTillDone):
-        Common.print_runtime(loopsTillDone, 140, x)
+        Common.print_runtime(loopsTillDone, 90, x)
 
         # region BANK STUFF
 
