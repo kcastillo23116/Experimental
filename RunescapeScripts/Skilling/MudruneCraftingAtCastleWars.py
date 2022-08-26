@@ -10,6 +10,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       - Border width to 6
                       - Marker color to: #FF00FFDD
                       - Highlight clickbox enabled with all others disabled
+                    - Turn off binding necklace item charge notifications on Runelite
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -102,7 +103,7 @@ try:
     Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images)
 
     for x in range(loopsTillDone):
-        Common.print_runtime(loopsTillDone, 90, x)
+        Common.print_runtime(loopsTillDone, 140, x)
 
         # region BANK STUFF
 
@@ -119,8 +120,8 @@ try:
             Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
                                      Common.Bank_region)
 
-        # Get new stamina potion every 20 runs
-        if x % 20 == 0:
+        # Get new stamina potion every 15 runs
+        if x % 15 == 0:
             # Only deposit vial after first run since won't be present till after first run
             if x != 0:
                 Common.watch_click_image(vial_images, 0.7, 'Deposit vial', False, 0, 10, None,
@@ -156,8 +157,8 @@ try:
                                      Common.Bank_region)
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
-        # Drink stamina potion every fourth run
-        if x % 4 == 0 and x != 0:
+        # Drink stamina potion every third run
+        if x % 3 == 0 and x != 0:
             Common.watch_click_image(stamina_potion_images, 0.7, 'Drink Stamina potion', False, 0, 10, None,
                                      Common.Inventory_region)
         # endregion BANK STUFF
