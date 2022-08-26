@@ -10,8 +10,6 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       - Border width to 6
                       - Marker color to: #FF00FFDD
                       - Highlight clickbox enabled with all others disabled
-                    - Turn on bank HA heatmap runelite plugin by right clicking fork show menu option in bank and selecting
-                      Toggle HA heatmap
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
