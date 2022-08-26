@@ -198,7 +198,7 @@ try:
                                      10, balloon_store_logs_images, Common.All_game_screen_region,
                                      Common.All_game_screen_region, 0.9)
             Common.watch_click_image(balloon_store_logs_images, 0.9,
-                                     'Click on store logs option while looking for store logs prompt', False, 1,
+                                     'Click on store logs option while looking for store logs prompt', False, 0,
                                      10, balloon_store_logs_prompt_images, Common.All_game_screen_region,
                                      Common.Chatbox_region, 0.9)
 

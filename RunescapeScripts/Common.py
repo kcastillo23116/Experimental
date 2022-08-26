@@ -48,9 +48,9 @@ def set_regions():
         Inventory_region = (2432, 1145, 499, 690)
 
         Bank_region = (564, 241, 1193, 1140)
-        Bank_bottom_options_region = (985, 1528, 1263, 120)
+        Bank_bottom_options_region = (557, 1392, 1263, 101)
 
-        Chatbox_region = (16, 1666, 1333, 356)
+        Chatbox_region = (12, 1522, 1343, 412)
     elif width == 3840:
         All_game_screen_region = (8, 43, 3774, 2038)
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
