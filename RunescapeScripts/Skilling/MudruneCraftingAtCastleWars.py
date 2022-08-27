@@ -199,7 +199,7 @@ try:
         # Click dirt path while looking for balloon
         Common.watch_click_image(dirt_path_images, 0.7, 'Click dirt path while looking for balloon', False, 2,
                                  10, balloon_basket_images, Common.Minimap_region, Common.Top_half_game_screen_region,
-                                 0.5)
+                                 0.3)
 
         # Restock willow logs after 100th run
         # Else carry on to balloon
@@ -229,7 +229,7 @@ try:
                                      Common.Top_half_game_screen_region)
         else:
             # Click balloon from dirt path while looking for varrock on map
-            Common.watch_click_image(balloon_basket_images, 0.4,
+            Common.watch_click_image(balloon_basket_images, 0.3,
                                      'Click balloon from dirt path while looking for varrock on map', False, 3,
                                      10, balloon_map_varrock_images, Common.Top_half_game_screen_region,
                                      Common.Top_half_game_screen_region)
