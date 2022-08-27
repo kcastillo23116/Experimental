@@ -29,7 +29,9 @@ equip items:        - Steam battlestaff
 items in inventory: - Stack of water runes
 items in bank:      - Rune essence
                     - Rings of dueling
-                    - Binding necklaces (NOTE: if less than 16 charges on necklaces destory one to recharge all others to full charges)
+                    - Binding necklaces with 16 charges
+                      (NOTE: if less than 16 charges on necklaces destory one to recharge all others to
+                      full charges)
                     - Stamina potions
 Setup:           - Set Withdraw-X to 100
                  - Fill up hot air balloon box with bunch of willow logs
@@ -77,7 +79,8 @@ try:
     balloon_wood_storage_images = ['Images/CastleWarsBalloonWoodStorage.png']
     balloon_store_logs_images = ['Images/StoreLogs.png']
     balloon_store_logs_prompt_images = ['Images/BalloonDepositLogsPrompt.png']
-    balloon_basket_images = ['Images/CastleWarsBalloonBasket.png']
+    balloon_basket_images = ['Images/CastleWarsBalloonBasket.png',
+                             'Images/CastleWarsBalloonBasket2.png']
     balloon_basket_wood_deposit_images = ['Images/CastleWarsBalloonBasketWoodDeposit.png']
     balloon_map_varrock_images = ['Images/BalloonMapVarrock.png']
     ruin_images = ['Images/VarrockEarthMysteriousRuin.png',
@@ -110,9 +113,10 @@ try:
     # endregion MOVEMENT IMAGES
 
     # Open bank to start
-    Common.watch_click_image(bank_icon_images, 0.9, 'Move to bank chest using map', False, 0, 10, bank_images,
-                             Common.Minimap_region, Common.All_game_screen_region)
-    Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images)
+    Common.watch_click_image(bank_icon_images, 0.9, 'Move to bank chest using map', False, 1, 10, bank_images,
+                             Common.Minimap_region, Common.Top_half_game_screen_region)
+    Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                             Common.Top_half_game_screen_region)
 
     for x in range(loopsTillDone):
         print('Loop:', x, '/', loopsTillDone)
@@ -194,7 +198,8 @@ try:
 
         # Click dirt path while looking for balloon
         Common.watch_click_image(dirt_path_images, 0.7, 'Click dirt path while looking for balloon', False, 2,
-                                 10, balloon_basket_images, Common.Minimap_region, Common.All_game_screen_region, 0.5)
+                                 10, balloon_basket_images, Common.Minimap_region, Common.Top_half_game_screen_region,
+                                 0.5)
 
         # Restock willow logs after 100th run
         # Else carry on to balloon
@@ -220,31 +225,34 @@ try:
 
             Common.watch_click_image(balloon_basket_wood_deposit_images, 0.3,
                                      'Click balloon from wood deposit box while looking for varrock on map', False, 3,
-                                     10, balloon_map_varrock_images, Common.All_game_screen_region,
-                                     Common.All_game_screen_region)
+                                     10, balloon_map_varrock_images, Common.Top_half_game_screen_region,
+                                     Common.Top_half_game_screen_region)
         else:
             # Click balloon from dirt path while looking for varrock on map
-            Common.watch_click_image(balloon_basket_images, 0.3,
+            Common.watch_click_image(balloon_basket_images, 0.4,
                                      'Click balloon from dirt path while looking for varrock on map', False, 3,
-                                     10, balloon_map_varrock_images, Common.All_game_screen_region,
-                                     Common.All_game_screen_region)
+                                     10, balloon_map_varrock_images, Common.Top_half_game_screen_region,
+                                     Common.Top_half_game_screen_region)
 
         Common.watch_click_image(balloon_map_varrock_images, 0.8, 'Click Varrock Map while looking for ruin', False, 2,
-                                 10, ruin_images, Common.All_game_screen_region, Common.All_game_screen_region, 0.5)
+                                 10, ruin_images, Common.Top_half_game_screen_region, Common.Bottom_right_game_screen_region, 0.5)
 
         # Click mysterious ruin while looking for earth altar
         Common.watch_click_image(ruin_images, 0.5, ' Click mysterious ruin while looking for earth altar', False, 5,
                                  10, rune_altar_images, Common.Bottom_right_game_screen_region,
-                                 Common.All_game_screen_region, 0.5)
+                                 Common.Top_half_game_screen_region, 0.5)
 
         # Craft mud runes and check if they're in inventory if they aren't try crafting them again up to ten times
         count = 0
-        Common.watch_click_image(water_rune, 0.8, 'Click Water Rune', False, 0, 10, None, Common.Inventory_region)
-        Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 3)
-        while Common.is_image_on_screen(mud_rune_images, 0.8, 0, 'Are mud runes in inventory?') is False \
-                and count < 10:
+        while True:
             Common.watch_click_image(water_rune, 0.8, 'Click Water Rune', False, 0, 10, None, Common.Inventory_region)
             Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 3)
+
+            # If mud runes in inventory break loop
+            if Common.is_image_on_screen(mud_rune_images, 0.8, 0, 'Are mud runes in inventory?',
+                                         Common.Inventory_region) is True and count < 10:
+                break
+
             count += 1
 
         # Teleport back to castle wars and open bank
@@ -252,7 +260,8 @@ try:
                                  Common.Inventory_region)
         Common.watch_click_image(rub_option, 0.8, 'Rub ring', False, 1, 10, None,
                                  Common.Inventory_region)
-        Common.watch_click_image(castle_wars_teleport, 0.8, 'Teleport to Castle Wars', False, 1)
+        Common.watch_click_image(castle_wars_teleport, 0.8, 'Teleport to Castle Wars', False, 1, 10, None,
+                                 Common.Chatbox_region)
 
         # endregion MOVEMENT
 
@@ -260,8 +269,9 @@ try:
 
         # Bank mud runes
         Common.watch_click_image(bank_icon_images, 0.9, 'Move to bank chest using map', False, 1, 10, bank_images,
-                                 Common.Minimap_region, Common.All_game_screen_region)
-        Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images)
+                                 Common.Minimap_region, Common.Top_half_game_screen_region)
+        Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                                 Common.Top_half_game_screen_region)
         Common.watch_click_image(mud_rune_images, 0.8, 'Deposit Mud Runes', False, 0, 10, None,
                                  Common.Inventory_region)
         # endregion BANK DEPOSIT
