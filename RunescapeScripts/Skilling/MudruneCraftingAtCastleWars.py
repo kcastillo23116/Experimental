@@ -144,7 +144,7 @@ try:
                                      Common.Bank_region)
 
         # Get 100 willow logs every 100 runs
-        if x % 1 == 0 and x != 0:
+        if x % 100 == 0 and x != 0:
             Common.watch_click_image(withdraw_as_note_images, 0.7, 'Set to withdraw as note', False, 0, 10, None,
                                      Common.Bank_bottom_options_region)
             Common.watch_click_image(willow_log_images, 0.7, 'Right click willow logs', True, 0, 10, None,
