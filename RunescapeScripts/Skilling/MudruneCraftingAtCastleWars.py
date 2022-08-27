@@ -8,8 +8,11 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - 117HD OFF and GPU ON
                     - Set Object Markers:
                       - Border width to 6
-                      - Marker color to: #FF00FFDD
+                      - Marker colors:
+                        - FFD400FF for log storage (purple)
+                        - FF00FFDD for all object (cyan)
                       - Highlight clickbox enabled with all others disabled
+                      - Remember color per object
                     - Turn off binding necklace item charge notifications on Runelite
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
@@ -102,6 +105,8 @@ try:
     necklace_of_binding_images = ['Images/NecklaceOfBinding3.png',
                                   'Images/NecklaceOfBinding2.png',
                                   'Images/NecklaceOfBinding.png']
+    all_chatbox_option = ['Images/AllChatBoxOption.png']
+
     # endregion MOVEMENT IMAGES
 
     # Open bank to start
@@ -139,7 +144,7 @@ try:
                                      Common.Bank_region)
 
         # Get 100 willow logs every 100 runs
-        if x % 100 == 0 and x != 0:
+        if x % 1 == 0 and x != 0:
             Common.watch_click_image(withdraw_as_note_images, 0.7, 'Set to withdraw as note', False, 0, 10, None,
                                      Common.Bank_bottom_options_region)
             Common.watch_click_image(willow_log_images, 0.7, 'Right click willow logs', True, 0, 10, None,
@@ -193,14 +198,20 @@ try:
         # Restock willow logs after 100th run
         # Else carry on to balloon
         if x % 100 == 0 and x != 0:
-            Common.watch_click_image(balloon_wood_storage_images, 0.7,
-                                     'Right click wood storage box while looking for store logs option', True, 1,
-                                     10, balloon_store_logs_images, Common.All_game_screen_region,
-                                     Common.All_game_screen_region, 0.9)
-            Common.watch_click_image(balloon_store_logs_images, 0.9,
-                                     'Click on store logs option while looking for store logs prompt', False, 0,
-                                     10, balloon_store_logs_prompt_images, Common.All_game_screen_region,
-                                     Common.Chatbox_region, 0.9)
+            # Try to right-click wood deposit box while looking for deposit wood prompt
+            count = 0
+            while Common.is_image_on_screen(balloon_store_logs_prompt_images, 0.7, 0,
+                                            'Is deposit logs prompt up?', Common.Chatbox_region) \
+                    is False \
+                    and count < 10:
+                Common.watch_click_image(all_chatbox_option, 0.7,
+                                         'Right Click all chatbox option to clear any bad option menus', True, 0,
+                                         10, None, Common.Chatbox_options_region)
+                Common.watch_click_image(balloon_wood_storage_images, 0.7,
+                                         'Right click wood storage box while looking for store logs option', True, 1)
+                Common.watch_click_image(balloon_store_logs_images, 0.9,
+                                         'Click on store logs option while looking for store logs prompt', False, 0)
+                count += 1
 
             Common.sleep_with_countdown(1)
             keyboard.write('100')

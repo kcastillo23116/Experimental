@@ -19,6 +19,7 @@ Bank_region = None
 Bank_bottom_options_region = None
 
 Chatbox_region = None
+Chatbox_options_region = None
 
 
 def set_regions():
@@ -37,7 +38,7 @@ def set_regions():
     global Bank_bottom_options_region
 
     global Chatbox_region
-
+    global Chatbox_options_region
 
     # Set regions for 3K or 4K laptop resolution if neither resolution is set raise an error
     if width == 3000:
@@ -51,6 +52,7 @@ def set_regions():
         Bank_bottom_options_region = (557, 1392, 1263, 101)
 
         Chatbox_region = (12, 1522, 1343, 412)
+        Chatbox_options_region = (4, 1862, 1361, 73)
     elif width == 3840:
         All_game_screen_region = (8, 43, 3774, 2038)
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
@@ -62,6 +64,7 @@ def set_regions():
         Bank_bottom_options_region = (985, 1528, 1263, 120)
 
         Chatbox_region = (16, 1666, 1333, 356)
+        Chatbox_options_region = (4, 1862, 1361, 73)
     else:
         raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
 
