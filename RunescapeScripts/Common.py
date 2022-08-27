@@ -143,8 +143,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         # Look for and click specified image
         # If image was not already clicked or next step image is not on screen and max attempts not reached
         while image_was_clicked is False or \
-                is_next_step_image_on_screen is False \
-                and count < attempts:
+                is_next_step_image_on_screen is False:
             image_was_clicked = click_image_helper(image_paths, confidence, current_step_region,
                                                    time_between_clicks, right_click)
             # Check for next step image if one is provided
@@ -154,21 +153,14 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
             # Next step is visible no need to keep looking
             if is_next_step_image_on_screen:
                 break
-            # Break if at max attempts
-            if count > attempts:
-                break
+            # If image not found after all attempts raise error to avoid clicking in undesired places
+            # Take screenshot and show it, so we can see what might've gone wrong
+            elif count == attempts:
+                im = PIL.ImageGrab.grab()
+                im.show()
+                raise ValueError('\t No image found for ', image_paths)
 
             count += 1
-
-        # If image not found after all attempts raise error to avoid clicking in undesired places
-        # Take screenshot and show it, so we can see what might've gone wrong
-        if count == attempts:
-            im = PIL.ImageGrab.grab()
-            im.show()
-            raise ValueError('\t No image found for ', image_paths)
-
-        return
-
     except ValueError as val_error:
         raise val_error
 
