@@ -79,8 +79,7 @@ try:
     balloon_wood_storage_images = ['Images/CastleWarsBalloonWoodStorage.png']
     balloon_store_logs_images = ['Images/StoreLogs.png']
     balloon_store_logs_prompt_images = ['Images/BalloonDepositLogsPrompt.png']
-    balloon_basket_images = ['Images/CastleWarsBalloonBasket.png',
-                             'Images/CastleWarsBalloonBasket2.png']
+    balloon_basket_images = ['Images/CastleWarsBalloonBasket.png']
     balloon_basket_wood_deposit_images = ['Images/CastleWarsBalloonBasketWoodDeposit.png']
     balloon_map_varrock_images = ['Images/BalloonMapVarrock.png']
     ruin_images = ['Images/VarrockEarthMysteriousRuin.png',
@@ -197,27 +196,31 @@ try:
                                  20, dirt_path_images, Common.Minimap_region, Common.Minimap_region)
 
         # Click dirt path while looking for balloon
-        Common.watch_click_image(dirt_path_images, 0.7, 'Click dirt path while looking for balloon', False, 2,
+        Common.watch_click_image(dirt_path_images, 0.7, 'Click dirt path while looking for balloon', False, 6,
                                  10, balloon_basket_images, Common.Minimap_region, Common.Top_half_game_screen_region,
                                  0.3)
 
         # Restock willow logs after 100th run
         # Else carry on to balloon
-        if x % 100 == 0 and x != 0:
+        if True: #x % 100 == 0 and x != 0:
             # Try to right-click wood deposit box while looking for deposit wood prompt
             count = 0
-            while Common.is_image_on_screen(balloon_store_logs_prompt_images, 0.7, 0,
-                                            'Is deposit logs prompt up?', Common.Chatbox_region) \
-                    is False \
-                    and count < 10:
+            while True:
                 Common.watch_click_image(all_chatbox_option, 0.7,
                                          'Right Click all chatbox option to clear any bad option menus', True, 0,
                                          10, None, Common.Chatbox_options_region)
                 Common.watch_click_image(balloon_wood_storage_images, 0.7,
                                          'Right click wood storage box while looking for store logs option', True, 1)
                 Common.watch_click_image(balloon_store_logs_images, 0.9,
-                                         'Click on store logs option while looking for store logs prompt', False, 0)
+                                         'Click on store logs option while looking for store logs prompt', False, 5)
                 count += 1
+
+                # If next step is visible or on attempt 10 break out of loop
+                if (Common.is_image_on_screen(balloon_store_logs_prompt_images, 0.7, 0,
+                                              'Is deposit logs prompt up?', Common.Chatbox_region)):
+                    break
+                elif count == 10:
+                    break
 
             Common.sleep_with_countdown(1)
             keyboard.write('100')
@@ -230,12 +233,12 @@ try:
         else:
             # Click balloon from dirt path while looking for varrock on map
             Common.watch_click_image(balloon_basket_images, 0.3,
-                                     'Click balloon from dirt path while looking for varrock on map', False, 3,
+                                     'Click balloon from dirt path while looking for varrock on map', False, 4,
                                      10, balloon_map_varrock_images, Common.Top_half_game_screen_region,
                                      Common.Top_half_game_screen_region)
 
-        Common.watch_click_image(balloon_map_varrock_images, 0.8, 'Click Varrock Map while looking for ruin', False, 2,
-                                 10, ruin_images, Common.Top_half_game_screen_region, Common.Bottom_right_game_screen_region, 0.5)
+        Common.watch_click_image(balloon_map_varrock_images, 0.8, 'Click Varrock Map', False, 2,
+                                 10, None, Common.Top_half_game_screen_region)
 
         # Click mysterious ruin while looking for earth altar
         Common.watch_click_image(ruin_images, 0.5, ' Click mysterious ruin while looking for earth altar', False, 5,
