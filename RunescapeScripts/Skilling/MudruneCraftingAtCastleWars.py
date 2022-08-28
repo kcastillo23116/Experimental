@@ -202,7 +202,7 @@ try:
 
         # Restock willow logs after 100th run
         # Else carry on to balloon
-        if True: #x % 100 == 0 and x != 0:
+        if x % 100 == 0 and x != 0:
             # Try to right-click wood deposit box while looking for deposit wood prompt
             count = 0
             while True:
