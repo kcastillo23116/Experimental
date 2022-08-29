@@ -59,15 +59,16 @@ def set_regions():
     elif width == 3840:
         All_game_screen_region = (8, 43, 3774, 2038)
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
+        Top_half_game_screen_region = (3, 38, 3244, 1574)
 
         Minimap_region = (3353, 86, 424, 416)
-        Inventory_region = (3259, 1288, 514, 692)
+        Inventory_region = (3259, 1288, 512, 684)
 
         Bank_region = (987, 248, 1188, 1280)
         Bank_bottom_options_region = (985, 1528, 1263, 120)
 
-        Chatbox_region = (16, 1666, 1333, 356)
-        Chatbox_options_region = (4, 1862, 1361, 73)
+        Chatbox_region = (16, 1670, 1335, 320)
+        Chatbox_options_region = (6, 2016, 1357, 68)
     else:
         raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
 

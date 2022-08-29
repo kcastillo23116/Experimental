@@ -27,6 +27,7 @@ equip items:        - Steam battlestaff
                     - no necklace
                     - lightest weight gear
 items in inventory: - Stack of water runes
+                    - Rune essence pouch
 items in bank:      - Rune essence
                     - Rings of dueling
                     - Binding necklaces with 16 charges
@@ -63,6 +64,7 @@ try:
     bank_close_images = ['Images/BankClose.png',
                          'Images/BankClose2.png']
     rune_essence_images = ['Images/RuneEssence.png']
+    rune_pouch_images = ['Images/LargeRunePouch.png']
     water_talisman_images = ['Images/WaterTalisman.png']
     willow_log_images = ['Images/WillowLogs.png']
     withdraw_one_images = ['Images/Withdraw1Option.png']
@@ -87,6 +89,7 @@ try:
     rune_altar_images = ['Images/VarrockEarthRuneAltar.png']
     water_rune = ['Images/WaterRune.png',
                   'Images/WaterRune.png']
+    empty_pouch_images = ['Images/EmptyPouchOption.png']
     ring_of_dueling_bank = ['Images/RingOfDueling2.png']
     rub_option = ['Images/RubOption.png',
                   'Images/RubOption.png']
@@ -124,17 +127,22 @@ try:
         # region BANK STUFF
 
         # Get stuff from bank chest
-        Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True, 0, 10, None,
-                                 Common.Bank_region)
-        Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-                                 Common.Bank_region)
-
         # Get new ring of dueling at first run then every 8 runs
+        # Note: Get this first so right click menu isn't out of bounds when it's in the first column
         if x % 8 == 0:
             Common.watch_click_image(ring_of_dueling_bank, 0.7, 'Right click ring of dueling', True, 0, 10, None,
                                      Common.Bank_region)
             Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
                                      Common.Bank_region)
+
+        Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True, 0, 10, None,
+                                 Common.Bank_region)
+        Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                 Common.Bank_region)
+        Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True, 0, 10, None,
+                                 Common.Bank_region)
+        Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                 Common.Bank_region)
 
         # Get new stamina potion every 15 runs
         if x % 15 == 0:
@@ -171,16 +179,39 @@ try:
             Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
                                      Common.Bank_region)
 
-            # Close bank and put on binding necklace
+            # Close bank and put on binding necklace and fill rune pouch
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
             # Equip necklace of binding
             Common.watch_click_image(necklace_of_binding_images, 0.6, 'Equip Binding Necklace', False, 0, 10, None,
                                      Common.Inventory_region)
+
+            Common.watch_click_image(rune_pouch_images, 0.7, 'Fill rune pouch', False, 0, 10, None,
+                                     Common.Inventory_region)
+
+            Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                                     Common.Top_half_game_screen_region)
+
+            # Get rune essence last since it fills inventory
+            Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                     Common.Bank_region)
         else:
             # Get rune essence last since it fills inventory
             Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
                                      Common.Bank_region)
+
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
+
+            Common.watch_click_image(rune_pouch_images, 0.7, 'Fill rune pouch', False, 0, 10, None,
+                                     Common.Inventory_region)
+
+            Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                                     Common.Top_half_game_screen_region)
+
+            # Get rune essence last since it fills inventory
+            Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                     Common.Bank_region)
+
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
         # Drink stamina potion every third run
@@ -249,7 +280,13 @@ try:
         count = 0
         while True:
             Common.watch_click_image(water_rune, 0.8, 'Click Water Rune', False, 0, 10, None, Common.Inventory_region)
-            Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 3)
+            Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 4)
+            Common.watch_click_image(rune_pouch_images, 0.7, 'Right click rune pouch', True, 0, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(water_rune, 0.8, 'Click Water Rune 2', False, 1, 10, None, Common.Inventory_region)
+            Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar 2', False, 2)
 
             # If mud runes in inventory break loop
             if Common.is_image_on_screen(mud_rune_images, 0.8, 0, 'Are mud runes in inventory?',
@@ -259,7 +296,7 @@ try:
             count += 1
 
         # Teleport back to castle wars and open bank
-        Common.watch_click_image(ring_of_dueling, 0.8, 'Right click ring of dueling', True, 0, 10, None,
+        Common.watch_click_image(ring_of_dueling, 0.8, 'Right click ring of dueling', True, 1, 10, None,
                                  Common.Inventory_region)
         Common.watch_click_image(rub_option, 0.8, 'Rub ring', False, 1, 10, None,
                                  Common.Inventory_region)
