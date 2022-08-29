@@ -27,7 +27,8 @@ equip items:        - Steam battlestaff
                     - no necklace
                     - lightest weight gear
 items in inventory: - Stack of water runes
-                    - Rune essence pouch
+                    - Large Rune essence pouch
+                    - Medium Rune essence pouch
 items in bank:      - Rune essence
                     - Rings of dueling
                     - Binding necklaces with 16 charges
@@ -64,7 +65,8 @@ try:
     bank_close_images = ['Images/BankClose.png',
                          'Images/BankClose2.png']
     rune_essence_images = ['Images/RuneEssence.png']
-    rune_pouch_images = ['Images/LargeRunePouch.png']
+    large_rune_pouch_images = ['Images/LargeRunePouch.png']
+    med_rune_pouch_images = ['Images/MediumRunePouch.png']
     water_talisman_images = ['Images/WaterTalisman.png']
     willow_log_images = ['Images/WillowLogs.png']
     withdraw_one_images = ['Images/Withdraw1Option.png']
@@ -186,7 +188,9 @@ try:
             Common.watch_click_image(necklace_of_binding_images, 0.6, 'Equip Binding Necklace', False, 0, 10, None,
                                      Common.Inventory_region)
 
-            Common.watch_click_image(rune_pouch_images, 0.7, 'Fill rune pouch', False, 0, 10, None,
+            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill rune pouch', False, 1, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
                                      Common.Inventory_region)
 
             Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
@@ -202,7 +206,9 @@ try:
 
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
-            Common.watch_click_image(rune_pouch_images, 0.7, 'Fill rune pouch', False, 0, 10, None,
+            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 0, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 0, 10, None,
                                      Common.Inventory_region)
 
             Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
@@ -281,7 +287,11 @@ try:
         while True:
             Common.watch_click_image(water_rune, 0.8, 'Click Water Rune', False, 0, 10, None, Common.Inventory_region)
             Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 4)
-            Common.watch_click_image(rune_pouch_images, 0.7, 'Right click rune pouch', True, 0, 10, None,
+            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Right click large rune pouch', True, 0, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Right click medium rune pouch', True, 0, 10, None,
                                      Common.Inventory_region)
             Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
                                      Common.Inventory_region)
