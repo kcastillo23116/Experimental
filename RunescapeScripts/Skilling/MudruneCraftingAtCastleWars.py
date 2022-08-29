@@ -49,6 +49,8 @@ Objects to mark: - Castle wars bank chest
 import RunescapeScripts.Common as Common
 import keyboard
 
+usePouches = False
+
 # Get how many from user
 itemCountString = input("How many items do you have? ")
 
@@ -89,6 +91,7 @@ try:
     ruin_images = ['Images/VarrockEarthMysteriousRuin.png',
                    'Images/VarrockEarthMysteriousRuin2.png']
     rune_altar_images = ['Images/VarrockEarthRuneAltar.png']
+    rune_altar_close_images = ['Images/VarrockEarthRuneAltarClose.png']
     water_rune = ['Images/WaterRune.png',
                   'Images/WaterRune.png']
     empty_pouch_images = ['Images/EmptyPouchOption.png']
@@ -141,10 +144,11 @@ try:
                                  Common.Bank_region)
         Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
                                  Common.Bank_region)
-        Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True, 0, 10, None,
-                                 Common.Bank_region)
-        Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-                                 Common.Bank_region)
+        if usePouches:
+            Common.watch_click_image(water_talisman_images, 0.7, 'Right click water talisman', True, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                     Common.Bank_region)
 
         # Get new stamina potion every 15 runs
         if x % 15 == 0:
@@ -181,24 +185,25 @@ try:
             Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
                                      Common.Bank_region)
 
-            # Close bank and put on binding necklace and fill rune pouch
+            # Close bank and put on binding necklace and fill rune pouch if enabled
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
             # Equip necklace of binding
             Common.watch_click_image(necklace_of_binding_images, 0.6, 'Equip Binding Necklace', False, 0, 10, None,
                                      Common.Inventory_region)
 
-            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill rune pouch', False, 1, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
-                                     Common.Inventory_region)
+            if usePouches:
+                Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill rune pouch', False, 1, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
+                                         Common.Inventory_region)
 
-            Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
-                                     Common.Top_half_game_screen_region)
+                Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                                         Common.Top_half_game_screen_region)
 
-            # Get rune essence last since it fills inventory
-            Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
-                                     Common.Bank_region)
+                # Get rune essence last since it fills inventory
+                Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                         Common.Bank_region)
         else:
             # Get rune essence last since it fills inventory
             Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
@@ -206,19 +211,20 @@ try:
 
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
-            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 0, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 0, 10, None,
-                                     Common.Inventory_region)
+            if usePouches:
+                Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 0, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 0, 10, None,
+                                         Common.Inventory_region)
 
-            Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
-                                     Common.Top_half_game_screen_region)
+                Common.watch_click_image(bank_images, 0.7, 'Click bank chest', False, 0, 10, bank_close_images,
+                                         Common.Top_half_game_screen_region)
 
-            # Get rune essence last since it fills inventory
-            Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
-                                     Common.Bank_region)
+                # Get rune essence last since it fills inventory
+                Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                         Common.Bank_region)
 
-            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
+                Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
 
         # Drink stamina potion every third run
         if x % 3 == 0 and x != 0:
@@ -287,19 +293,21 @@ try:
         while True:
             Common.watch_click_image(water_rune, 0.8, 'Click Water Rune', False, 0, 10, None, Common.Inventory_region)
             Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar', False, 4)
-            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Right click large rune pouch', True, 0, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Right click medium rune pouch', True, 0, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
-                                     Common.Inventory_region)
-            Common.watch_click_image(water_rune, 0.8, 'Click Water Rune 2', False, 1, 10, None, Common.Inventory_region)
-            Common.watch_click_image(rune_altar_images, 0.5, 'Click Rune Altar 2', False, 2)
+
+            if usePouches:
+                Common.watch_click_image(large_rune_pouch_images, 0.7, 'Right click large rune pouch', True, 0, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(med_rune_pouch_images, 0.7, 'Right click medium rune pouch', True, 0, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(empty_pouch_images, 0.8, 'Empty pouch', False, 1, 10, None,
+                                         Common.Inventory_region)
+                Common.watch_click_image(water_rune, 0.8, 'Click Water Rune 2', False, 1, 10, None, Common.Inventory_region)
+                Common.watch_click_image(rune_altar_close_images, 0.5, 'Click Rune Altar 2', False, 1)
 
             # If mud runes in inventory break loop
-            if Common.is_image_on_screen(mud_rune_images, 0.8, 0, 'Are mud runes in inventory?',
+            if Common.is_image_on_screen(mud_rune_images, 0.7, 0, 'Are mud runes in inventory?',
                                          Common.Inventory_region) is True and count < 10:
                 break
 
