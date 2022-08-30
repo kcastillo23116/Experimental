@@ -95,7 +95,7 @@ try:
                                  Common.Bank_region)
         # Click bank from furnace
         Common.watch_click_image(bank_furnace_images, 0.7, 'Click bank from furnace', False, 5, 10, bank_close_images,
-                                 Common.Top_half_game_screen_region)
+                                 Common.Bottom_half_game_screen_region)
         # Deposit gold bracelets
         Common.watch_click_image(gold_bracelet_images, 0.7, 'Click gold bar in inventory', False, 0, 10, None,
                                  Common.Inventory_region)

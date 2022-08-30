@@ -13,6 +13,7 @@ from win32api import GetSystemMetrics
 All_game_screen_region = None
 Bottom_right_game_screen_region = None
 Top_half_game_screen_region = None
+Bottom_half_game_screen_region = None
 
 Minimap_region = None
 Inventory_region = None
@@ -33,6 +34,7 @@ def set_regions():
     global All_game_screen_region
     global Bottom_right_game_screen_region
     global Top_half_game_screen_region
+    global Bottom_half_game_screen_region
 
     global Minimap_region
     global Inventory_region
@@ -47,6 +49,7 @@ def set_regions():
         All_game_screen_region = (9, 47, 2926, 1882)
         Bottom_right_game_screen_region = (1354, 1048, 1048, 788)
         Top_half_game_screen_region = (3, 41, 2932, 1078)
+        Bottom_half_game_screen_region = (0, 716, 2403, 799)
 
         Minimap_region = (2363, 74, 570, 418)
         Inventory_region = (2262, 1079, 671, 758)
