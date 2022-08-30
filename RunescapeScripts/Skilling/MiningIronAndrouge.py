@@ -1,7 +1,7 @@
 """
 How to start:
 client:             - RuneLite with resizeable modern layout in runescape settings
-                      and RuneLite Stretched mode enabled with Resizable scaling set to 75%
+                    - RuneLite Stretched mode enabled with Resizable scaling set to 75%
                     - Runelite sidebar CLOSED
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite to hide other players and NPCs
