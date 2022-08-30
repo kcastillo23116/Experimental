@@ -12,6 +12,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       - Highlight clickbox enabled with all others disabled
                       - Remember color per object
                     - Turn off runelite Mouse Tooltips plugin
+                    - Collapse chat window
 Monitors:           4k or 3K display
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -43,7 +44,7 @@ drop_images = ['Images/Drop.png']
 
 
 # Get how many from user
-itemCountString = input("How many items do you have? ")
+itemCountString = input("How many ores do you want to mine? ")
 
 itemCount = int(itemCountString)
 
