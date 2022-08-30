@@ -11,6 +11,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       - Marker colors: FFD400FF
                       - Highlight clickbox enabled with all others disabled
                       - Remember color per object
+                    - Turn off runelite Mouse Tooltips plugin
 Monitors:           4k or 3K display
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -32,6 +33,10 @@ import RunescapeScripts.Common as Common
 iron_rocks_images1 = ['Images/Mining/IronAndrouge.png']
 iron_rocks_images2 = ['Images/Mining/IronAndrouge2.png']
 iron_rocks_images3 = ['Images/Mining/IronAndrouge3.png']
+iron_rocks_mined_images1 = ['Images/Mining/IronAndrougeMined.png']
+iron_rocks_mined_images2 = ['Images/Mining/IronAndrougeMined2.png']
+iron_rocks_mined_images3 = ['Images/Mining/IronAndrougeMined3.png']
+
 iron_ore_images = ['Images/Mining/IronOre.png']
 drop_images = ['Images/Drop.png']
 # endregion IMAGES
@@ -48,12 +53,17 @@ try:
     while True:
         print('Loop:', count, '/', itemCountString)
 
-        Common.watch_click_image(iron_rocks_images1, 0.7, 'Click left iron rocks while looking for iron in inventory', False,
-                                 4, 10, None, Common.Bottom_half_game_screen_region)
-        Common.watch_click_image(iron_rocks_images2, 0.7, 'Click Right iron rocks while looking for iron in inventory', False,
-                                 4, 10, None, Common.Bottom_half_game_screen_region)
-        Common.watch_click_image(iron_rocks_images3, 0.7, 'Click Bottom iron rocks while looking for iron in inventory', False,
-                                 0, 10, None, Common.Bottom_half_game_screen_region)
+        Common.watch_click_image(iron_rocks_images1, 0.7, 'Click left iron rocks while looking for iron in inventory',
+                                 False, 1, 10, iron_rocks_mined_images1,
+                                 Common.Bottom_half_game_screen_region, Common.Bottom_half_game_screen_region)
+
+        Common.watch_click_image(iron_rocks_images2, 0.7, 'Click Right iron rocks while looking for iron in inventory',
+                                 False, 1, 10, iron_rocks_mined_images2,
+                                 Common.Bottom_half_game_screen_region, Common.Bottom_half_game_screen_region)
+
+        Common.watch_click_image(iron_rocks_images3, 0.7, 'Click Bottom iron rocks while looking for iron in inventory',
+                                 False, 1, 10, iron_rocks_mined_images3,
+                                 Common.Bottom_half_game_screen_region, Common.Bottom_half_game_screen_region)
 
         # Drop all three ores
         for x in range(4):
