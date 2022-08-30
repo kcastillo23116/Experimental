@@ -49,7 +49,7 @@ def set_regions():
         All_game_screen_region = (9, 47, 2926, 1882)
         Bottom_right_game_screen_region = (1354, 1048, 1048, 788)
         Top_half_game_screen_region = (3, 41, 2932, 1078)
-        Bottom_half_game_screen_region = (0, 716, 2403, 799)
+        Bottom_half_game_screen_region = (5, 591, 2418, 1341)
 
         Minimap_region = (2363, 74, 570, 418)
         Inventory_region = (2262, 1079, 671, 758)
