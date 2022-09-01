@@ -58,7 +58,7 @@ try:
                                  False, 1, 10, None,
                                  Common.Inventory_region)
 
-        if count == itemCountString:
+        if count >= itemCount:
             break
 
         count += 1
