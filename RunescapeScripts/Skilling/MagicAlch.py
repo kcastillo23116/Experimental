@@ -15,8 +15,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on Menu Entry Swapper runelite plugin, shift right click alch item and select
                       "swap left click Use"
 Monitors:           4k or 3K display
-bank settings:      Withdraw As: Item
-                    Quantity: All
+bank settings:      - N/A
 location:           - N/A
 Menus:              - Spell menu open
                     - Set Spell filters to uncheck "show spells you lack the runes to cast"
