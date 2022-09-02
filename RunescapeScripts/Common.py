@@ -15,8 +15,12 @@ Bottom_right_game_screen_region = None
 Top_half_game_screen_region = None
 Bottom_half_game_screen_region = None
 
-Minimap_region = None
 Inventory_region = None
+Inventory_bar_region = None
+
+Minimap_region = None
+Minimap_vitals_region = None
+
 Bank_region = None
 Bank_bottom_options_region = None
 
@@ -36,8 +40,12 @@ def set_regions():
     global Top_half_game_screen_region
     global Bottom_half_game_screen_region
 
-    global Minimap_region
     global Inventory_region
+    global Inventory_bar_region
+
+    global Minimap_region
+    global Minimap_vitals_region
+
     global Bank_region
     global Bank_bottom_options_region
 
@@ -51,8 +59,11 @@ def set_regions():
         Top_half_game_screen_region = (3, 41, 2932, 1078)
         Bottom_half_game_screen_region = (5, 591, 2418, 1341)
 
-        Minimap_region = (2363, 74, 570, 418)
         Inventory_region = (2262, 1079, 671, 758)
+        Inventory_bar_region = (2651, 1994, 1133, 92)
+
+        Minimap_region = (2363, 74, 570, 418)
+        Minimap_vitals_region = (3200, 139, 283, 357)
 
         Bank_region = (564, 241, 1193, 1140)
         Bank_bottom_options_region = (557, 1392, 1263, 101)
@@ -65,13 +76,16 @@ def set_regions():
         Top_half_game_screen_region = (3, 38, 3244, 1574)
         Bottom_half_game_screen_region = (5, 812, 3775, 1267)
 
+        Inventory_region = (3190, 1230, 586, 756)
+        Inventory_bar_region = (2651, 1994, 1133, 92)
+
         Minimap_region = (3353, 86, 424, 416)
-        Inventory_region = (3157, 1215, 619, 766)
+        Minimap_vitals_region = (3200, 139, 283, 357)
 
         Bank_region = (987, 248, 1188, 1280)
         Bank_bottom_options_region = (985, 1528, 1263, 120)
 
-        Chatbox_region = (16, 1670, 1335, 320)
+        Chatbox_region = (7, 1671, 1347, 355)
         Chatbox_options_region = (6, 2016, 1357, 68)
     else:
         raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
