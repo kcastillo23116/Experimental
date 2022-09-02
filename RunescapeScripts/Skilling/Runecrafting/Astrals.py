@@ -168,7 +168,7 @@ try:
                                  Common.Bank_region)
         # endregion BANK STUFF
 
-        region MOVEMENT
+        # region MOVEMENT
         Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 4,
                                  10, map_images2, Common.Minimap_region, Common.Minimap_region)
         Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
