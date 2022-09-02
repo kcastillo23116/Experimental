@@ -14,6 +14,7 @@ All_game_screen_region = None
 Bottom_right_game_screen_region = None
 Top_half_game_screen_region = None
 Bottom_half_game_screen_region = None
+Center_game_screen_region = None
 
 Inventory_region = None
 Inventory_bar_region = None
@@ -39,6 +40,7 @@ def set_regions():
     global Bottom_right_game_screen_region
     global Top_half_game_screen_region
     global Bottom_half_game_screen_region
+    global Center_game_screen_region
 
     global Inventory_region
     global Inventory_bar_region
@@ -58,12 +60,13 @@ def set_regions():
         Bottom_right_game_screen_region = (1354, 1048, 1048, 788)
         Top_half_game_screen_region = (3, 41, 2932, 1078)
         Bottom_half_game_screen_region = (5, 591, 2418, 1341)
+        Center_game_screen_region = (765, 589, 1303, 840)
 
         Inventory_region = (2262, 1079, 671, 758)
-        Inventory_bar_region = (2651, 1994, 1133, 92)
+        Inventory_bar_region = (1812, 1833, 1131, 99)
 
         Minimap_region = (2363, 74, 570, 418)
-        Minimap_vitals_region = (3200, 139, 283, 357)
+        Minimap_vitals_region = (2336, 107, 330, 420)
 
         Bank_region = (564, 241, 1193, 1140)
         Bank_bottom_options_region = (557, 1392, 1263, 101)
@@ -75,6 +78,7 @@ def set_regions():
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
         Top_half_game_screen_region = (3, 38, 3244, 1574)
         Bottom_half_game_screen_region = (5, 812, 3775, 1267)
+        Center_game_screen_region = (765, 589, 1303, 840)
 
         Inventory_region = (3190, 1230, 586, 756)
         Inventory_bar_region = (2651, 1994, 1133, 92)

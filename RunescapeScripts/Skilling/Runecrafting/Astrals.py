@@ -81,8 +81,9 @@ try:
     map_images3 = ['Images/Runecrafting/map3.png']
     map_images4 = ['Images/Runecrafting/map4.png']
     map_images5 = ['Images/Runecrafting/map5.png']
-    altar_images = ['Images/Runecrafting/altar.png']
-    altar_images2 = ['Images/Runecrafting/altar2.png']
+    pillar_images = ['Images/Runecrafting/Pillar.png']
+    altar_images = ['Images/Runecrafting/Altar.png']
+    altar_images2 = ['Images/Runecrafting/Altar2.png']
     lunar_spellbook_images = ['Images/Runecrafting/LunarSpellbook.png']
     astral_rune_images = ['Images/Runecrafting/AstralRune.png']
     teleport_images = ['Images/Runecrafting/Teleport.png']
@@ -99,7 +100,7 @@ try:
 
     def click_bank():
         try:
-            Common.watch_click_image(bank_images1, 0.5, 'Click bank 1', False, 6, 10,
+            Common.watch_click_image(bank_images1, 0.4, 'Click bank 1', False, 6, 10,
                                      None, Common.Top_half_game_screen_region)
             # If bank is not opened try clicking bank teller from second spot
             if Common.is_image_on_screen(bank_close_images) is False:
@@ -137,8 +138,8 @@ try:
             Common.watch_click_image(bank_images2, 0.5, 'Click bank while looking for close button', False, 2, 10,
                                      bank_close_images, Common.Top_half_game_screen_region)
 
-        # Get new stamina potion every 10 runs
-        if x % 10 == 0:
+        # Get new stamina potion every 4 runs
+        if x % 4 == 0:
             # Only deposit vial after first run since won't be present till after first run
             if x != 0:
                 Common.watch_click_image(vial_images, 0.7, 'Deposit vial', False, 0, 10, None,
@@ -168,18 +169,24 @@ try:
         # endregion BANK STUFF
 
         # region MOVEMENT
-        Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 5,
+        Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 4,
                                  10, map_images2, Common.Minimap_region, Common.Minimap_region)
         Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
                                  10, map_images3, Common.Minimap_region, Common.Minimap_region)
-        Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 6,
-                                 10, map_images4, Common.Minimap_region, Common.Minimap_region)
-        Common.watch_click_image(map_images4, 0.7, 'Move to map4 while looking for map5', False, 5,
+        Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 5,
+                                 10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.5)
+        Common.watch_click_image(map_images4, 0.5, 'Move to map4 while looking for map5', False, 5,
                                  10, map_images5, Common.Minimap_region, Common.Minimap_region, 0.5)
-        Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for altar', False, 10,
-                                 10, altar_images, Common.Minimap_region, Common.Bottom_half_game_screen_region)
-        Common.watch_click_image(altar_images, 0.7, 'Click altar while looking for astrals in inventory', False, 5,
-                                 10, astral_rune_images, Common.Bottom_half_game_screen_region, Common.Inventory_region)
+        Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for pillar', False, 9,
+                                 10, pillar_images, Common.Minimap_region, Common.Bottom_half_game_screen_region, 0.5)
+
+        Common.watch_click_image(pillar_images, 0.5, 'Click pillar while  looking for altar', False, 5,
+                                 10, altar_images, Common.Bottom_half_game_screen_region,
+                                 Common.Center_game_screen_region, 0.5)
+        Common.watch_click_image(altar_images2, 0.5, 'Click altar while looking for astrals in inv', False, 2,
+                                 10, astral_rune_images, Common.Center_game_screen_region,
+                                 Common.Inventory_region, 0.5)
+
         # Empty pouches
         pyautogui.keyDown('shift')
         Common.watch_click_image(large_rune_pouch_images, 0.7, 'Empty large rune pouch', False, 0, 10, None,
@@ -189,12 +196,12 @@ try:
         pyautogui.keyUp('shift')
 
         Common.watch_click_image(altar_images2, 0.7, 'Click altar 2 to craft more runes', False, 2,
-                                 10, None, Common.Top_half_game_screen_region)
+                                 10, None, Common.Center_game_screen_region)
 
         Common.watch_click_image(lunar_spellbook_images, 0.7, 'Open spellbook while looking for teleport', False, 0,
                                  10, teleport_images, Common.Inventory_bar_region, Common.Inventory_region)
-        Common.watch_click_image(teleport_images, 0.7, 'Click teleport while looking for bank', False, 4,
-                                 10, bank_images1, Common.Inventory_region, Common.Top_half_game_screen_region)
+        Common.watch_click_image(teleport_images, 0.7, 'Click teleport', False, 4,
+                                 10, None, Common.Inventory_region)
 
         # Repair pouches every 28 runs before pouch degrades and changes colors
         # Do (pouch uses before breaks - 2) to fix it before it degrades so visual change doesn't mess up script
