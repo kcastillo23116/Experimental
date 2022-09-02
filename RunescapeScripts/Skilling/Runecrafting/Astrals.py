@@ -112,67 +112,67 @@ try:
     for x in range(loopsTillDone):
         Common.print_runtime(loopsTillDone, runtime, x)
 
-        # # region BANK STUFF
-        # click_bank()
-        #
-        # # Deposit astrals after first run since won't have any at start of first run
-        # if x != 0:
-        #     Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals to deposit', False, 0,
-        #                              10, None, Common.Inventory_region)
-        #
-        # # If HP is low grab two lobsters and heal
-        # if Common.is_image_on_screen(low_health_images, 0.6, 0, 'Check if health is low', Common.Minimap_vitals_region):
-        #     Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
-        #                              Common.Bank_region)
-        #     Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-        #                              Common.Bank_region)
-        #     Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
-        #                              Common.Bank_region)
-        #     Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-        #                              Common.Bank_region)
-        #     Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
-        #     Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
-        #                              Common.Inventory_region)
-        #     Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
-        #                              Common.Inventory_region)
-        #     Common.watch_click_image(bank_images2, 0.5, 'Click bank while looking for close button', False, 2, 10,
-        #                              bank_close_images, Common.Top_half_game_screen_region)
-        #
-        # # Get new stamina potion every 4 runs
-        # if x % 4 == 0:
-        #     # Only deposit vial after first run since won't be present till after first run
-        #     if x != 0:
-        #         Common.watch_click_image(vial_images, 0.7, 'Deposit vial', False, 0, 10, None,
-        #                                  Common.Inventory_region)
-        #     Common.watch_click_image(stamina_potion_bank, 0.7, 'Get Stamina potion', True, 0, 10, None,
-        #                              Common.Bank_region)
-        #     Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-        #                              Common.Bank_region)
-        #
-        # # Get rune essence and fill pouches
-        # Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
-        #                          Common.Bank_region)
-        #
-        # Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
-        #
-        # Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 1, 10, None,
-        #                          Common.Inventory_region)
-        # Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
-        #                          Common.Inventory_region)
-        #
-        # Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
-        #                          Common.Top_half_game_screen_region)
-        #
-        # # Get rune essence last since it fills inventory
-        # Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
-        #                          Common.Bank_region)
-        # # endregion BANK STUFF
+        # region BANK STUFF
+        click_bank()
 
-        # region MOVEMENT
-        # Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 4,
-        #                          10, map_images2, Common.Minimap_region, Common.Minimap_region)
-        # Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
-        #                          10, map_images3, Common.Minimap_region, Common.Minimap_region)
+        # Deposit astrals after first run since won't have any at start of first run
+        if x != 0:
+            Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals to deposit', False, 0,
+                                     10, None, Common.Inventory_region)
+
+        # If HP is low grab two lobsters and heal
+        if Common.is_image_on_screen(low_health_images, 0.6, 0, 'Check if health is low', Common.Minimap_vitals_region):
+            Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
+            Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
+                                     Common.Inventory_region)
+            Common.watch_click_image(bank_images2, 0.5, 'Click bank while looking for close button', False, 2, 10,
+                                     bank_close_images, Common.Top_half_game_screen_region)
+
+        # Get new stamina potion every 4 runs
+        if x % 4 == 0:
+            # Only deposit vial after first run since won't be present till after first run
+            if x != 0:
+                Common.watch_click_image(vial_images, 0.7, 'Deposit vial', False, 0, 10, None,
+                                         Common.Inventory_region)
+            Common.watch_click_image(stamina_potion_bank, 0.7, 'Get Stamina potion', True, 0, 10, None,
+                                     Common.Bank_region)
+            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
+                                     Common.Bank_region)
+
+        # Get rune essence and fill pouches
+        Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
+                                 Common.Bank_region)
+
+        Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
+
+        Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 1, 10, None,
+                                 Common.Inventory_region)
+        Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
+                                 Common.Inventory_region)
+
+        Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
+                                 Common.Top_half_game_screen_region)
+
+        # Get rune essence last since it fills inventory
+        Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                 Common.Bank_region)
+        # endregion BANK STUFF
+
+        region MOVEMENT
+        Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 4,
+                                 10, map_images2, Common.Minimap_region, Common.Minimap_region)
+        Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
+                                 10, map_images3, Common.Minimap_region, Common.Minimap_region)
         Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 6,
                                  10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.9)
         Common.watch_click_image(map_images4, 0.9, 'Move to map4 while looking for map5', False, 5,
