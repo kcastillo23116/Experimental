@@ -174,14 +174,14 @@ try:
         Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
                                  10, map_images3, Common.Minimap_region, Common.Minimap_region)
         Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 6,
-                                 10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.9)
+                                 10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.7)
         Common.watch_click_image(map_images4, 0.9, 'Move to map4 while looking for map5', False, 5,
-                                 10, map_images5, Common.Minimap_region, Common.Minimap_region, 0.7)
-        Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for pillar', False, 9,
-                                 10, pillar_images, Common.Minimap_region, Common.Bottom_half_game_screen_region, 0.5)
+                                 10, map_images5, Common.Minimap_region, Common.Minimap_region, 0.5)
+        Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for pillar', False, 7,
+                                 10, pillar_images, Common.Minimap_region, Common.Top_half_game_screen_region, 0.5)
 
         Common.watch_click_image(pillar_images, 0.5, 'Click pillar while  looking for altar', False, 5,
-                                 10, altar_images, Common.Bottom_half_game_screen_region,
+                                 10, altar_images, Common.Top_half_game_screen_region,
                                  Common.Center_game_screen_region, 0.5)
         Common.watch_click_image(altar_images2, 0.5, 'Click altar while looking for astrals in inv', False, 2,
                                  10, astral_rune_images, Common.Center_game_screen_region,
