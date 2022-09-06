@@ -104,7 +104,7 @@ try:
                                      None, Common.Top_half_game_screen_region)
             # If bank is not opened try clicking bank teller from second spot
             if Common.is_image_on_screen(bank_close_images) is False:
-                Common.watch_click_image(bank_images2, 0.5, 'Click bank while looking for close button', False, 2, 10,
+                Common.watch_click_image(bank_images2, 0.4, 'Click bank while looking for close button', False, 2, 10,
                                          bank_close_images, Common.Top_half_game_screen_region)
         except ValueError as val_error:
             raise val_error
@@ -175,7 +175,7 @@ try:
                                  10, map_images3, Common.Minimap_region, Common.Minimap_region)
         Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 6,
                                  10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.7)
-        Common.watch_click_image(map_images4, 0.9, 'Move to map4 while looking for map5', False, 5,
+        Common.watch_click_image(map_images4, 0.7, 'Move to map4 while looking for map5', False, 5,
                                  10, map_images5, Common.Minimap_region, Common.Minimap_region, 0.5)
         Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for pillar', False, 7,
                                  10, pillar_images, Common.Minimap_region, Common.Top_half_game_screen_region, 0.5)
