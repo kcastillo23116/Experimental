@@ -47,7 +47,7 @@ import keyboard
 
 # Constants
 runtime = 60
-runes_crafted_per_run = 38
+runes_crafted_per_run = 48
 
 # Get how many from user
 itemCountString = input("How many items do you have? ")
@@ -65,6 +65,7 @@ try:
     rune_essence_images = ['Images/Runecrafting/RuneEssence.png']
     bank_close_images = ['Images/BankClose.png',
                          'Images/BankClose2.png']
+    giant_rune_pouch_images = ['Images/Runecrafting/GiantRunePouch.png']
     large_rune_pouch_images = ['Images/Runecrafting/LargeRunePouch.png']
     med_rune_pouch_images = ['Images/Runecrafting/MediumRunePouch.png']
     stamina_potion_bank = ['Images/StaminaPotion.png']
@@ -155,17 +156,25 @@ try:
 
         Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
 
+        Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Fill giant rune pouch', False, 1, 10, None,
+                                 Common.Inventory_region)
         Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 1, 10, None,
                                  Common.Inventory_region)
+
+        Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
+                                 Common.Top_half_game_screen_region)
+        Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
+                                 Common.Bank_region)
+        Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
+
         Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
                                  Common.Inventory_region)
 
         Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
                                  Common.Top_half_game_screen_region)
-
-        # Get rune essence last since it fills inventory
         Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
                                  Common.Bank_region)
+
         # endregion BANK STUFF
 
         # region MOVEMENT
@@ -189,13 +198,22 @@ try:
 
         # Empty pouches
         pyautogui.keyDown('shift')
-        Common.watch_click_image(large_rune_pouch_images, 0.7, 'Empty large rune pouch', False, 0, 10, None,
+        Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Empty giant rune pouch', False, 0, 10, None,
                                  Common.Inventory_region)
-        Common.watch_click_image(med_rune_pouch_images, 0.7, 'Empty medium rune pouch', False, 0, 10, None,
+        Common.watch_click_image(large_rune_pouch_images, 0.7, 'Empty large rune pouch', False, 0, 10, None,
                                  Common.Inventory_region)
         pyautogui.keyUp('shift')
 
         Common.watch_click_image(altar_images2, 0.7, 'Click altar 2 to craft more runes', False, 2,
+                                 10, None, Common.Center_game_screen_region)
+
+        pyautogui.keyDown('shift')
+
+        Common.watch_click_image(med_rune_pouch_images, 0.7, 'Empty medium rune pouch', False, 0, 10, None,
+                                 Common.Inventory_region)
+        pyautogui.keyUp('shift')
+
+        Common.watch_click_image(altar_images2, 0.7, 'Click altar 2 to craft more runes again', False, 2,
                                  10, None, Common.Center_game_screen_region)
 
         Common.watch_click_image(lunar_spellbook_images, 0.7, 'Open spellbook while looking for teleport', False, 0,
@@ -203,11 +221,11 @@ try:
         Common.watch_click_image(teleport_images, 0.7, 'Click teleport', False, 4,
                                  10, None, Common.Inventory_region)
 
-        # Repair pouches every 28 runs before pouch degrades and changes colors
+        # Repair pouches every 11 runs before pouch degrades and changes colors
         # Do (pouch uses before breaks - 2) to fix it before it degrades so visual change doesn't mess up script
         # Note: Pouches repaired at second dark mage dialog:
         # "Fine. A simple transfiguration spell should resolve things"
-        if x % 27 == 0:
+        if x % 9 == 0:
             Common.watch_click_image(npc_contact_images, 0.7, 'Click on NPC Contact spell', False, 6,
                                      10, None, Common.Inventory_region)
             Common.watch_click_image(continue_images, 0.7, 'Click continue conversation', False, 1,
