@@ -7,7 +7,7 @@ items in inventory: water talisman in first slot, stack of water runes in second
 items in bank: rune essence (bank: row 7, column 2), water talisman (bank: row 7 column 3),
 """
 import pyautogui
-from Skilling import Common
+import Common
 
 # TODO: port sleep_with_countdown to this script
 # TODO: test walking to make sure all good

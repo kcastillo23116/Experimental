@@ -15,7 +15,7 @@ items in inventory: Hammer
 items in bank:  Metal Bars (bank: row 1, column 1)
 """
 
-from Skilling import Common as Common
+import Common as Common
 import datetime
 
 # Get how many from user

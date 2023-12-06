@@ -42,8 +42,7 @@ Objects to mark: - Middle bank teller
 """
 import pyautogui
 
-from Skilling import Common as Common
-import keyboard
+import Common as Common
 
 # Constants
 runtime = 60

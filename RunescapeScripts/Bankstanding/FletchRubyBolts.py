@@ -16,7 +16,7 @@ items in inventory: Chisel, Adamant bolts
 items in bank:  Rubies anywhere in bank tab but first slot
 """
 
-from Skilling import Common as Common
+import Common as Common
 
 # Get how many rubies we're chiseling from user
 itemCountString = input("How many rubies do you have? ")

@@ -18,7 +18,7 @@ items in inventory: Knife at row 1 col 1
 items in bank:  Logs(bank: row 1, column 2)
 """
 
-from Skilling import Common as Common
+import Common as Common
 
 # Get how many from user
 itemCountString = input("How many items do you have? ")

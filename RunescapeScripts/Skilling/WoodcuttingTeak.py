@@ -25,7 +25,7 @@ Objects to mark:        - Teak tree SW of castle wars (can see it on map)
 """
 import pyautogui
 
-from Skilling import Common as Common
+import Common as Common
 
 # Constants
 runtime = 1

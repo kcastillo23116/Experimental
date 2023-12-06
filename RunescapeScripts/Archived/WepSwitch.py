@@ -1,7 +1,7 @@
 """
 Switch between weapons on hotkey presses
 """
-from Skilling import Common
+import Common
 import pyHook
 import pythoncom
 import pyautogui

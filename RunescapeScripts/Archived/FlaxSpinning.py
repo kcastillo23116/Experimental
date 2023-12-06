@@ -2,7 +2,7 @@
 start at top of lumbridge castle with full inventory of flax and more flax in row 8 col 2 of bank
 at third teller from the left with camera zommed out all the way and camera at north default
 """
-from Skilling import Common
+import Common
 
 for x in range(25):
     Common.move_mouse_and_left_click(717, 991, 2, "move closer to stairs")  #time:  1532916720.1801012

@@ -28,7 +28,7 @@ Objects to mark:        - N/A
 
 """
 
-from Skilling import Common as Common
+import Common as Common
 
 # Constants
 runtime = 1

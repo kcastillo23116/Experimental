@@ -14,7 +14,7 @@ items in bank:  1 Supercompost (bank: row 1, column 1)
                 2 Volcanic Ash (bank: row 1 column 2)
 """
 
-from Skilling import Common as Common
+import Common as Common
 
 # Get how many from user
 superCompostCountString = input("How many supercomposts do you have? ")

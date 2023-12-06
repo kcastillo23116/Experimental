@@ -46,7 +46,7 @@ Objects to mark: - Castle wars bank chest
 
 """
 
-from Skilling import Common as Common
+import Common as Common
 import keyboard
 
 usePouches = False

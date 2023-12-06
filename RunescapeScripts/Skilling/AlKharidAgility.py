@@ -29,9 +29,8 @@ Setup:              - N/A
 Objects to mark:    - N/A
 
 """
-import pyautogui
 
-from Skilling import Common as Common
+import Common as Common
 
 # Constants
 runtime = 60
