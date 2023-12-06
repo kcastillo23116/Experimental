@@ -11,7 +11,7 @@ location:           East Ardougne Bakers stall right on top of the baker NPC
 Menus:              Inventory menu open
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 
 bakeStandImages = ['Images/BakersStall.png']
 dropItemImages = ['Images/Cake.png', 'Images/Bread.png', 'Images/ChocolateCake.png']

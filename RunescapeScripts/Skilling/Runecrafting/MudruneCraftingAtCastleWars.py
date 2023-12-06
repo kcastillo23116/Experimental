@@ -46,7 +46,7 @@ Objects to mark: - Castle wars bank chest
 
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 import keyboard
 
 usePouches = False

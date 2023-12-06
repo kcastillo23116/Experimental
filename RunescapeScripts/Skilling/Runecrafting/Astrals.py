@@ -42,7 +42,7 @@ Objects to mark: - Middle bank teller
 """
 import pyautogui
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 import keyboard
 
 # Constants

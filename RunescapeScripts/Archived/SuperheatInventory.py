@@ -2,7 +2,7 @@
 start with air staff equipt inventory ores to smelt and nat runes in first slot and magic tab open
 stand directly in front of a grand exchange right top bank teller with camera north default all zoomed out
 """
-import Common
+from Skilling import Common
 
 for x in range(10):
     # super heat inv

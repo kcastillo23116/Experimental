@@ -3,7 +3,7 @@ start at south most bank teller in west varrock bank (last from the top) with ca
 at north default ban open to smithing tab
 Hammer in first slot of inventory and empty inventory
 """
-import Common
+from Skilling import Common
 
 for x in range(1):
     Common.move_mouse_and_right_click(757, 156, 2, "right click bars row one col 3 of smithing tab (tab 5) in bank")

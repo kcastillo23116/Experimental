@@ -1,4 +1,4 @@
-import Common
+from Skilling import Common
 
 for x in range(85):
     Common.move_mouse_and_left_click (1774, 761, 2)  #time:  1533023776.4740582

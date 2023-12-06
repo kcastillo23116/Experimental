@@ -2,7 +2,7 @@
 start with air staff equipt inventory full of jade necklaces and cosmic runes in first slot and magic tab open
 stand directly in front of a bank teller
 """
-import Common
+from Skilling import Common
 
 for row in range(1, 8):
     for col in range(1, 5):

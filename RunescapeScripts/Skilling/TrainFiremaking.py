@@ -22,7 +22,7 @@ items in inventory: Tinderbox, four other items to block out second inventory ro
 items in bank: Oak Logs
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 
 # 23 items since tinderbox hover blocks last four logs
 inventoryItemCount = 23

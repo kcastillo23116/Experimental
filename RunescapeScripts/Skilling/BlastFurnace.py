@@ -17,7 +17,7 @@ items in bank:  Coal (bank: row 1, column 1)
                 Stamina Potions (4 charges) (bank: row 1, column 3)
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 import datetime
 
 # Get how many from user

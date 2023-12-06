@@ -28,7 +28,7 @@ Objects to mark:        - N/A
 
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 
 # Constants
 runtime = 1

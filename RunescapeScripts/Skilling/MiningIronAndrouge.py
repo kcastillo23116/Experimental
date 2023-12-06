@@ -30,7 +30,7 @@ Objects to mark: - Three iron rocks in a triangle at bottom left of mine
 """
 import pyautogui
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 
 # region IMAGES
 iron_rocks_images1 = ['Images/Mining/IronAndrouge.png']

@@ -1,4 +1,4 @@
-import Common
+from Skilling import Common
 
 # start by withdrawing from bank in this order/amt: 9 herbs, 9 non-herb ingredients, 9 vials of water
 for x in range(75):

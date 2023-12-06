@@ -29,7 +29,7 @@ Objects to mark: - Edgeville left top bank teller
 
 """
 
-import RunescapeScripts.Common as Common
+from Skilling import Common as Common
 
 # Constants
 runtime_per_run = 90

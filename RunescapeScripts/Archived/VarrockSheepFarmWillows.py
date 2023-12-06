@@ -1,4 +1,4 @@
-import Common
+from Skilling import Common
 
 for x in range(100):
     Common.move_mouse_and_left_click(858, 482, 4, "click left tree")  #time:  1533093943.017743
