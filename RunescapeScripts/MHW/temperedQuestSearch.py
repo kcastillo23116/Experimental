@@ -1,12 +1,7 @@
-import Common
 import pyHook
 import pythoncom
-import pyautogui
-import ctypes
-import time
-from directkeys import PressKey, ReleaseKey, W
 
-import win32gui, win32api, win32con, ctypes, time
+import win32api, ctypes, time
 
 
 def left_click(x, y):

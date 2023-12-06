@@ -3,8 +3,6 @@ start with air staff equipt inventory ores to smelt and nat runes in first slot 
 stand directly in front of a grand exchange right top bank teller with camera north default all zoomed out
 """
 import Common
-import time
-import  pyautogui
 
 for x in range(10):
     # super heat inv

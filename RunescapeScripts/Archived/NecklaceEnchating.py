@@ -3,8 +3,6 @@ start with air staff equipt inventory full of jade necklaces and cosmic runes in
 stand directly in front of a bank teller
 """
 import Common
-import time
-import  pyautogui
 
 for row in range(1, 8):
     for col in range(1, 5):
