@@ -1,9 +1,10 @@
 """
 How to start:
 client:             - RuneLite with resizeable modern layout in runescape settings
-                      and RuneLite Stretched mode enabled with Resizable scaling set to 75%
+                      and RuneLite Stretched mode enabled with Resizable scaling set to 75% and performance mode enabled
                     - Runelite sidebar CLOSED
-                    - Turn on object markers plugin and Shift+Right click bank to mark it
+                    - NPC Indicators plugin: Highlight hull, highlight outline, highlight color: FF00FFFF, Border width: 2
+                    - Turn on NPC Indicators plugin, Shift+Right click banker and click Tag All
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
                     - 117HD OFF
@@ -20,6 +21,8 @@ items in bank:  Logs(bank: row 1, column 2)
 
 import Common as Common
 
+defaultTimeBeforeClick = 1
+
 # Get how many from user
 itemCountString = input("How many items do you have? ")
 
@@ -29,27 +32,27 @@ loopsTillDone = round(itemCount / 27)
 
 try:
     # Open bank to start
-    banker_images = ['Images/Banker.png', 'Images/Banker2.png',
+    banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
                      'Images/Banker3.png', 'Images/Banker4.png',
                      'Images/Banker5.png', 'Images/Banker6.png',
-                     'Images/Banker7.png']
+                     'Images/Banker7.png', 'Images/Banker8.png']
     bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
     wood_images = ['Images/Wood.png', 'Images/Wood2.png']
 
-    Common.click_image(banker_images, 0.2, 1, 'Right click banker', True)
-    Common.click_image(['Images/BankOption.png'], 0.7, 1, 'Open bank')
+    Common.click_image(banker_images, 0.3, defaultTimeBeforeClick, 'Right click banker', True)
+    Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
 
     for x in range(loopsTillDone):
         Common.print_runtime(loopsTillDone, 55, x)
 
-        Common.click_image(['Images/Wood2.png'], 0.7, 1, 'Get wood')
-        Common.click_image(bank_close_images, 0.9, 1, 'Close bank')
-        Common.click_image(['Images/Knife.png'], 0.5, 1, 'Click knife')
-        Common.click_image(wood_images, 0.7, 1, 'Click inventory wood')
-        Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, 1, 'Click longbow craft menu option')
-        Common.click_image(banker_images, 0.2, 49, 'Right click banker', True)
-        Common.click_image(['Images/BankOption.png'], 0.7, 1, 'Open bank')
-        Common.click_image(['Images/LongBowInventory.png'], 0.7, 1, 'Deposit longbows')
+        Common.click_image(['Images/Wood2.png'], 0.7, defaultTimeBeforeClick, 'Get wood')
+        Common.click_image(bank_close_images, 0.9, defaultTimeBeforeClick, 'Close bank')
+        Common.click_image(['Images/Knife.png'], 0.5, defaultTimeBeforeClick, 'Click knife')
+        Common.click_image(wood_images, 0.7, defaultTimeBeforeClick, 'Click inventory wood')
+        Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, defaultTimeBeforeClick, 'Click longbow craft menu option')
+        Common.click_image(banker_images, 0.3, 49, 'Right click banker', True)
+        Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
+        Common.click_image(['Images/LongBowInventory.png'], 0.7, defaultTimeBeforeClick, 'Deposit longbows')
 
 # Image not found error, stop loop and print message
 except ValueError as error:
