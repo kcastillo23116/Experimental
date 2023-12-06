@@ -12,8 +12,7 @@
 		    tesseract_path: C:\Program Files\Tesseract-OCR\
 	```
 1. Install latest tesseract from: [https://github.com/UB-Mannheim/tesseract/wiki](https://github.com/UB-Mannheim/tesseract/wiki)
-1. If getting errors about Tesseract language files try
-1. Copying  the C:\Program Files\Tesseract-OCR\tessdata\eng.traineddata file to the C:\Program Files\Tesseract-OCR folder
+1. If getting errors about Tesseract language files try copying  the **C:\Program Files\Tesseract-OCR\tessdata\eng.traineddata** file to the **C:\Program Files\Tesseract-OCR** folder
 1. Set runescape to modern resizeable in Interface options
 1. Run Pycharm as admin?
 1. Using Python 3.10
