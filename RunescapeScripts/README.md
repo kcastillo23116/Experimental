@@ -15,8 +15,9 @@
 1. If getting errors about Tesseract language files try copying  the **C:\Program Files\Tesseract-OCR\tessdata\eng.traineddata** file to the **C:\Program Files\Tesseract-OCR** folder
 1. Set runescape to modern resizeable in Interface options
 1. Run Pycharm as admin?
-1. Using Python 3.10
-1. Try downloading stuff in requirements.txt but if doesn't work just install latest
+1. Download and install Python 3.10
+1. Download packages in requirements.txt using this command in terminal: **pip install -r requirements.txt** or using pycharm sync requirements tool
+   - If doesn't work try installing latest
 1. Upgrade numpy, opencv-python, pillow to latest
 1. If any other packages causing errors try uninstalling and reinstalling from pycharm interpareter settings dialog
 
