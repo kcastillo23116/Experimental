@@ -20,41 +20,49 @@ items in bank:  Logs(bank: row 1, column 2)
 """
 
 import Common as Common
+import Banking as Banking
 
 defaultTimeBeforeClick = 1
 
-# Get how many from user
-itemCountString = input("How many items do you have? ")
+# Images
+bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
+wood_images = ['Images/Wood.png', 'Images/Wood2.png']
+banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
+                 'Images/Banker3.png', 'Images/Banker4.png',
+                 'Images/Banker5.png', 'Images/Banker6.png',
+                 'Images/Banker7.png', 'Images/Banker8.png']
 
-# Calculate how many loops needed
-itemCount = int(itemCountString)
-loopsTillDone = round(itemCount / 27)
 
-try:
-    # Open bank to start
-    banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
-                     'Images/Banker3.png', 'Images/Banker4.png',
-                     'Images/Banker5.png', 'Images/Banker6.png',
-                     'Images/Banker7.png', 'Images/Banker8.png']
-    bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
-    wood_images = ['Images/Wood.png', 'Images/Wood2.png']
+def fletch_bows(item_count):
+    """
+    Fletch loop
+    """
+    try:
+        # Calculate how many loops needed
+        loops_till_done = round(item_count / 27)
 
-    Common.click_image(banker_images, 0.3, defaultTimeBeforeClick, 'Right click banker', True)
-    Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
+        for x in range(loops_till_done):
+            Common.print_runtime(loops_till_done, 55, x)
 
-    for x in range(loopsTillDone):
-        Common.print_runtime(loopsTillDone, 55, x)
+            Common.click_image(['Images/Wood2.png'], 0.7, defaultTimeBeforeClick, 'Get wood')
+            Common.click_image(bank_close_images, 0.9, defaultTimeBeforeClick, 'Close bank')
+            Common.click_image(['Images/Knife.png'], 0.5, defaultTimeBeforeClick, 'Click knife')
+            Common.click_image(wood_images, 0.7, defaultTimeBeforeClick, 'Click inventory wood')
+            Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, defaultTimeBeforeClick, 'Click longbow craft menu option')
+            Common.click_image(banker_images, 0.3, 49, 'Right click banker', True)
+            Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
+            Common.click_image(['Images/LongBowInventory.png'], 0.7, defaultTimeBeforeClick, 'Deposit longbows')
 
-        Common.click_image(['Images/Wood2.png'], 0.7, defaultTimeBeforeClick, 'Get wood')
-        Common.click_image(bank_close_images, 0.9, defaultTimeBeforeClick, 'Close bank')
-        Common.click_image(['Images/Knife.png'], 0.5, defaultTimeBeforeClick, 'Click knife')
-        Common.click_image(wood_images, 0.7, defaultTimeBeforeClick, 'Click inventory wood')
-        Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, defaultTimeBeforeClick, 'Click longbow craft menu option')
-        Common.click_image(banker_images, 0.3, 49, 'Right click banker', True)
-        Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
-        Common.click_image(['Images/LongBowInventory.png'], 0.7, defaultTimeBeforeClick, 'Deposit longbows')
+    # Image not found error, stop loop and print message
+    except ValueError as error:
+        print(error, 'Stopping process')
 
-# Image not found error, stop loop and print message
-except ValueError as error:
-    print(error, 'Stopping process')
 
+# Only run code below if running this script
+if __name__ == '__main__':
+    # Get how many from user
+    itemCountString = input("How many items do you have? ")
+    itemCount = int(itemCountString)
+
+    Banking.open_grand_exchange_bank()
+    fletch_bows(itemCount)
