@@ -22,11 +22,13 @@ Setup:              - None
 Objects to mark:        - N/A
 
 """
+from threading import Thread
 
 import Common as Common
+import Display
 
 # Constants
-runtime = 1
+loop_runtime_seconds = 3
 
 # region IMAGES
 alch_spell_images = ['Images/Magic/Alch.png']
@@ -52,7 +54,7 @@ def alch_items(item_count, alch_item_images):
         count = 0
 
         while True:
-            Common.print_runtime(item_count, runtime, count)
+            Common.print_runtime(item_count, loop_runtime_seconds, count)
 
             Common.watch_click_image(alch_spell_images, 0.7, 'Click alch spell',
                                      False, 1, 10, None,
@@ -79,4 +81,18 @@ if __name__ == '__main__':
     itemCount = int(itemCountString)
 
     alchItemImages = select_item_to_alch()
-    alch_items(itemCount, alchItemImages)
+
+    # Get runtime
+    runtime_seconds = Common.print_runtime(itemCount, loop_runtime_seconds, 0)
+
+    # Create new threads for timer and alching so both can run at same time since timer has it's mainloop that'll block
+    # other function calls/loops
+    thread = Thread(target=Display.ExampleApp, args=(runtime_seconds,))
+    thread2 = Thread(target=alch_items, args=(itemCount, alchItemImages,))
+
+    thread.start()
+    thread2.start()
+
+    # Wait till function threads are done running
+    thread.join()
+    thread2.join()

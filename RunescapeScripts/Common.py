@@ -318,3 +318,4 @@ def print_runtime(total_loops, loop_runtime_seconds, current_loop):
     runtime = ((total_loops - current_loop) * loop_runtime_seconds)
     dtg = str(datetime.timedelta(seconds=runtime))
     print("Approx time till done: ", dtg)
+    return runtime
