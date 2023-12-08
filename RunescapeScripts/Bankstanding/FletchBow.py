@@ -44,14 +44,15 @@ def fletch_bows(item_count):
         for x in range(loops_till_done):
             Common.print_runtime(loops_till_done, 55, x)
 
-            Common.click_image(['Images/Wood2.png'], 0.7, defaultTimeBeforeClick, 'Get wood')
-            Common.click_image(bank_close_images, 0.9, defaultTimeBeforeClick, 'Close bank')
-            Common.click_image(['Images/Knife.png'], 0.5, defaultTimeBeforeClick, 'Click knife')
-            Common.click_image(wood_images, 0.7, defaultTimeBeforeClick, 'Click inventory wood')
-            Common.click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7, defaultTimeBeforeClick, 'Click longbow craft menu option')
-            Common.click_image(banker_images, 0.3, 49, 'Right click banker', True)
-            Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
-            Common.click_image(['Images/LongBowInventory.png'], 0.7, defaultTimeBeforeClick, 'Deposit longbows')
+            Common.watch_click_image(['Images/Wood2.png'], 0.7, 'Get wood')
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank', sleep_time_after_click=1)
+            Common.watch_click_image(['Images/Knife.png'], 0.5, 'Click knife')
+            Common.watch_click_image(wood_images, 0.7, 'Click inventory wood', sleep_time_after_click=1)
+            Common.watch_click_image(['Images/LongBow.png', 'Images/LongBow.png'], 0.7,
+                                     'Click longbow craft menu option', current_step_region=Common.Chatbox_region,
+                                     sleep_time_after_click=49)
+            Banking.open_grand_exchange_bank()
+            Common.watch_click_image(['Images/LongBowInventory.png'], 0.7, 'Deposit longbows')
 
     # Image not found error, stop loop and print message
     except ValueError as error:

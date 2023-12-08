@@ -52,7 +52,7 @@ def alch_items(item_count, alch_item_images):
         count = 0
 
         while True:
-            Common.print_runtime(itemCount, runtime, count)
+            Common.print_runtime(item_count, runtime, count)
 
             Common.watch_click_image(alch_spell_images, 0.7, 'Click alch spell',
                                      False, 1, 10, None,

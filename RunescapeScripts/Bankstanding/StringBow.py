@@ -44,15 +44,23 @@ def string_bows(item_count):
         for x in range(loops_till_done):
             Common.print_runtime(loops_till_done, 24, x)
 
-            Common.click_image(bow_string_images, 0.7, defaultTimeBeforeClick, 'Get bow strings')
-            Common.click_image(unstrung_bow_images, 0.7, defaultTimeBeforeClick, 'Get unstrung bows')
-            Common.click_image(bank_close_images, 0.9, defaultTimeBeforeClick, 'Close bank')
-            Common.click_image(bow_string_images, 0.7, defaultTimeBeforeClick, 'Click inventory bowstring')
-            Common.click_image(unstrung_bow_images, 0.7, defaultTimeBeforeClick, 'Click inventory unstrung bow')
-            Common.click_image(string_bow_images, 0.7, defaultTimeBeforeClick, 'Click string bow')
-            Common.click_image(banker_images, 0.3, 18, 'Right click banker', True)
-            Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Open bank')
-            Common.click_image(bow_images, 0.7, defaultTimeBeforeClick, 'Deposit longbows')
+            Common.watch_click_image(bow_string_images, 0.7, 'Get bow strings',
+                                     current_step_region=Common.Bank_region)
+            Common.watch_click_image(unstrung_bow_images, 0.7,
+                                     'Get unstrung bows and make sure they are in inventory',
+                                     current_step_region=Common.Bank_region,
+                                     next_step_image_paths=unstrung_bow_images,
+                                     next_step_region=Common.Inventory_region)
+            Common.watch_click_image(bank_close_images, 0.9, 'Close bank', sleep_time_after_click=1)
+            Common.watch_click_image(bow_string_images, 0.7, 'Click inventory bowstring',
+                                     current_step_region=Common.Inventory_region)
+            Common.watch_click_image(unstrung_bow_images, 0.7, 'Click inventory unstrung bow', sleep_time_after_click=1,
+                                     current_step_region=Common.Inventory_region)
+            Common.watch_click_image(string_bow_images, 0.7, 'Click string bow', sleep_time_after_click=18,
+                                     current_step_region=Common.Chatbox_region)
+            Banking.open_grand_exchange_bank()
+            Common.watch_click_image(bow_images, 0.7, 'Deposit longbows',
+                                     current_step_region=Common.Inventory_region)
 
     # Image not found error, stop loop and print message
     except ValueError as error:

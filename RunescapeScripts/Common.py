@@ -142,13 +142,13 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
 
 
 def watch_click_image(image_paths, confidence=0.7, message='', right_click=False,
-                      time_between_clicks=0, attempts=10, next_step_image_paths=None,
+                      sleep_time_after_click=0, attempts=10, next_step_image_paths=None,
                       current_step_region=All_game_screen_region, next_step_region=All_game_screen_region,
                       next_step_confidence=0.7):
     """
     Click specified image on screen as soon as it's found
     Keep watching till next step is found or timeout after specified attempt count
-    Optional time between clicks and next step images to look for
+    Optional time after click sets seconds to sleep after each click
     Optional region parameters that default to whole game screen
     """
     print(message)
@@ -168,7 +168,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         while image_was_clicked is False or \
                 is_next_step_image_on_screen is False:
             image_was_clicked = click_image_helper(image_paths, confidence, current_step_region,
-                                                   time_between_clicks, right_click)
+                                                   sleep_time_after_click, right_click)
             # Check for next step image if one is provided
             if next_step_image_paths is not None:
                 is_next_step_image_on_screen = is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "",

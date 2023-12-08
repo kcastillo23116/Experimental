@@ -35,8 +35,8 @@ def open_grand_exchange_bank():
     Opens bank at Grand exchange
     '''
     try:
-        Common.click_image(banker_images, 0.3, defaultTimeBeforeClick, 'Right click banker', True)
-        Common.click_image(['Images/BankOption.png'], 0.7, defaultTimeBeforeClick, 'Click Open bank')
+        Common.watch_click_image(banker_images, 0.3, 'Right click banker', True)
+        Common.watch_click_image(['Images/BankOption.png'], 0.7, 'Click Open bank', sleep_time_after_click=2)
 
         # Image not found error, stop loop and print message
     except ValueError as error:
