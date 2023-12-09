@@ -55,6 +55,7 @@ def set_regions():
     global Chatbox_options_region
 
     # Set regions for 3K or 4K laptop resolution if neither resolution is set raise an error
+    # Use RegionFinder.py script to get these
     if width == 3000:
         All_game_screen_region = (9, 47, 2926, 1882)
         Bottom_right_game_screen_region = (1354, 1048, 1048, 788)

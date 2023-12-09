@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Display.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/Banking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Archived/Tools/RegionFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/RegionFinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchBow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/StringBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/StringBow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Display.py" beforeDir="false" afterPath="$PROJECT_DIR$/Display.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,13 +230,13 @@
       <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
       <recent name="C:\Repos\Experimental\RunescapeScripts" />
+      <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Archived" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Display">
+  <component name="RunManager" selected="Python.FletchStringAlch">
     <configuration name="Display" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -247,27 +250,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Display.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FletchBow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="runescape_macros" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/FletchBow.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -318,6 +300,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="RegionFinder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="runescape_macros" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tools/RegionFinder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="StringBow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -343,16 +346,16 @@
       <item itemvalue="Python.Display" />
       <item itemvalue="Python.FletchStringAlch" />
       <item itemvalue="Python.MagicAlch (1)" />
+      <item itemvalue="Python.RegionFinder" />
       <item itemvalue="Python.StringBow" />
-      <item itemvalue="Python.FletchBow" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Display" />
-        <item itemvalue="Python.MagicAlch (1)" />
-        <item itemvalue="Python.StringBow" />
         <item itemvalue="Python.FletchStringAlch" />
-        <item itemvalue="Python.FletchBow" />
+        <item itemvalue="Python.RegionFinder" />
+        <item itemvalue="Python.StringBow" />
+        <item itemvalue="Python.MagicAlch (1)" />
+        <item itemvalue="Python.Display" />
       </list>
     </recent_temporary>
   </component>

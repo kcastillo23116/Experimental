@@ -18,9 +18,11 @@ equip items:        None
 items in inventory: Knife at row 1 col 1
 items in bank:  Logs(bank: row 1, column 2)
 """
+import timeit
 
 import Common as Common
 import Banking as Banking
+import Display
 
 defaultTimeBeforeClick = 1
 
@@ -33,7 +35,9 @@ banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
                  'Images/Banker7.png', 'Images/Banker8.png']
 
 
-def fletch_bows(item_count):
+# Optional get_timing parameter can be used to do one run to get time per iteration to set up countdown timer with
+# different scripts running one after another
+def fletch_bows(item_count, get_timing=False, display_timer=False):
     """
     Fletch loop
     """
@@ -44,6 +48,8 @@ def fletch_bows(item_count):
         for x in range(loops_till_done):
             Common.print_runtime(loops_till_done, 55, x)
 
+            start = timeit.default_timer()
+
             Common.watch_click_image(['Images/Wood2.png'], 0.7, 'Get wood')
             Common.watch_click_image(bank_close_images, 0.9, 'Close bank', sleep_time_after_click=1)
             Common.watch_click_image(['Images/Knife.png'], 0.5, 'Click knife')
@@ -53,6 +59,18 @@ def fletch_bows(item_count):
                                      sleep_time_after_click=49)
             Banking.open_grand_exchange_bank()
             Common.watch_click_image(['Images/LongBowInventory.png'], 0.7, 'Deposit longbows')
+
+            # Get stop time now to calculate how much time to make a single iteration
+            stop = timeit.default_timer()
+            seconds_per_iteration = round(stop - start)
+
+            # If we just want timing for displaying countdown timer return after first iteration here
+            if get_timing:
+                return seconds_per_iteration
+
+            if display_timer:
+                # Subtract iteration already ran
+                Display.start_timer_thread(loops_till_done - 1, seconds_per_iteration)
 
     # Image not found error, stop loop and print message
     except ValueError as error:
@@ -66,4 +84,4 @@ if __name__ == '__main__':
     itemCount = int(itemCountString)
 
     Banking.open_grand_exchange_bank()
-    fletch_bows(itemCount)
+    fletch_bows(itemCount, False, True)

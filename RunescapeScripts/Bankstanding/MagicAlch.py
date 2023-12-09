@@ -22,13 +22,11 @@ Setup:              - None
 Objects to mark:        - N/A
 
 """
+import timeit
 from threading import Thread
 
 import Common as Common
 import Display
-
-# Constants
-loop_runtime_seconds = 3
 
 # region IMAGES
 alch_spell_images = ['Images/Magic/Alch.png']
@@ -49,12 +47,18 @@ def select_item_to_alch():
         return noted_bow_images
 
 
-def alch_items(item_count, alch_item_images):
+# Optional get_timing parameter can be used to do one run to get time per iteration to set up countdown timer with
+# different scripts running one after another
+def alch_items(item_count, alch_item_images, get_timing=False, display_timer=False):
     try:
         count = 0
 
+        timer_started = False
         while True:
-            Common.print_runtime(item_count, loop_runtime_seconds, count)
+            # Get start time now to calculate how much time to make a single iteration
+            start = timeit.default_timer()
+
+            # Common.print_runtime(item_count, loop_runtime_seconds, count)
 
             Common.watch_click_image(alch_spell_images, 0.7, 'Click alch spell',
                                      False, 1, 10, None,
@@ -63,6 +67,18 @@ def alch_items(item_count, alch_item_images):
             Common.watch_click_image(alch_item_images, 0.7, 'Click item to alch',
                                      False, 2, 10, None,
                                      Common.Inventory_region)
+
+            # Get stop time now to calculate how much time to make a single iteration
+            stop = timeit.default_timer()
+            seconds_per_iteration = round(stop - start)
+
+            # If we just want timing for displaying countdown timer return after first iteration here
+            if get_timing:
+                return seconds_per_iteration
+
+            if display_timer:
+                # Subtract iteration already ran
+                Display.start_timer_thread(item_count - 1, seconds_per_iteration)
 
             if count >= item_count:
                 break
@@ -81,18 +97,4 @@ if __name__ == '__main__':
     itemCount = int(itemCountString)
 
     alchItemImages = select_item_to_alch()
-
-    # Get runtime
-    runtime_seconds = Common.print_runtime(itemCount, loop_runtime_seconds, 0)
-
-    # Create new threads for timer and alching so both can run at same time since timer has it's mainloop that'll block
-    # other function calls/loops
-    thread = Thread(target=Display.ExampleApp, args=(runtime_seconds,))
-    thread2 = Thread(target=alch_items, args=(itemCount, alchItemImages,))
-
-    thread.start()
-    thread2.start()
-
-    # Wait till function threads are done running
-    thread.join()
-    thread2.join()
+    alch_items(itemCount, alchItemImages, False, True)

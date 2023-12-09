@@ -18,9 +18,11 @@ equip items:        None
 items in inventory: None
 items in bank:  Bow String and unstrung bow: top row
 """
+import timeit
 
 import Common as Common
 import Banking as Banking
+import Display
 
 defaultTimeBeforeClick = 1
 
@@ -37,12 +39,16 @@ string_bow_images = ['Images/Fletching/StringBow.png']
 bow_images = ['Images/Fletching/Bow.png']
 
 
-def string_bows(item_count):
+# Optional get_timing parameter can be used to do one run to get time per iteration to set up countdown timer with
+# different scripts running one after another
+def string_bows(item_count, get_timing=False, display_timer=False):
     try:
         loops_till_done = round(item_count / 14)
 
         for x in range(loops_till_done):
             Common.print_runtime(loops_till_done, 24, x)
+
+            start = timeit.default_timer()
 
             Common.watch_click_image(bow_string_images, 0.7, 'Get bow strings',
                                      current_step_region=Common.Bank_region)
@@ -61,6 +67,18 @@ def string_bows(item_count):
             Banking.open_grand_exchange_bank()
             Common.watch_click_image(bow_images, 0.7, 'Deposit longbows',
                                      current_step_region=Common.Inventory_region)
+
+            # Get stop time now to calculate how much time to make a single iteration
+            stop = timeit.default_timer()
+            seconds_per_iteration = round(stop - start)
+
+            # If we just want timing for displaying countdown timer return after first iteration here
+            if get_timing:
+                return seconds_per_iteration
+
+            if display_timer:
+                # Subtract iteration already ran
+                Display.start_timer_thread(loops_till_done - 1, seconds_per_iteration)
 
     # Image not found error, stop loop and print message
     except ValueError as error:
@@ -83,4 +101,4 @@ if __name__ == '__main__':
                              False, 1, 10, None,
                              Common.Bank_bottom_options_region)
 
-    string_bows(itemCount)
+    string_bows(itemCount, False, True)

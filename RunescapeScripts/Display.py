@@ -1,11 +1,43 @@
 import datetime
 import tkinter as tk
+from threading import Thread
+
+import Common
+import Display
 
 # Location constants as X and Y coordinates for position on screen where 0,0 is top left corner
 top_left = "+0+120"
 
+# static variables
+timer_started = False
 
-class ExampleApp(tk.Tk):
+
+# Starts a timer on a new thread so it can be run beside other scripts
+def start_timer_thread(iterations, seconds_per_iteration, reset=False):
+    # If timer hasn't started use runtime to estimate
+    if not Display.timer_started:
+        # Calculate runtime
+        total_runtime_seconds = Common.print_runtime(iterations, seconds_per_iteration, 0)
+
+        # Create new threads for timer and alching so both can run at same time since timer has it's
+        # mainloop that'll block other function calls/loops
+        timer_thread = Thread(target=CountdownTimer, args=(total_runtime_seconds,))
+
+        # Start timer thread
+        timer_thread.start()
+
+        Display.timer_started = True
+    elif reset:
+        # Calculate runtime
+        total_runtime_seconds = Common.print_runtime(iterations, seconds_per_iteration, 0)
+
+
+def convert_seconds_to_dtg(runtime_in_seconds):
+    dtg = str(datetime.timedelta(seconds=runtime_in_seconds))
+    return dtg
+
+
+class CountdownTimer(tk.Tk):
 
     # Constructor to initialize on screen number visual info
     def __init__(self, time):
@@ -22,6 +54,7 @@ class ExampleApp(tk.Tk):
         self.countdown(time)
         self.mainloop()
 
+    # Counts down timer by seconds and updates numbers displayed in graphic
     def countdown(self, remaining=None):
         if remaining is not None:
             self.remaining = remaining
@@ -42,4 +75,4 @@ class ExampleApp(tk.Tk):
 
 # Only run if called from this script
 if __name__ == "__main__":
-    app = ExampleApp(90)
+    app = CountdownTimer(90)
