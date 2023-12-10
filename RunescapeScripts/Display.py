@@ -13,7 +13,7 @@ timer_started = False
 
 
 # Starts a timer on a new thread so it can be run beside other scripts
-def start_timer_thread(iterations, seconds_per_iteration, reset=False):
+def start_timer_thread(iterations, seconds_per_iteration):
     # If timer hasn't started use runtime to estimate
     if not Display.timer_started:
         # Calculate runtime
@@ -27,9 +27,11 @@ def start_timer_thread(iterations, seconds_per_iteration, reset=False):
         timer_thread.start()
 
         Display.timer_started = True
-    elif reset:
-        # Calculate runtime
-        total_runtime_seconds = Common.print_runtime(iterations, seconds_per_iteration, 0)
+
+
+# Start timer countdown thread with total number of seconds
+def start_timer_thread_total_time(total_seconds):
+    start_timer_thread(1, total_seconds)
 
 
 def convert_seconds_to_dtg(runtime_in_seconds):

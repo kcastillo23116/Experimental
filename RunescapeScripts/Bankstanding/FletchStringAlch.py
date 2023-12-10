@@ -47,7 +47,7 @@ withdraw_all_images = ['Images/Banking/WithdrawAll.png', 'Images/Banking/Withdra
 withdraw_note_images = ['Images/Banking/WithdrawNote.png', 'Images/Banking/WithdrawNoteSelected.png']
 bank_bow_images = ['Images/Fletching/BankBow.png']  # Need separate image for bank bow since it's cutoff by numbers
 feather_tab_images = ['Images/Fletching/FeatherTab.png']
-nature_rune_images = ['Images/Runes/NatureRune.png']
+nature_rune_images = ['Images/Runes/NatureRune.png', 'Images/Runes/NatureRune2.png']
 noted_bow_images = ['Images/Magic/NotedBows.png']
 spellbook_images = ['Images/Magic/SpellbookTab.png']
 inventory_icon_images = ['Images/General/InventoryIcon.png']
@@ -133,6 +133,6 @@ if __name__ == '__main__':
 
     # Run through steps once to get total runtime and display timer
     total_runtime_seconds = fletch_string_alch(itemCount, True)
-    Display.start_timer_thread(1, total_runtime_seconds)
+    Display.start_timer_thread_total_time(total_runtime_seconds)
 
     fletch_string_alch(itemCount)

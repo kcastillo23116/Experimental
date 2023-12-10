@@ -41,7 +41,8 @@ def open_grand_exchange_bank():
                                  True, next_step_image_paths=bank_option_images)
         Common.watch_click_image(bank_option_images, 0.7,
                                  'Click Open bank and look for withdraw as note to make sure bank window is open',
-                                 next_step_image_paths=bank_withdraw_note_images, next_step_region=Common.Bank_bottom_options_region)
+                                 next_step_image_paths=bank_withdraw_note_images, next_step_confidence=0.4,
+                                 next_step_region=Common.Bank_bottom_options_region)
 
         # Image not found error, stop loop and print message
     except ValueError as error:

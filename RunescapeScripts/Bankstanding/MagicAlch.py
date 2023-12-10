@@ -98,3 +98,5 @@ if __name__ == '__main__':
 
     alchItemImages = select_item_to_alch()
     alch_items(itemCount, alchItemImages, False, True)
+
+    print("Alching done!")
