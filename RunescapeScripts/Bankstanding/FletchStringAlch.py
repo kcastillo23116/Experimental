@@ -39,6 +39,7 @@ import StringBow as StringBow
 import MagicAlch as MagicAlch
 from Bankstanding import Banking
 
+
 knife_images = ['Images/Knife.png']
 bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
 gold_tab_images = ['Images/Banking/GoldTab.png']
@@ -128,7 +129,7 @@ def fletch_string_alch(item_count, get_timing=False):
 # Only run code below if running this script
 if __name__ == '__main__':
     # Get how many items from user
-    itemCountString = input("How many items do you have? ")
+    itemCountString = input("How many Logs, Unstrung Bows and Strung bows do you have?")
     itemCount = int(itemCountString)
 
     # Run through steps once to get total runtime and display timer

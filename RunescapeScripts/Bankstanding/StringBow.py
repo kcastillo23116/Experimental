@@ -27,10 +27,6 @@ import Display
 defaultTimeBeforeClick = 1
 
 # Images
-banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
-                 'Images/Banker3.png', 'Images/Banker4.png',
-                 'Images/Banker5.png', 'Images/Banker6.png',
-                 'Images/Banker7.png', 'Images/Banker8.png']
 withdraw_x_images = ['Images/Banking/WithdrawX.png', 'Images/Banking/WithdrawXSelected.png']
 bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
 bow_string_images = ['Images/Fletching/Bowstring.png']

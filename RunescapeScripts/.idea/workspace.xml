@@ -8,8 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bankstanding/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/Banking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Display.py" beforeDir="false" afterPath="$PROJECT_DIR$/Display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/StringBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/StringBow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,10 +348,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.FletchStringAlch" />
-        <item itemvalue="Python.Banking" />
         <item itemvalue="Python.MagicAlch (1)" />
-        <item itemvalue="Python.RegionFinder" />
         <item itemvalue="Python.StringBow" />
+        <item itemvalue="Python.Banking" />
+        <item itemvalue="Python.RegionFinder" />
       </list>
     </recent_temporary>
   </component>

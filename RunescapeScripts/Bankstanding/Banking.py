@@ -27,7 +27,8 @@ defaultTimeBeforeClick = 1
 banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
                  'Images/Banker3.png', 'Images/Banker4.png',
                  'Images/Banker5.png', 'Images/Banker6.png',
-                 'Images/Banker7.png', 'Images/Banker8.png']
+                 'Images/Banker7.png', 'Images/Banker8.png',
+                 'Images/Banker9.png']
 bank_option_images = ['Images/BankOption.png']
 bank_withdraw_note_images = ['Images/Banking/WithdrawNote.png', 'Images/Banking/WithdrawNoteSelected.png']
 
@@ -37,7 +38,7 @@ def open_grand_exchange_bank():
     Opens bank at Grand exchange
     '''
     try:
-        Common.watch_click_image(banker_images, 0.3, 'Right click banker and look for context menu options',
+        Common.watch_click_image(banker_images, 0.2, 'Right click banker and look for context menu options',
                                  True, next_step_image_paths=bank_option_images)
         Common.watch_click_image(bank_option_images, 0.7,
                                  'Click Open bank and look for withdraw as note to make sure bank window is open',

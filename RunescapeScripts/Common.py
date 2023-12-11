@@ -9,6 +9,10 @@ from pathlib import Path
 import PIL.ImageGrab
 from win32api import GetSystemMetrics
 
+# Turn off PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen
+# Accidentally triggering when moving out of VM window
+pyautogui.FAILSAFE = False
+
 # Regions to be used by  pyautogui functions
 All_game_screen_region = None
 Bottom_right_game_screen_region = None
