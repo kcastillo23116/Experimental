@@ -113,23 +113,38 @@ def sleep_with_countdown(amt_time):
         time.sleep(1)
 
 
-# click item in inventory based on row and column (top left is 1, 1)
-def click_inv_item(row, col):
-    # distance between row/col in pixels
-    row_dist = 35
-    col_dist = 40
-
+# click item in inventory based on row and column
+# NOTE: top left is 0, 0
+# NOTE: Row is Y-axis and Column is X-axis
+def click_inv_item(row, col, time_after_click=0):
     # coordinates of top left item to use as starting point
-    top_left_item_x = 1733
-    top_left_item_y = 770
+    first_item_x = 3352
+    first_item_y = 1347
 
-    # calculate where to move mouse to by adding the distance between rows/columns multiplied by row/col index - 1
-    # subtracting 1 so it's not zero based grid (so top left point won't be 0,0)
-    xcoord = top_left_item_x + (col_dist * (col - 1))
-    ycoord = top_left_item_y + (row_dist * (row - 1))
+    # X coordinate of second item to calculate distance between items in x-axis
+    second_item_x = 3462
+
+    # Y coordinate of fifth item to calculate distance between items in y-axis
+    fifth_item_y = 1442
+
+    # distance between row/col in pixels
+    row_dist = fifth_item_y - first_item_y
+    col_dist = second_item_x - first_item_x
+
+    # calculate where to move mouse to by adding the distance between rows/columns multiplied by row/col index
+    xcoord = first_item_x + (col_dist * col)
+    ycoord = first_item_y + (row_dist * row)
 
     pyautogui.moveTo(xcoord, ycoord)
     pyautogui.click()
+
+    time.sleep(time_after_click)
+
+
+def click_whole_inv_items(time_after_click=0):
+    for row in range(0, 7):
+        for col in range(0, 4):
+            click_inv_item(row, col, time_after_click)
 
 
 def move_mouse_and_left_click(xcoord, ycoord, timebeforeclick=0, message=""):

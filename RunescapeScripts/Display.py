@@ -1,4 +1,5 @@
 import datetime
+import timeit
 import tkinter as tk
 from threading import Thread
 
@@ -37,6 +38,21 @@ def start_timer_thread_total_time(total_seconds):
 def convert_seconds_to_dtg(runtime_in_seconds):
     dtg = str(datetime.timedelta(seconds=runtime_in_seconds))
     return dtg
+
+
+# Helper function that returns timer start time
+def start_timer():
+    return timeit.default_timer()
+
+
+# Helper function that gets stop time and displays timer to be used with start_timer function above
+def stop_timer(start_time, loops_till_done):
+    # Get stop time now to calculate how much time to make a single iteration
+    stop = timeit.default_timer()
+    seconds_per_iteration = round(stop - start_time)
+
+    # Subtract iteration already ran
+    Display.start_timer_thread(loops_till_done - 1, seconds_per_iteration)
 
 
 class CountdownTimer(tk.Tk):

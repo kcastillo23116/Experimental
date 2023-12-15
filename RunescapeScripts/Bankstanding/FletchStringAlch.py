@@ -137,3 +137,5 @@ if __name__ == '__main__':
     Display.start_timer_thread_total_time(total_runtime_seconds)
 
     fletch_string_alch(itemCount)
+
+    print("Fletching, Stringing and Alching done!")

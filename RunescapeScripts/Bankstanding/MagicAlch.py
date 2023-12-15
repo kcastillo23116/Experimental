@@ -58,15 +58,15 @@ def alch_items(item_count, alch_item_images, get_timing=False, display_timer=Fal
             # Get start time now to calculate how much time to make a single iteration
             start = timeit.default_timer()
 
-            # Common.print_runtime(item_count, loop_runtime_seconds, count)
+            Common.print_runtime(item_count, 3, count)
 
-            Common.watch_click_image(alch_spell_images, 0.7, 'Click alch spell',
-                                     False, 1, 10, None,
-                                     Common.Inventory_region)
+            Common.watch_click_image(alch_spell_images, 0.6, 'Click alch spell',
+                                     False, 1, 10, alch_item_images,
+                                     Common.Inventory_region, next_step_confidence=0.6)
 
-            Common.watch_click_image(alch_item_images, 0.7, 'Click item to alch',
-                                     False, 2, 10, None,
-                                     Common.Inventory_region)
+            Common.watch_click_image(alch_item_images, 0.6, 'Click item to alch',
+                                     False, 2, 10,
+                                     alch_spell_images, Common.Inventory_region, next_step_confidence=0.6)
 
             # Get stop time now to calculate how much time to make a single iteration
             stop = timeit.default_timer()

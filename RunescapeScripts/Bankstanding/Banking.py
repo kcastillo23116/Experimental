@@ -31,6 +31,9 @@ banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
                  'Images/Banker9.png']
 bank_option_images = ['Images/BankOption.png']
 bank_withdraw_note_images = ['Images/Banking/WithdrawNote.png', 'Images/Banking/WithdrawNoteSelected.png']
+deposit_inventory_images = ['Images/Banking/DepositInventory.png']
+empty_inventory_images = ['Images/General/EmptyInventory.png']
+bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
 
 
 def open_grand_exchange_bank():
@@ -48,3 +51,18 @@ def open_grand_exchange_bank():
         # Image not found error, stop loop and print message
     except ValueError as error:
         print(error, 'Stopping process')
+
+
+def close_bank():
+    Common.watch_click_image(bank_close_images, 0.9, 'Close bank', sleep_time_after_click=1)
+
+
+def deposit_inventory():
+    Common.watch_click_image(deposit_inventory_images, 0.7,
+                             'Deposit inventory and make sure inventory is empty before next step',
+                             current_step_region=Common.Bank_bottom_options_region,
+                             next_step_image_paths=empty_inventory_images,
+                             next_step_region=Common.Bottom_half_game_screen_region)
+
+
+
