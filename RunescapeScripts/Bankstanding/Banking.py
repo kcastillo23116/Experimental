@@ -65,4 +65,8 @@ def deposit_inventory():
                              next_step_region=Common.Bottom_half_game_screen_region)
 
 
+def change_to_withdraw_x():
+    Common.watch_click_image(['Images/Banking/WithdrawX.png'], 0.7, 'Change Withdraw Quantity to X',
+                             False, 1, 10, None,
+                             Common.Bank_bottom_options_region)
 

@@ -43,7 +43,7 @@ def fletch_bows(item_count, get_timing=False, display_timer=False):
     """
     try:
         # Calculate how many loops needed
-        loops_till_done = round(item_count / 27)
+        loops_till_done = round(item_count / 28)
 
         for x in range(loops_till_done):
             Common.print_runtime(loops_till_done, 55, x)

@@ -12,13 +12,14 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on Menu Entry Swapper runelite plugin, shift right click alch item and select
                       "swap left click Use"
 Monitors:           4k display
-bank settings:      - Withdraw as: Item, Quantity: All
+bank settings:      - Withdraw as: Item
 location:           - Right bankers at Grand Exchange
 Menus:              - Inventory open
 equip items:        - N/A
 items in inventory: - None
 items in bank:      - In currently white feather tab:
-                        - Grimy herbs
+                        - Unfinished potion
+                        - Ingredient i.e. Limpwurt root
 Setup:              - Zoom all the way in and click the compass to center North and hold up arrow to move camera
                       all the way up
                     - Inventory tab open an visible
@@ -30,27 +31,46 @@ import Common as Common
 import Display
 from Bankstanding import Banking
 
-grimy_herb_bank_images = ['Images/Herblore/GrimyHerbBank.png']
-grimy_herb_images = ['Images/Herblore/GrimyHerb.png']
-clean_herb_images = ['Images/Herblore/CleanHerb.png']
 feather_tab_images = ['Images/Fletching/FeatherTab.png']
+unfinished_pot_bank_images = ['Images/Herblore/UnfinishedStrPotBank.png']
+ingredient_bank_images = ['Images/Herblore/LimpwurtRootBank.png']
+unfinished_pot_images = ['Images/Herblore/UnfinishedStrPotBank.png']
+ingredient_images = ['Images/Herblore/LimpwurtRoot.png']
+make_potion_images = ['Images/Herblore/MakeSuperStrengthPotion.png']
 
 
-def clean_herbs(item_count):
+def make_potions(item_count):
     # Calculate how many loops needed
-    loops_till_done = round(item_count / 27)
+    loops_till_done = round(item_count / 28)
 
     for x in range(loops_till_done):
         start_time = Display.start_timer()
 
-        Common.watch_click_image(grimy_herb_bank_images, 0.6, 'Withdraw grimy herbs and make sure it is in inventory',
+        Common.watch_click_image(unfinished_pot_bank_images, 0.6,
+                                 'Withdraw 14 unfinished kwuarm potions and make sure they are in inventory',
                                  False, 1, 10, current_step_region=Common.Bank_region,
-                                 next_step_image_paths=grimy_herb_images, next_step_region=Common.Inventory_region,
+                                 next_step_image_paths=unfinished_pot_images, next_step_region=Common.Inventory_region,
+                                 next_step_confidence=0.4)
+
+        Common.watch_click_image(ingredient_bank_images, 0.6,
+                                 'Withdraw 14 limpwurt roots  and make sure they are in inventory',
+                                 False, 1, 10, current_step_region=Common.Bank_region,
+                                 next_step_image_paths=ingredient_images, next_step_region=Common.Inventory_region,
                                  next_step_confidence=0.4)
 
         Banking.close_bank()
 
-        Common.click_whole_inv_items(0.5)
+        Common.watch_click_image(unfinished_pot_images, 0.6,
+                                 'Left click unfinished potion',
+                                 False, 1, 10, current_step_region=Common.Inventory_region)
+
+        Common.watch_click_image(ingredient_images, 0.6,
+                                 'Left click ingredient',
+                                 False, 1, 10, current_step_region=Common.Inventory_region)
+
+        Common.watch_click_image(make_potion_images, 0.6,
+                                 'Click make potion option in chat box and wait',
+                                 False, 16, 10, current_step_region=Common.Chatbox_region)
 
         Banking.open_grand_exchange_bank()
         Banking.deposit_inventory()
@@ -67,10 +87,12 @@ if __name__ == '__main__':
     Banking.open_grand_exchange_bank()
 
     Common.watch_click_image(feather_tab_images, 0.7,
-                             'Click on white feather tab for fletching items and look for grimy herbs in bank window',
-                             False, 1, 10, grimy_herb_bank_images,
+                             'Click on white feather tab for fletching items and look for unfinished pots in bank window',
+                             False, 1, 10, unfinished_pot_bank_images,
                              Common.Top_half_game_screen_region)
 
-    clean_herbs(itemCount)
+    Banking.change_to_withdraw_x()
 
-    print("Herb cleaning done!")
+    make_potions(itemCount)
+
+    print("Potion making done!")
