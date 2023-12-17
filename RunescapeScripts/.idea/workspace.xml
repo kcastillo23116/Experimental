@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Skilling/Herblore/SuperStrengthPotions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/Banking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchBow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/HerbCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Herblore/HerbCleaning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrouge.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrouge.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrouge2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrouge2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrouge3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrouge3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Mining/IronAndrougeMined3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/Herblore/SuperStrengthPotions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Herblore/SuperStrengthPotions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/MiningIronAndrouge.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/MiningIronAndrouge.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,16 +216,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Skilling/Herblore",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Repos/Experimental/RunescapeScripts/Skilling/Herblore&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
@@ -235,7 +240,7 @@
       <recent name="C:\Repos\Experimental\RunescapeScripts\Archived" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SuperStrengthPotions">
+  <component name="RunManager" selected="Python.MiningIronAndrouge">
     <configuration name="Common" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -249,27 +254,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Common.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="FletchStringAlch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="runescape_macros" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -320,6 +304,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="MiningIronAndrouge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="runescape_macros" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/MiningIronAndrouge.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="SuperStrengthPotions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -342,19 +347,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.MiningIronAndrouge" />
       <item itemvalue="Python.SuperStrengthPotions" />
       <item itemvalue="Python.Common" />
-      <item itemvalue="Python.FletchStringAlch" />
       <item itemvalue="Python.HerbCleaning" />
       <item itemvalue="Python.MagicAlch (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.MiningIronAndrouge" />
         <item itemvalue="Python.SuperStrengthPotions" />
         <item itemvalue="Python.HerbCleaning" />
         <item itemvalue="Python.Common" />
         <item itemvalue="Python.MagicAlch (1)" />
-        <item itemvalue="Python.FletchStringAlch" />
       </list>
     </recent_temporary>
   </component>
@@ -407,6 +412,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Common.py</url>
+          <line>228</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

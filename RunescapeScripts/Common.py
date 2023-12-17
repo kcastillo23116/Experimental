@@ -32,6 +32,9 @@ Bank_bottom_options_region = None
 Chatbox_region = None
 Chatbox_options_region = None
 
+# Images
+empty_inventory_images = ['Images/General/EmptyInventory.png']
+
 
 def set_regions():
     """

@@ -41,7 +41,7 @@ make_potion_images = ['Images/Herblore/MakeSuperStrengthPotion.png']
 
 def make_potions(item_count):
     # Calculate how many loops needed
-    loops_till_done = round(item_count / 28)
+    loops_till_done = round(item_count / 14)
 
     for x in range(loops_till_done):
         start_time = Display.start_timer()
