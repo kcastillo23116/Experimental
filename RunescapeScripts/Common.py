@@ -342,3 +342,15 @@ def print_runtime(total_loops, loop_runtime_seconds, current_loop):
     dtg = str(datetime.timedelta(seconds=runtime))
     print("Approx time till done: ", dtg)
     return runtime
+
+
+# Drop specified items till inventory is somewhat empty
+def drop_inventory_items(items_to_drop_images):
+    pyautogui.keyDown('shift')
+    while not (is_image_on_screen(empty_inventory_images, 0.7, 0,
+                                  'Looking for empty inventory', Inventory_region)):
+        watch_click_image(items_to_drop_images, 0.7,
+                          'Shift Click drop iron and gems in inventory',
+                          False, 0, 10, None,
+                          Inventory_region)
+    pyautogui.keyUp('shift')

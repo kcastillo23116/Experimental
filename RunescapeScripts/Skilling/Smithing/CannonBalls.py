@@ -19,7 +19,7 @@ items in bank:      - In gold coin tab:
                         - Cannon Ball Ammo Mold
                     - In white feather tab:
                         - Steel Bars
-Setup:              - Zoom out the way in and click the compass to center North and hold up arrow to move camera
+Setup:              - Zoom all the way out and click the compass to center North and hold up arrow to move camera
                       all the way up
                     - Inventory tab open an visible
 Objects to mark:    - Top leftmost bank booth and furnace on right marked as default yellow
@@ -60,10 +60,8 @@ def make_cannonballs(item_count):
                                  next_step_confidence=0.6)
 
         Common.watch_click_image(make_cannon_ball_images, 0.7,
-                                 'Click on make cannon balls option and look for cannon balls in inventory',
-                                 False, 160, 10, current_step_region=Common.Chatbox_region,
-                                 next_step_image_paths=cannon_ball_images, next_step_region=Common.Inventory_region,
-                                 next_step_confidence=0.5)
+                                 'Click on make cannon balls option',
+                                 False, 160, 10, current_step_region=Common.Chatbox_region)
 
         Common.watch_click_image(bank_booth_2_images, 0.7,
                                  'Click on bank booth 2 and look for bank note option to make sure bank is open',
