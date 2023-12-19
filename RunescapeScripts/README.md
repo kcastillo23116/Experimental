@@ -26,3 +26,7 @@
 1. Enable NPC highlighting and set to specified color: #ff00ffff
 1. Right click tag all enemy so they're highlighted
 1. Turn on Opponent information plugin in runelite
+
+## Other
+- Setup runelite discord notification plugin for level up messages and screenshots
+  - Use these steps: https://github.com/ATremonte/Discord-Level-Notifications 

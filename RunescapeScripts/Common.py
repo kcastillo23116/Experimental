@@ -119,7 +119,7 @@ def sleep_with_countdown(amt_time):
 # click item in inventory based on row and column
 # NOTE: top left is 0, 0
 # NOTE: Row is Y-axis and Column is X-axis
-def click_inv_item(row, col, time_after_click=0):
+def click_inv_item(row, col, time_after_click=0.0):
     # coordinates of top left item to use as starting point
     first_item_x = 3352
     first_item_y = 1347
@@ -144,10 +144,16 @@ def click_inv_item(row, col, time_after_click=0):
     time.sleep(time_after_click)
 
 
-def click_whole_inv_items(time_after_click=0):
+def click_whole_inv_items(time_after_click=0.0):
     for row in range(0, 7):
         for col in range(0, 4):
             click_inv_item(row, col, time_after_click)
+
+
+def drop_inventory(time_after_click=0.4):
+    pyautogui.keyDown('shift')
+    click_whole_inv_items(time_after_click)
+    pyautogui.keyUp('shift')
 
 
 def move_mouse_and_left_click(xcoord, ycoord, timebeforeclick=0, message=""):

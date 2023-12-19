@@ -21,14 +21,19 @@ equip items:        - None
 items in inventory: - N/A
 items in bank:      - N/A
 Setup:              - N/A
-Objects to mark: - Bakers stall default yellow
+Objects to mark:    - None
 """
+from random import randrange
 from time import sleep
+
+import pyautogui
 
 import Common as Common
 import Display
 
+# Click bottom left corner of stall so don't run to other spot when clicking empty stall on accident
 bakeStandImages = ['Images/Thieving/BakerStall.png']
+bakeStandEmptyImages = ['Images/Thieving/BakerStallEmpty.png']
 dropItemImages = ['Images/Thieving/Cake.png', 'Images/Thieving/Bread.png', 'Images/Thieving/ChocolateCake.png']
 
 
@@ -37,25 +42,28 @@ def steal_bake_stall():
         # Get how many from user
         item_count_string = input("How many items do you want to steal? ")
 
-        # Calculate how many loops needed
+        # Calculate how many iterations needed
         item_count = int(item_count_string)
-        iterations_till_done = round(item_count / 28)
+        iterations_till_done = item_count/28
 
         # Start at 1 so don't go into drop inventory function after first steal
         stolen_item_count = 1
 
-        for x in range(iterations_till_done):
-            start_time = Display.start_timer()
+        start_time = Display.start_timer()
 
-            Common.watch_click_image(bakeStandImages, 0.7,
-                                     'Steal from bake stand',
-                                     False, 0, 10, None,
-                                     Common.All_game_screen_region)
-            sleep(1.25)
+        for x in range(item_count):
+            x = randrange(1175, 1450)
+            y = randrange(1035, 1355)
 
-            # Drop items every 20 steals
-            if stolen_item_count % 20 == 0:
-                Common.drop_inventory_items(dropItemImages)
+            Common.move_mouse_and_left_click(x, y, 0,
+                                             'Steal from bake stand')
+
+            # Use sleep here to get decimal seconds for more precision
+            sleep(2.8)
+
+            # Drop all items every 28 steals
+            if stolen_item_count % 28 == 0:
+                Common.drop_inventory(0.3)
 
                 # display timer after first inventory drop to get a full iteration and more accurate timing
                 Display.stop_timer(start_time, iterations_till_done)
