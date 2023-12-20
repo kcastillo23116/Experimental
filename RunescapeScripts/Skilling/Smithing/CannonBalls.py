@@ -27,7 +27,7 @@ Objects to mark:    - Top leftmost bank booth and furnace on right marked as def
 
 import Common as Common
 import Display
-from Bankstanding.Banking import bank_withdraw_note_images
+from Banking import bank_withdraw_note_images
 
 feather_tab_images = ['Images/Fletching/FeatherTab.png']
 gold_tab_images = ['Images/Banking/GoldTab.png']

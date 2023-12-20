@@ -3,11 +3,16 @@ Common functions that could be useful in multiple places
 """
 import datetime
 import time
-import os
+from random import randrange
+
 import pyautogui
 from pathlib import Path
 import PIL.ImageGrab
+from PIL import ImageGrab, Image, ImageOps
+from pytesseract import pytesseract
 from win32api import GetSystemMetrics
+
+import Common
 
 # Turn off PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen
 # Accidentally triggering when moving out of VM window
@@ -34,6 +39,7 @@ Chatbox_options_region = None
 
 # Images
 empty_inventory_images = ['Images/General/EmptyInventory.png']
+low_hp_images = ['Images/General/LowHealth.png']
 
 
 def set_regions():
@@ -161,6 +167,29 @@ def move_mouse_and_left_click(xcoord, ycoord, timebeforeclick=0, message=""):
     print(message)
     pyautogui.moveTo(xcoord, ycoord)
     pyautogui.click()
+
+
+# Move mouse and click withing specified region
+# Use values from RegionFinder.py
+def move_mouse_and_click_in_region(xcoord, ycoord, width, height, time_before_click=0, right_click=False, message=""):
+    sleep_with_countdown(time_before_click)
+    print(message)
+
+    x_range_start = xcoord
+    x_range_end = xcoord + width
+    y_range_start = ycoord
+    y_range_end = ycoord + height
+
+    # Generate random x and y coordinates within specified region
+    x = randrange(x_range_start, x_range_end)
+    y = randrange(y_range_start, y_range_end)
+
+    pyautogui.moveTo(x, y)
+
+    if right_click:
+        pyautogui.rightClick()
+    else:
+        pyautogui.click()
 
 
 def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
@@ -330,6 +359,12 @@ def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message
         return True
 
 
+def is_hp_low():
+    ret = is_image_on_screen(low_hp_images, 0.9, 0, 'Check if HP is low', Minimap_vitals_region)
+
+    return ret
+
+
 def get_relative_file_path(path):
     """Get path relative to project file"""
     base_path = Path(__file__).parent
@@ -360,3 +395,66 @@ def drop_inventory_items(items_to_drop_images):
                           False, 0, 10, None,
                           Inventory_region)
     pyautogui.keyUp('shift')
+
+
+# WARNING: Doesn't read numbers correctly consistently
+# Reads HP from Runelite mini bars plugin and returns current HP number
+# Note: Make sure that region for bounding box does not contain any white or lighter colors
+#       since it can mess up reading the white numbers. Use debug code below to check
+# Note: Runelite Mini Bars plugin with setup:
+#   - Show health: enabled
+#   - Health Size: 78 x 1
+#   - Total Labels: disabled
+#   - Health color: black, #00000
+def read_hp():
+    # Path of tesseract executable
+    pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+
+    # Bottom left HP bar coordinates x1, y1, x2, y2
+    hp_bounding_box = (1192, 1844, 1299, 1916)
+
+    # ImageGrab-To capture the screen image
+    hp_image = ImageGrab.grab(bbox=hp_bounding_box)
+
+    # Grey scale and contrast image to make easier to identify numbers
+    hp_image_greyscale = ImageOps.grayscale(hp_image)
+    hp_image_greyscale_contrast = ImageOps.autocontrast(hp_image_greyscale, cutoff=3, ignore=1)
+
+    # DEBUG
+    # hp_image_greyscale_contrast.show()
+
+    # Set up page segmentation to 11 for Sparse Text, white list for only digits and
+    # OCR Engine mode 3 for default OCR Engine
+    config = r'--oem 3 --psm 11 -c tessedit_char_whitelist=0123456789'
+
+    # Run twice in case there's a misread
+    hp_text = (pytesseract.image_to_string(hp_image_greyscale_contrast, config=config))
+
+    return hp_text
+
+
+def get_hp():
+    max_hp = 64
+
+    # Run twice in case there's a misread
+    hp_text1 = read_hp()
+    hp_text2 = read_hp()
+
+    # If hp is read the same twice and not blank convert it to integer value and return
+    # otherwise try one more time and assume max hp
+    if hp_text1 == hp_text2:
+        if hp_text1 != '':
+            hp = int(hp_text1)
+            return hp
+        else:
+            return max_hp
+    else:
+        hp_text1 = read_hp()
+        hp_text2 = read_hp()
+        if hp_text1 == hp_text2:
+            if hp_text1 != '':
+                hp = int(hp_text1)
+                return hp
+            else:
+                return max_hp
+

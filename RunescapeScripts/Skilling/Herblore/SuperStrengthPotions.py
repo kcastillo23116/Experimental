@@ -29,7 +29,7 @@ Objects to mark:    - Both Bankers on right side at grand exchange
 
 import Common as Common
 import Display
-from Bankstanding import Banking
+import Banking
 
 feather_tab_images = ['Images/Fletching/FeatherTab.png']
 unfinished_pot_bank_images = ['Images/Herblore/UnfinishedStrPotBank.png']

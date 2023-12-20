@@ -28,7 +28,7 @@ Objects to mark:    - Both Bankers on right side at grand exchange
 
 import Common as Common
 import Display
-from Bankstanding import Banking
+import Banking
 
 grimy_herb_bank_images = ['Images/Herblore/GrimyHerbBank.png']
 grimy_herb_images = ['Images/Herblore/GrimyHerb.png']

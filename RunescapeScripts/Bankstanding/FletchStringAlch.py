@@ -37,8 +37,7 @@ import Display
 import FletchBow as FletchBow
 import StringBow as StringBow
 import MagicAlch as MagicAlch
-from Bankstanding import Banking
-
+import Banking
 
 knife_images = ['Images/Knife.png']
 bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
