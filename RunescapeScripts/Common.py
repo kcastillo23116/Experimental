@@ -206,6 +206,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
     """
     Click specified image on screen as soon as it's found
     Keep watching till next step is found or timeout after specified attempt count
+    Returns true if image was clicked and false otherwise
     Optional time after click sets seconds to sleep after each click
     Optional region parameters that default to whole game screen
     """
@@ -242,6 +243,8 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
                 raise ValueError('\t No image found for ', image_paths)
 
             count += 1
+
+        return image_was_clicked
     except ValueError as val_error:
         raise val_error
 

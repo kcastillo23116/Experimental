@@ -20,7 +20,7 @@ equip items:        - Best woodcutting axe
 items in inventory: - Empty
 items in bank:      - N/A
 Setup:              - N/A
-Objects to mark:        - Teak tree SW of castle wars (can see it on map)
+Objects to mark:    - Teak tree SW of castle wars (can see it on map)
 
 """
 import pyautogui

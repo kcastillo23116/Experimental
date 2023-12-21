@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Skilling/Thieving/ThieveBakeStand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Banking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Herblore/HerbCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Herblore/HerbCleaning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Herblore/SuperStrengthPotions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Herblore/SuperStrengthPotions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Smithing/CannonBalls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Smithing/CannonBalls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/ThieveBakeStand.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Thieving/PickpocketKnight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tools/RegionFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/RegionFinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Thieving/Pickpocketing/Shark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/Thieving/PickpocketKnight.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Thieving/PickpocketKnight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/WoodcuttingTeak.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/WoodcuttingTeak.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
