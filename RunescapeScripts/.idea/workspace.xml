@@ -8,6 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareSuccess.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareSuccess.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

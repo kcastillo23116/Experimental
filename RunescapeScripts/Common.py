@@ -205,7 +205,7 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
 def watch_click_image(image_paths, confidence=0.7, message='', right_click=False,
                       sleep_time_after_click=0, attempts=10, next_step_image_paths=None,
                       current_step_region=All_game_screen_region, next_step_region=All_game_screen_region,
-                      next_step_confidence=0.7):
+                      next_step_confidence=0.7, current_step_grayscale=False, next_step_grayscale=False):
     """
     Click specified image on screen as soon as it's found
     Keep watching till next step is found or timeout after specified attempt count
@@ -230,11 +230,11 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         while image_was_clicked is False or \
                 is_next_step_image_on_screen is False:
             image_was_clicked = click_image_helper(image_paths, confidence, current_step_region,
-                                                   sleep_time_after_click, right_click)
+                                                   sleep_time_after_click, right_click, current_step_grayscale)
             # Check for next step image if one is provided
             if next_step_image_paths is not None:
                 is_next_step_image_on_screen = is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "",
-                                                                  next_step_region)
+                                                                  next_step_region, next_step_grayscale)
             # Next step is visible no need to keep looking
             if is_next_step_image_on_screen:
                 break
@@ -252,7 +252,8 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         raise val_error
 
 
-def click_image_helper(image_paths, confidence, current_step_region, time_between_clicks=0, right_click=False):
+def click_image_helper(image_paths, confidence, current_step_region, time_between_clicks=0, right_click=False,
+                       grayscale=False):
     """
     Updated click image helper function to be used by the watch_click_image function above
     Click specified image on screen as soon as it's found
@@ -267,7 +268,8 @@ def click_image_helper(image_paths, confidence, current_step_region, time_betwee
     for image in image_paths:
         print('\t Looking for', image)
         path = get_relative_file_path(image)
-        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=current_step_region,
+                                                     grayscale=grayscale)
 
         # if coordinates found break loop no need to look at rest of images
         if coordinates is not None:
@@ -333,7 +335,8 @@ def click_image(image_paths, confidence=0.7,
         pyautogui.click()
 
 
-def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message='', region=All_game_screen_region):
+def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message='', region=All_game_screen_region,
+                       grayscale=False):
     """
     Look for specified list of PNG images with specified confidence return true if found false otherwise
     Note: Image path is relative to Common.py file
@@ -349,7 +352,7 @@ def is_image_on_screen(image_paths, confidence=0.7, time_before_check=0, message
         # Get and Install Pillow and opencv-python packages to get this call to work
         # If the file is not a png file it will not work
         path = get_relative_file_path(image)
-        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=region)
+        coordinates = pyautogui.locateCenterOnScreen(path, confidence=confidence, region=region, grayscale=grayscale)
 
         # If image not found print and check next image
         # Else if image is found stop loop
@@ -392,7 +395,7 @@ def print_runtime(total_loops, loop_runtime_seconds, current_loop):
 
 
 # Drop all specified items from inventory
-def drop_inventory_items(items_to_drop_images):
+def drop_inventory_items(items_to_drop_images, grayscale=False):
     pyautogui.keyDown('shift')
 
     # Keep dropping items till they're no longer seen in inventory
@@ -401,7 +404,7 @@ def drop_inventory_items(items_to_drop_images):
         watch_click_image(items_to_drop_images, 0.7,
                           'Shift Click drop iron and gems in inventory',
                           False, 0, 10, None,
-                          Inventory_region)
+                          Inventory_region, current_step_grayscale=grayscale)
     pyautogui.keyUp('shift')
 
 
