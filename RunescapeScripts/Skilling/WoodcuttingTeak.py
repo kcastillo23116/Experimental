@@ -12,14 +12,17 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                       - Highlight clickbox enabled with all others disabled
                       - Remember color per object
                     - Turn off runelite Mouse Tooltips plugin
-Monitors:           4k or 3K display
-bank settings:      N/A
+Monitors:           - 4k or 3K display
+bank settings:      - N/A
 location:           - Teak tree SW of castle wars (can see it on map)
 Menus:              - Inventory open
 equip items:        - Best woodcutting axe
 items in inventory: - Empty
 items in bank:      - N/A
-Setup:              - N/A
+Setup:              - Right click compass and click Look North
+                    - Zoom in all the way
+                    - Entity hider to hide player and other players/npc
+                    - Stand on northern side of teak tree
 Objects to mark:    - Teak tree SW of castle wars (can see it on map)
 
 """
@@ -31,7 +34,7 @@ import Common as Common
 runtime = 1
 
 # region IMAGES
-teak_tree_images = ['Images/Woodcutting/CastlwarsTeak.png']
+teak_tree_images = ['Images/Woodcutting/CastlwarsTeak.png', 'Images/Woodcutting/CastlwarsTeak2.png']
 teak_log_images = ['Images/Woodcutting/TeakLogs.png']
 empty_inv_images = ['Images/Woodcutting/EmptyInvSlot.png']
 # endregion IMAGES
@@ -50,21 +53,16 @@ try:
 
         Common.watch_click_image(teak_tree_images, 0.5, 'Click tree',
                                  False, 4, 10, None,
-                                 Common.Top_half_game_screen_region)
+                                 Common.All_game_screen_region)
+
+        count += 1
 
         # Drop all logs once inventory is full
         if Common.is_image_on_screen(empty_inv_images, 0.7, 0, 'Are there any empty inventory slots?',
                                      Common.Inventory_region) is False:
-            pyautogui.keyDown('shift')
-            while Common.is_image_on_screen(teak_log_images, 0.4, 0, 'Are there teak logs in inventory?',
-                                            Common.Inventory_region):
+            Common.drop_inventory()
 
-                Common.watch_click_image(teak_log_images, 0.4, 'Shift click drop log in inventory', False, 0, 10, None,
-                                         Common.Inventory_region)
-                count += 1
-            pyautogui.keyUp('shift')
-
-        if count >= itemCount:
+        if count > itemCount:
             break
 
 
