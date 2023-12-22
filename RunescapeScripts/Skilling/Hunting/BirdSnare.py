@@ -14,10 +14,12 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn off runelite Mouse Tooltips plugin
 Monitors:           - 4k or 3K display
 bank settings:      - N/A
-location:           - Teak tree SW of castle wars (can see it on map)
+location:           - Piscatoris teleport south at flowers near fence
+                        - Stand one tile left of the flowers by fence. Reference picture:
+                          "Images\Hunting\StartingLocationReference.png"
 Menus:              - Inventory open
-equip items:        - Best woodcutting axe
-items in inventory: - Empty
+equip items:        - N/A
+items in inventory: - 4-8 bird snares
 items in bank:      - N/A
 Setup:              - Right click compass and click Look North
                     - Zoom in all the way
@@ -26,10 +28,9 @@ Setup:              - Right click compass and click Look North
                     - Use runelite menu entry swapper plugin to reassign shift click to Walk Here for
                       successful and failed traps
                     - Use runelite ground item plugin to hide ground item names and text and put bird snares at top
-                        - Add Bird snare to Highlighted Items section and chcek show highlighted items only and
-                          deprioritize menu hidden items and add Bones and Raw bird meat to Hidden Items section
-                    - Stand one tile left of the flowers by fence. Reference picture:
-                      "Images\Hunting\StartingLocationReference.png"
+                        - Add Bird snare to Highlighted Items section and check show highlighted items only and
+                          de-prioritize menu hidden items and add Bones and Raw bird meat to Hidden Items section
+                    - Use Runelite Random Event Hider plugin and hide all player and other's random event NPCs
 Objects to mark:    - None
 
 """
@@ -43,8 +44,7 @@ runtime = 1
 
 # region IMAGES
 bird_snare_inventory_images = ['Images/Hunting/BirdSnareInventory.png']
-bird_snare_status_images = ['Images/Hunting/BirdSnareFail.png', 'Images/Hunting/BirdSnareSuccess.png',
-                            'Images/Hunting/BirdSnareFail2.png']
+bird_snare_status_images = ['Images/Hunting/BirdSnareSuccess.png', 'Images/Hunting/BirdSnareFail.png']
 items_to_drop_images = ['Images/Hunting/Bones.png', 'Images/Hunting/BirdMeat.png']
 walk_here_option_images = ['Images/General/WalkHereOption.png']
 empty_inv_images = ['Images/Woodcutting/EmptyInvSlot.png']
@@ -68,7 +68,7 @@ def bird_snare():
             Common.watch_click_image(bird_snare_inventory_images, 0.7,
                                      'Click inventory trap to set up first trap',
                                      False, 4, 10,
-                                     current_step_region=Common.All_game_screen_region)
+                                     current_step_region=Common.Inventory_region)
 
         start_time = Display.start_timer()
 
@@ -78,10 +78,10 @@ def bird_snare():
             pyautogui.keyDown('shift')
             Common.watch_click_image(bird_snare_status_images, 0.7,
                                      'Looking for failed or successful trap then shift clicking to walk on top of it',
-                                     False, 2, 10,
-                                     current_step_region=Common.All_game_screen_region,
+                                     False, 2, 1000,
+                                     current_step_region=Common.Main_game_screen_region,
                                      next_step_image_paths=bird_snare_status_images, next_step_confidence=0.7,
-                                     next_step_region=Common.All_game_screen_region)
+                                     next_step_region=Common.Main_game_screen_region)
             pyautogui.keyUp('shift')
 
             # Left center of the screen since standing on top of trap at this point

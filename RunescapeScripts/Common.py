@@ -20,6 +20,7 @@ pyautogui.FAILSAFE = False
 
 # Regions to be used by  pyautogui functions
 All_game_screen_region = None
+Main_game_screen_region = None
 Bottom_right_game_screen_region = None
 Top_half_game_screen_region = None
 Bottom_half_game_screen_region = None
@@ -50,6 +51,7 @@ def set_regions():
     height = GetSystemMetrics(1)
 
     global All_game_screen_region
+    global Main_game_screen_region
     global Bottom_right_game_screen_region
     global Top_half_game_screen_region
     global Bottom_half_game_screen_region
@@ -89,6 +91,7 @@ def set_regions():
         Chatbox_options_region = (4, 1862, 1361, 73)
     elif width == 3840:
         All_game_screen_region = (8, 43, 3774, 2038)
+        Main_game_screen_region = (4, 90, 3234, 1893)  # Without minimap, inventory and space between them and menu bar
         Bottom_right_game_screen_region = (1403, 1235, 1846, 754)
         Top_half_game_screen_region = (3, 38, 3244, 1574)
         Bottom_half_game_screen_region = (5, 812, 3775, 1267)
@@ -388,11 +391,13 @@ def print_runtime(total_loops, loop_runtime_seconds, current_loop):
     return runtime
 
 
-# Drop specified items till inventory is somewhat empty
+# Drop all specified items from inventory
 def drop_inventory_items(items_to_drop_images):
     pyautogui.keyDown('shift')
-    while not (is_image_on_screen(empty_inventory_images, 0.7, 0,
-                                  'Looking for empty inventory', Inventory_region)):
+
+    # Keep dropping items till they're no longer seen in inventory
+    while is_image_on_screen(items_to_drop_images, 0.7, 0, 'Looking for items to drop',
+                             Inventory_region):
         watch_click_image(items_to_drop_images, 0.7,
                           'Shift Click drop iron and gems in inventory',
                           False, 0, 10, None,
