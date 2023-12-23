@@ -205,7 +205,8 @@ def move_mouse_and_right_click(xcoord, ycoord, timebeforeclick=0, message=""):
 def watch_click_image(image_paths, confidence=0.7, message='', right_click=False,
                       sleep_time_after_click=0, attempts=10, next_step_image_paths=None,
                       current_step_region=All_game_screen_region, next_step_region=All_game_screen_region,
-                      next_step_confidence=0.7, current_step_grayscale=False, next_step_grayscale=False):
+                      next_step_confidence=0.7, current_step_grayscale=False, next_step_grayscale=False,
+                      double_click=False):
     """
     Click specified image on screen as soon as it's found
     Keep watching till next step is found or timeout after specified attempt count
@@ -230,7 +231,8 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
         while image_was_clicked is False or \
                 is_next_step_image_on_screen is False:
             image_was_clicked = click_image_helper(image_paths, confidence, current_step_region,
-                                                   sleep_time_after_click, right_click, current_step_grayscale)
+                                                   sleep_time_after_click, right_click,
+                                                   current_step_grayscale, double_click)
             # Check for next step image if one is provided
             if next_step_image_paths is not None:
                 is_next_step_image_on_screen = is_image_on_screen(next_step_image_paths, next_step_confidence, 0, "",
@@ -253,7 +255,7 @@ def watch_click_image(image_paths, confidence=0.7, message='', right_click=False
 
 
 def click_image_helper(image_paths, confidence, current_step_region, time_between_clicks=0, right_click=False,
-                       grayscale=False):
+                       grayscale=False, double_click=False):
     """
     Updated click image helper function to be used by the watch_click_image function above
     Click specified image on screen as soon as it's found
@@ -287,6 +289,10 @@ def click_image_helper(image_paths, confidence, current_step_region, time_betwee
             return True
         else:
             pyautogui.click()
+
+            if double_click:
+                pyautogui.click()
+
             sleep_with_countdown(time_between_clicks)
             return True
     else:

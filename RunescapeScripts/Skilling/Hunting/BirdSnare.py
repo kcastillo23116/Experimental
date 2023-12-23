@@ -19,10 +19,11 @@ location:           - Piscatoris teleport south at flowers near fence
                           "Images\Hunting\StartingLocationReference.png"
 Menus:              - Inventory open
 equip items:        - N/A
-items in inventory: - Max number of bird snares you can set down for your hunter level (3)
+items in inventory: - 8 Bird snares
 items in bank:      - N/A
 Setup:              - Right click compass and click Look North
-                    - Zoom in all the way
+                    - Zoom out a bit so all traps are visible in the middle of the screen when standing four tiles west
+                      of flowers: "Images\Hunting\ZoomReference.png"
                     - Entity hider to hide player and other players/npc
                     - Disable runelite hunter plugin so timers don't block broken trap poles
                     - Use runelite hunter plugin to set zero opacity on Open trap and Transitioning trap
@@ -40,8 +41,7 @@ Objects to mark:    - Failed bird snare traps with following settings:
                         - Highlight clickbox
                         - Border width 2
                         - Marker color and Fill colors:
-                            - Success: FF3AFF00 and max opacity
-                            - Fail: Default red (FFFF0000) and max opacity
+                            - Success and fail: Defualt magenta (FFD400FF) and max opacity
 """
 
 from time import sleep
@@ -54,8 +54,8 @@ runtime = 1
 
 # region IMAGES
 bird_snare_inventory_images = ['Images/Hunting/BirdSnareInventory.png']
-bird_snare_success_images = ['Images/Hunting/BirdSnareSuccess.png']
-bird_snare_fail_images = ['Images/Hunting/BirdSnareFail.png']
+bird_snare_status_images = ['Images/Hunting/BirdSnareSuccess.png', 'Images/Hunting/BirdSnareFail.png',
+                            'Images/Hunting/BirdSnareBreak.png', 'Images/Hunting/BirdSnareBreak2.png']
 items_to_drop_images = ['Images/Hunting/Bones.png', 'Images/Hunting/BirdMeat.png']
 walk_here_option_images = ['Images/General/WalkHereOption.png']
 empty_inv_images = ['Images/Woodcutting/EmptyInvSlot.png']
@@ -93,24 +93,23 @@ def bird_snare():
 
             # Keep looking for successful or failed traps till one is clicked
             while True:
-                is_clicked = Common.watch_click_image(bird_snare_success_images, 0.7,
-                                                              'Looking for  successful trap then shift clicking to walk on top of it',
-                                                              False, 0, 10,
-                                                              current_step_region=middle_bar_region,
-                                                              current_step_grayscale=False)
+                is_clicked = Common.watch_click_image(bird_snare_status_images, 0.6,
+                                                      'Looking for  successful trap then shift clicking to walk on top of it',
+                                                      False, 0, 10,
+                                                      current_step_region=middle_bar_region,
+                                                      current_step_grayscale=False, double_click=True)
+
                 # Break if trap was clicked so we can do next steps to pick it up and set new trap
                 if is_clicked:
-                    sleep(2.5)
+                    # Drop specified items while walking to other trap
+                    Common.drop_inventory_items(items_to_drop_images, grayscale=True)
+                    sleep(1.5)
+
+                    # Sleep longer on first pass since won't have items to drop and buffer time to run to next trap
+                    if x == 0:
+                        sleep(2)
                     break
 
-                is_clicked = Common.watch_click_image(bird_snare_fail_images, 0.7,
-                                                           'Looking for failed trap then shift clicking to walk on top of it',
-                                                           False, 2, 10,
-                                                           current_step_region=middle_bar_region,
-                                                           current_step_grayscale=False)
-                if is_clicked:
-                    sleep(2.5)
-                    break
             pyautogui.keyUp('shift')
 
             # Left center of the screen since standing on top of trap at this point
@@ -119,12 +118,9 @@ def bird_snare():
 
             Common.watch_click_image(bird_snare_inventory_images, 0.7,
                                      'Click trap in inventory to set it up',
-                                     False, 2, 10,
+                                     False, 0, 10,
                                      current_step_region=Common.Inventory_region)
-
-            # Every couple of attempts drop specified items
-            if x % 8 == 0:
-                Common.drop_inventory_items(items_to_drop_images, grayscale=True)
+            sleep(2.5)
 
             Display.stop_timer(start_time, attempts_needed)
 
