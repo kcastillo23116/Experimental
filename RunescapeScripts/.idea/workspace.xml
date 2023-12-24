@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Skilling/Construction/BuildBookcases.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareBreak.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareBreak.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareBreak2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareBreak2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareFail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Hunting/BirdSnareSuccess.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Hunting/BirdSnareSuccess.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,23 +209,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Repos/Experimental/RunescapeScripts/Skilling/Hunting&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Skilling/Construction",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Construction" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Hunting" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Thieving" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Smithing" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
-      <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Repos\Experimental\RunescapeScripts" />
@@ -239,7 +235,7 @@
       <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.BirdSnare">
+  <component name="RunManager" selected="Python.BuildBookcases">
     <configuration name="BirdSnare" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,7 +257,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Common" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="BuildBookcases" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,11 +265,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Construction" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Common.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Construction/BuildBookcases.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -346,19 +342,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.BuildBookcases" />
       <item itemvalue="Python.BirdSnare" />
       <item itemvalue="Python.PickpocketKnight" />
       <item itemvalue="Python.RegionFinder" />
       <item itemvalue="Python.WoodcuttingTeak" />
-      <item itemvalue="Python.Common" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.BuildBookcases" />
         <item itemvalue="Python.BirdSnare" />
         <item itemvalue="Python.RegionFinder" />
         <item itemvalue="Python.WoodcuttingTeak" />
         <item itemvalue="Python.PickpocketKnight" />
-        <item itemvalue="Python.Common" />
       </list>
     </recent_temporary>
   </component>

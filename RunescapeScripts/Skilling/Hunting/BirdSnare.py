@@ -19,14 +19,12 @@ location:           - Piscatoris teleport south at flowers near fence
                           "Images\Hunting\StartingLocationReference.png"
 Menus:              - Inventory open
 equip items:        - N/A
-items in inventory: - 8 Bird snares
+items in inventory: - 23 Bird snares
 items in bank:      - N/A
 Setup:              - Right click compass and click Look North
                     - Zoom out a bit so all traps are visible in the middle of the screen when standing four tiles west
                       of flowers: "Images\Hunting\ZoomReference.png"
                     - Entity hider to hide player and other players/npc
-                    - Disable runelite hunter plugin so timers don't block broken trap poles
-                    - Use runelite hunter plugin to set zero opacity on Open trap and Transitioning trap
                     - Use runelite menu entry swapper plugin to reassign shift click to Walk Here for
                       successful and failed traps
                     - Use runelite ground item plugin to hide ground item names and text and put bird snares at top
