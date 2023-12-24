@@ -17,13 +17,10 @@ bank settings:      - N/A
 location:           - House teleport spot using tablet
 Menus:              - Inventory open
 equip items:        - N/A
-items in inventory: - Noted planks
-                    - Steel nails
+items in inventory: - Noted Oak Planks
                     - Gold coins
                     - Hammer
                     - Saw
-                    - Three more items to fill in leftover inventory slots so there aren't unused planks
-                        - So we can tell when planks successfully converted from notes
 items in bank:      - N/A
 Setup:              - Right click compass and click Look South
                     - Zoom out all the way
@@ -53,15 +50,21 @@ import pyautogui
 import Common as Common
 import Display
 
-# Constants
-seconds_to_build = 6
+# Constants to update depending on what's being built
+larder_from_portal_x_coordinate = 2001
+larder_from_portal_y_coordinate = 713
+larder_x_coordinate = 1995
+larder_y_coordinate = 1011
+build_key = '2'
+seconds_to_build = 3
+builds_per_inventory = 3
 
 # region IMAGES
-bookshelf_images = ['Images/Construction/BookShelf1.png', 'Images/Construction/BookShelf2.png']
+bookshelf_images = ['Images/Construction/OakLarder.png']
 build_option_images = ['Images/Construction/BuildOption.png', 'Images/Construction/RemoveOption.png']
 portal_out_images = ['Images/Construction/PortalOut.png']
-noted_planks_images = ['Images/Construction/NotedPlank.png']
-plank_images = ['Images/Construction/Plank.png']
+noted_planks_images = ['Images/Construction/NotedOakPlank.png']
+plank_images = ['Images/Construction/OakPlank.png']
 phials_images = ['Images/Construction/Phials.png']
 portal_in_images = ['Images/Construction/PortalIn.png']
 exchange_all_images = ['Images/Construction/ExchangeAll.png']
@@ -115,24 +118,14 @@ def build_bookshelves():
                                      current_step_region=Common.Main_game_screen_region,
                                      current_step_grayscale=False, double_click=False)
 
-            Common.move_mouse_and_right_click(2125, 1298, 0,
-                                              'Right clicking bookshelf space from portal')
+            Common.move_mouse_and_left_click(larder_from_portal_x_coordinate, larder_from_portal_y_coordinate, 0,
+                                             'Moving to larder space from portal')
+            sleep(4)
 
-            Common.watch_click_image(build_option_images, 0.9,
-                                     'Clicking the build option',
-                                     False, 3, 10,
-                                     current_step_region=Common.Main_game_screen_region,
-                                     current_step_grayscale=False, double_click=False)
-
-            # Press one to build the bookcase
-            pyautogui.keyDown('1')
-            pyautogui.keyUp('1')
-            sleep(seconds_to_build)
-
-            # Build 4 more bookcases before needing to resupply planks
-            for y in range(5):
-                Common.move_mouse_and_right_click(1973, 1055, 0,
-                                                  'Right clicking built bookshelf from inside house')
+            # Build all larders before resupplying noted materials
+            for y in range(builds_per_inventory):
+                Common.move_mouse_and_right_click(larder_x_coordinate, larder_y_coordinate, 0,
+                                                  'Right clicking built larders from inside house')
 
                 Common.watch_click_image(build_option_images, 0.9,
                                          'Clicking the build option',
@@ -140,13 +133,13 @@ def build_bookshelves():
                                          current_step_region=Common.Main_game_screen_region,
                                          current_step_grayscale=False, double_click=False)
 
-                # Press one to build the bookcase
-                pyautogui.keyDown('1')
-                pyautogui.keyUp('1')
+                # Press one to build the larder
+                pyautogui.keyDown(build_key)
+                pyautogui.keyUp(build_key)
                 sleep(seconds_to_build)
 
-                Common.move_mouse_and_right_click(1972, 1061, 0,
-                                                  'Right clicking bookshelf space from inside house')
+                Common.move_mouse_and_right_click(larder_x_coordinate, larder_y_coordinate, 0,
+                                                  'Right clicking larders space from inside house')
 
                 Common.watch_click_image(build_option_images, 0.9,
                                          'Clicking the remove option',
@@ -154,7 +147,7 @@ def build_bookshelves():
                                          current_step_region=Common.Main_game_screen_region,
                                          current_step_grayscale=False, double_click=False)
 
-                # Press one to remove the bookcase
+                # Press one to remove the larder
                 pyautogui.keyDown('1')
                 pyautogui.keyUp('1')
                 sleep(3)
