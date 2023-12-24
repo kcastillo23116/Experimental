@@ -15,8 +15,8 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn off "Highlight Marks of Grace" in runelite Agility plugin
                     - Turn off Ground Items Runelite plugin
                     - Turn on runlite Agility plugin
-Monitors:           4k or 3K display
-bank settings:      N/A
+Monitors:           - 4k or 3K display
+bank settings:      - N/A
 location:           - Al-Kharid end of agility course just south of silk stall
                     - Click compass, so it's at default north
                     - Zoom out, hold up arrow to get camera all the way up
@@ -25,12 +25,16 @@ Menus:              - Inventory open
 equip items:        - Lightest gear
 items in inventory: - Stamina potions
 items in bank:      - N/A
-Setup:              - N/A
-Objects to mark:    - N/A
+Setup:              - Right click compass and click North
+                    - Right click map to set to default zoom
+                    - Set entity hider to hide player
+                    - Make sure low detail runelite plugin is turned off so roof is visible
+Objects to mark:    - Sign on third rooftop: default magenta and border width 2
 
 """
 
 import Common as Common
+import Display
 
 # Constants
 runtime = 60
@@ -52,15 +56,17 @@ gap_images = ['Images/Agility/Gap.png']
 
 
 # Get how many from user
-itemCountString = input("How many laps do you want? ")
+laps_needed_string = input("How many laps do you want? ")
 
-itemCount = int(itemCountString)
+laps_needed = int(laps_needed_string)
 
 try:
     count = 0
 
+    start_time = Display.start_timer()
+
     while True:
-        Common.print_runtime(itemCount, runtime, count)
+        Common.print_runtime(laps_needed, runtime, count)
 
         Common.watch_click_image(map_tree_images, 0.5, 'Click Map Trees',
                                  False, 6, 10, map_agility_images,
@@ -112,10 +118,13 @@ try:
                                  False, 4, 10, map_tree_images,
                                  Common.Top_half_game_screen_region, Common.Minimap_region, 0.5)
 
-        if count >= itemCount:
+        if count >= laps_needed:
             break
 
         count += 1
+
+        Display.stop_timer(start_time, laps_needed)
+
 
 # Image not found error, stop loop and print message
 except ValueError as error:

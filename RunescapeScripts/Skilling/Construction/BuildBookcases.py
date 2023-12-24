@@ -33,6 +33,7 @@ Setup:              - Right click compass and click Look South
                     - Make sure bookshelf is removed before starting
                     - Make sure bookshelf is in Northern build spot turned so it's on eastern side of house closest to portal
                         - Reference: Images\Construction\BookcaseLocationReference.png
+                    - Enable low detail runelite plugin
 Objects to mark:    - Portal in
                     - Portal out
                     - Phials NPC

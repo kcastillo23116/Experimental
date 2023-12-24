@@ -27,6 +27,7 @@ Setup:              - Right click compass and click Look North
                     - Entity hider to hide player and other players/npc
                     - Use runelite menu entry swapper plugin to reassign shift click to Walk Here for
                       successful and failed traps
+                    - Enable low detail runelite plugin
                     - Use runelite ground item plugin to hide ground item names and text and put bird snares at top
                         - Add Bird snare to Highlighted Items section and check show highlighted items only and
                           de-prioritize menu hidden items and add Bones and Raw bird meat to Hidden Items section

@@ -30,6 +30,7 @@ Setup:              - Right click compass and click Look South
                     - Make sure bookshelf is removed before starting
                     - Make sure bookshelf is in Northern build spot turned so it's on eastern side of house closest to portal
                         - Reference: Images\Construction\BookcaseLocationReference.png
+                    - Enable low detail runelite plugin
 Objects to mark:    - Portal in
                     - Portal out
                     - Phials NPC
@@ -57,7 +58,8 @@ larder_x_coordinate = 1995
 larder_y_coordinate = 1011
 build_key = '2'
 seconds_to_build = 3
-builds_per_inventory = 3
+planks_per_build = 8
+open_inventory_slots = 24
 
 # region IMAGES
 bookshelf_images = ['Images/Construction/OakLarder.png']
@@ -74,11 +76,12 @@ exchange_all_images = ['Images/Construction/ExchangeAll.png']
 def build_bookshelves():
     try:
         # Get how many from user
-        builds_needed_string = input("How many  do you want to build? ")
+        total_planks_string = input("How many planks do you have? ")
 
-        # Divide by four since we get four bookshelves built per inventory of planks
-        build_count = int(builds_needed_string)
-        iterations_needed = round(build_count/5)
+        # Calculate number of iterations needed to use all user specified materials
+        total_planks = int(total_planks_string)
+        builds_per_inventory = round(open_inventory_slots/planks_per_build)
+        iterations_needed = round((total_planks/planks_per_build) / builds_per_inventory)
 
         start_time = Display.start_timer()
         for x in range(iterations_needed):
