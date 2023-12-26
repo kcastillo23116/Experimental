@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Agility/Sign.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Agility/Sign.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Construction/BuildBookcases.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Construction/BuildBookcases.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Construction/BuildOakLarders.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Construction/BuildOakLarders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

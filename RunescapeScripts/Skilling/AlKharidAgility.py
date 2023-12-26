@@ -27,8 +27,9 @@ items in inventory: - Stamina potions
 items in bank:      - N/A
 Setup:              - Right click compass and click North
                     - Right click map to set to default zoom
-                    - Set entity hider to hide player
+                    - Set entity hider to hide player and NPCs
                     - Make sure low detail runelite plugin is turned off so roof is visible
+                    - Disable Highlight Marks of Grace in Agility runelite plugin
 Objects to mark:    - Sign on third rooftop: default magenta and border width 2
 
 """
@@ -84,17 +85,21 @@ try:
                                  cable_images, Common.Bottom_half_game_screen_region,
                                  Common.Bottom_half_game_screen_region, 0.5)
 
-        Common.watch_click_image(cable_images, 0.5, 'Click Cable',
-                                 False, 6, 10, None,
-                                 Common.Bottom_half_game_screen_region)
+        Common.watch_click_image(cable_images, 0.5, 'Click Cable till we see the sign',
+                                 False, 7, 10,
+                                 current_step_region=Common.Bottom_half_game_screen_region,
+                                 next_step_image_paths=sign_images, next_step_confidence=0.7,
+                                 next_step_region=Common.Main_game_screen_region)
 
-        Common.watch_click_image(sign_images, 0.5, 'Click Sign',
-                                 False, 3, 10, None,
-                                 Common.Top_half_game_screen_region)
+        Common.watch_click_image(sign_images, 0.5, 'Click Sign till we see Tightrope 2',
+                                 False, 4, 10,
+                                 current_step_region=Common.Main_game_screen_region,
+                                 next_step_image_paths=tightrope_images2, next_step_confidence=0.7,
+                                 next_step_region=Common.Main_game_screen_region)
 
         Common.watch_click_image(tightrope_images2, 0.7, 'Click Tightrope 2',
                                  False, 14, 10, tree_images,
-                                 Common.Top_half_game_screen_region, Common.Top_half_game_screen_region, 0.5)
+                                 Common.Main_game_screen_region, Common.Top_half_game_screen_region, 0.5)
 
         Common.watch_click_image(tree_images, 0.5, 'Click Tree',
                                  False, 6, 10, beams_images,
