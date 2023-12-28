@@ -43,13 +43,13 @@ start1_images = ['Images/Agility/Falador/Start1.png']
 tightrope1_images = ['Images/Agility/Falador/Tightrope1.png']
 handhold_images = ['Images/Agility/Falador/Handhold.png']
 agility_icon = ['Images/Agility/Falador/AgilityIcon.png']
-gap1_images = ['Images/Agility/Falador/Gap1.png']
+gap1_images = ['Images/Agility/Falador/Gap1_1.png', 'Images/Agility/Falador/Gap1_2.png']
 gap2_images = ['Images/Agility/Falador/Gap2.png']
 tightrope2_images = ['Images/Agility/Falador/Tightrope2.png']
 tightrope3_images = ['Images/Agility/Falador/Tightrope3.png']
 gap3_images = ['Images/Agility/Falador/Gap3.png']
-ledge1_images = ['Images/Agility/Falador/Ledge1.png']
-ledge2_images = ['Images/Agility/Falador/Ledge2.png']
+ledge1_images = ['Images/Agility/Falador/Ledge1_1.png', 'Images/Agility/Falador/Ledge1_2.png']
+ledge2_images = ['Images/Agility/Falador/Ledge2_1.png', 'Images/Agility/Falador/Ledge2_2.png']
 ledge3_images = ['Images/Agility/Falador/Ledge3.png']
 ledge4_images = ['Images/Agility/Falador/Ledge4.png']
 ledge5_images = ['Images/Agility/Falador/Ledge5.png']
@@ -73,19 +73,22 @@ def falador_agility():
 
             Common.watch_click_image(tightrope3_images, 0.7, 'Click Tightrope3 while looking for Gap3',
                                      False, 5, 10, gap3_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
 
             Common.watch_click_image(gap3_images, 0.7, 'Click Gap3 while looking for Ledge1',
-                                     False, 3, 10, ledge1_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     False, 4, 10, ledge1_images,
+                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
 
-            check_for_mark_of_grace()
+            # Only look at the building between Gap3 and Ledge1 since there can be other marks nearby that mess
+            # things up if they're clicked on
+            ledge1_building_region = (1714, 1196, 530, 348)
+            check_for_mark_of_grace(region=ledge1_building_region)
 
             Common.watch_click_image(ledge1_images, 0.6, 'Click Ledge1 while looking for Ledge2',
                                      False, 4, 10, ledge2_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     Common.Center_game_screen_region, Common.Main_game_screen_region, 0.6)
 
-            check_for_mark_of_grace()
+            check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
             Common.watch_click_image(ledge2_images, 0.6, 'Click Ledge2 while looking for Ledge3',
                                      False, 3, 10, ledge3_images,
@@ -93,11 +96,11 @@ def falador_agility():
 
             Common.watch_click_image(ledge3_images, 0.7, 'Click Ledge3 while looking for Ledge4',
                                      False, 3, 10, ledge4_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.5)
 
-            check_for_mark_of_grace()
+            check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
-            Common.watch_click_image(ledge4_images, 0.6, 'Click Ledge4 while looking for Ledge5',
+            Common.watch_click_image(ledge4_images, 0.5, 'Click Ledge4 while looking for Ledge5',
                                      False, 4, 10, ledge5_images,
                                      Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
 
@@ -133,7 +136,9 @@ def failable_handhold():
                              False, 8, 10, handhold_images,
                              Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
 
-    # Obstacle can fail till level 66 agility
+    check_for_mark_of_grace(region=Common.Center_game_screen_region)
+
+    # Obstacle can fail before level 66 agility
     Common.watch_click_image(handhold_images, 0.7, 'Click Handholds',
                              False, 9, 10, current_step_region=Common.Main_game_screen_region)
 
@@ -141,7 +146,7 @@ def failable_handhold():
     # Else we didn't fail the handhold obstacle and we should check for a mark of grace and grab it if it's available
     if not Common.is_image_on_screen(gap1_images, 0.7, 0,
                                      'Checking for Gap 1 in case it failed and we need to reset',
-                                     Common.Main_game_screen_region):
+                                     Common.Center_game_screen_region):
         failable_handhold()
 
 
@@ -149,19 +154,20 @@ def failable_handhold():
 def failable_tightrope2():
     failable_handhold()
 
-    check_for_mark_of_grace()
+    check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
-    Common.watch_click_image(gap1_images, 0.5, 'Click Gap1 while looking for Gap2',
-                             False, 4, 10, gap2_images,
-                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.5)
+    Common.watch_click_image(gap1_images, 0.7, 'Click Gap1 while looking for Gap2',
+                             False, 4, 10, current_step_region=Common.Center_game_screen_region,
+                             next_step_image_paths=gap2_images, next_step_region=Common.Main_game_screen_region,
+                             next_step_confidence=0.6)
 
-    Common.watch_click_image(gap2_images, 0.5, 'Click Gap2 while looking for Tightrope2',
+    Common.watch_click_image(gap2_images, 0.6, 'Click Gap2 while looking for Tightrope2',
                              False, 4, 10, tightrope2_images,
-                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                             Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
 
-    # Can fail level 66 agility
+    # Can fail level before 66 agility
     Common.watch_click_image(tightrope2_images, 0.7, 'Click Tightrope2',
-                             False, 9, 10, current_step_region=Common.Main_game_screen_region)
+                             False, 9, 10, current_step_region=Common.Center_game_screen_region)
 
     # Check if next step is not on screen to see if we failed the Tightrope2 obstacle. If did fail, start steps over
     if not Common.is_image_on_screen(tightrope3_images, 0.7, 0,
@@ -170,9 +176,9 @@ def failable_tightrope2():
         failable_tightrope2()
 
 
-def check_for_mark_of_grace():
-    Common.watch_click_image(mark_of_grace_images, 0.7, 'Click mark of grace if it is available',
-                             False, 2, 10, current_step_region=Common.Main_game_screen_region)
+def check_for_mark_of_grace(region=Common.Main_game_screen_region):
+    Common.watch_click_image(mark_of_grace_images, 0.6, 'Click mark of grace if it is available',
+                             False, 3, 10, current_step_region=region)
 
 
 if __name__ == '__main__':

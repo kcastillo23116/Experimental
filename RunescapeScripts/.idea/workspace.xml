@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Banking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchBow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bankstanding/StringBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/StringBow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Banker1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/Banker9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Agility/AlKharidAgility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Agility/Falador/Gap1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Agility/Falador/Ledge1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Agility/Falador/Ledge2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,7 +322,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="StringBow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="RegionFinder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -342,11 +330,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tools" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/StringBow.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tools/RegionFinder.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -360,15 +348,15 @@
       <item itemvalue="Python.FaladorAgility" />
       <item itemvalue="Python.FletchStringAlch" />
       <item itemvalue="Python.MagicAlch" />
-      <item itemvalue="Python.StringBow" />
+      <item itemvalue="Python.RegionFinder" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.FaladorAgility" />
+        <item itemvalue="Python.RegionFinder" />
         <item itemvalue="Python.AlKharidAgility (1)" />
         <item itemvalue="Python.FletchStringAlch" />
         <item itemvalue="Python.MagicAlch" />
-        <item itemvalue="Python.StringBow" />
       </list>
     </recent_temporary>
   </component>
