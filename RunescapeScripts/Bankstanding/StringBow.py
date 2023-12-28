@@ -8,15 +8,21 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
                     - 117HD OFF
-Monitors:           4k middle monitor with all three on
-bank settings:      Withdraw As: Item
-                    Quantity: Default quantity set to Withdraw 14 as Item
-location:           Grand exchange, directly in front of the right bottom bank teller box
-                    click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
-Menus:              Inventory menu open
-equip items:        None
-items in inventory: None
-items in bank:  Bow String and unstrung bow: top row
+Monitors:           - 4k middle monitor with all three on
+bank settings:      - Withdraw As: Item
+                    - Quantity: Default quantity set to Withdraw 14 as Item
+location:           - Grand exchange, directly in front of the right bottom bank teller box
+                    - click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
+Menus:              - Inventory menu open
+equip items:        - None
+items in inventory: - None
+items in bank:      - Bow String and unstrung bow: top row
+Objects to mark:    - With: NPC Indicator settings:
+                        - Highlight Hull
+                        - Highlight tile
+                        - Highlight outline
+                        - Highlight and Fill color: Cyan (FF00FFFF)
+                        - Border width 2
 """
 import timeit
 

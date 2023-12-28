@@ -8,15 +8,21 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
                     - 117HD OFF
-Monitors:           4k middle monitor with all three on
-bank settings:      Withdraw As: Item
-                    Quantity: All
-location:           Grand exchange, directly in front of the right bottom bank teller box
-                    click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
-Menus:              Inventory menu open
-equip items:        None
-items in inventory: Knife at row 1 col 1
-items in bank:  Logs(bank: row 1, column 2)
+Monitors:           - 4k middle monitor with all three on
+bank settings:      - Withdraw As: Item
+                    - Quantity: All
+location:           - Grand exchange, directly in front of the right bottom bank teller box
+                    - click compass, so it's at default north and zoom in, hold up arrow to get camera all the way up
+Menus:              - Inventory menu open
+equip items:        - None
+items in inventory: - Knife at row 1 col 1
+items in bank:      - Logs(bank: row 1, column 2)
+Objects to Mark:    - With: NPC Indicator settings:
+                        - Highlight Hull
+                        - Highlight tile
+                        - Highlight outline
+                        - Highlight and Fill color: Cyan (FF00FFFF)
+                        - Border width 2
 """
 import timeit
 
@@ -29,10 +35,6 @@ defaultTimeBeforeClick = 1
 # Images
 bank_close_images = ['Images/BankClose.png', 'Images/BankClose2.png']
 wood_images = ['Images/Wood.png', 'Images/Wood2.png']
-banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
-                 'Images/Banker3.png', 'Images/Banker4.png',
-                 'Images/Banker5.png', 'Images/Banker6.png',
-                 'Images/Banker7.png', 'Images/Banker8.png']
 
 
 # Optional get_timing parameter can be used to do one run to get time per iteration to set up countdown timer with

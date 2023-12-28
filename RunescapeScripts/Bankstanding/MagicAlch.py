@@ -19,7 +19,12 @@ items in inventory: - Nature runes
                     - Noted items to be alched
 items in bank:      - None
 Setup:              - None
-Objects to mark:        - N/A
+Objects to mark:    - With: NPC Indicator settings:
+                        - Highlight Hull
+                        - Highlight tile
+                        - Highlight outline
+                        - Highlight and Fill color: Cyan (FF00FFFF)
+                        - Border width 2
 
 """
 import timeit

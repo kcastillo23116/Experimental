@@ -14,8 +14,14 @@ bank settings:      - N/A
 location:           - Right bankers at Grand Exchange
 items in bank:      - None
 Setup:              - Zoom all the way in and click the compass to center North
+                    - Set runelite menu entry swapper for bank teller to left click to Bank
 Objects to mark:    - Both Bankers on right side at grand exchange
-
+                        - With: NPC Indicator settings:
+                            - Highlight Hull
+                            - Highlight tile
+                            - Highlight outline
+                            - Highlight and Fill color: Cyan (FF00FFFF)
+                            - Border width 2
 """
 
 import Common as Common
@@ -24,11 +30,7 @@ import Common as Common
 defaultTimeBeforeClick = 1
 
 # Images
-banker_images = ['Images/Banker1.png', 'Images/Banker2.png',
-                 'Images/Banker3.png', 'Images/Banker4.png',
-                 'Images/Banker5.png', 'Images/Banker6.png',
-                 'Images/Banker7.png', 'Images/Banker8.png',
-                 'Images/Banker9.png']
+banker_images = ['Images/Banker1.png']
 bank_option_images = ['Images/BankOption.png']
 bank_withdraw_note_images = ['Images/Banking/WithdrawNote.png', 'Images/Banking/WithdrawNoteSelected.png']
 deposit_inventory_images = ['Images/Banking/DepositInventory.png']
@@ -41,14 +43,11 @@ def open_grand_exchange_bank():
     Opens bank at Grand exchange
     '''
     try:
-        Common.watch_click_image(banker_images, 0.2, 'Right click banker and look for context menu options',
-                                 True, next_step_image_paths=bank_option_images)
-        Common.watch_click_image(bank_option_images, 0.7,
-                                 'Click Open bank and look for withdraw as note to make sure bank window is open',
-                                 next_step_image_paths=bank_withdraw_note_images, next_step_confidence=0.4,
+        Common.watch_click_image(banker_images, 0.4, 'Click banker and look for context menu options',
+                                 False, next_step_image_paths=bank_withdraw_note_images, next_step_confidence=0.4,
                                  next_step_region=Common.Bank_bottom_options_region)
 
-        # Image not found error, stop loop and print message
+    # Image not found error, stop loop and print message
     except ValueError as error:
         print(error, 'Stopping process')
 

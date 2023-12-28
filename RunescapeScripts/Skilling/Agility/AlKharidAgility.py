@@ -26,7 +26,6 @@ equip items:        - Lightest gear
 items in inventory: - Stamina potions
 items in bank:      - N/A
 Setup:              - Right click compass and click North
-                    - Right click map to set to default zoom
                     - Set entity hider to hide player and NPCs
                     - Make sure low detail runelite plugin is turned off so roof is visible
                     - Disable Highlight Marks of Grace in Agility runelite plugin
@@ -75,11 +74,11 @@ try:
 
         Common.watch_click_image(map_agility_images, 0.7, 'Click Map Agility Icon',
                                  False, 7, 10, wall_images,
-                                 Common.Minimap_region, Common.Top_half_game_screen_region, 0.5)
+                                 Common.Minimap_region, Common.Main_game_screen_region, 0.5)
 
         Common.watch_click_image(wall_images, 0.5, 'Click wall',
                                  False, 4, 10, tightrope_images,
-                                 Common.Top_half_game_screen_region, Common.Bottom_half_game_screen_region, 0.5)
+                                 Common.Main_game_screen_region, Common.Bottom_half_game_screen_region, 0.5)
 
         Common.watch_click_image(tightrope_images, 0.5, 'Click tightrope 1', False, 10, 10,
                                  cable_images, Common.Bottom_half_game_screen_region,

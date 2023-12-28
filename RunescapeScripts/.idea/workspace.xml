@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banking.py" beforeDir="false" afterPath="$PROJECT_DIR$/Banking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchBow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/MagicAlch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankstanding/StringBow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bankstanding/StringBow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Banker1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Banker9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/AlKharidAgility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Agility/AlKharidAgility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,28 +229,28 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Skilling/Construction",
+    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Skilling/Agility",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Agility" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Construction" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Hunting" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Thieving" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Smithing" />
-      <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Agility" />
       <recent name="C:\Repos\Experimental\RunescapeScripts" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Thieving" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Smithing" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
-      <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.AlKharidAgility">
-    <configuration name="AlKharidAgility" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.FaladorAgility">
+    <configuration name="AlKharidAgility (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -243,11 +258,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Agility" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/AlKharidAgility.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Agility/AlKharidAgility.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -256,7 +271,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BirdSnare" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="FaladorAgility" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -264,11 +279,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Hunting" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Agility" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Hunting/BirdSnare.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -277,7 +292,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BuildBookcases" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="FletchStringAlch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -285,11 +300,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Construction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Construction/BuildBookcases.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/FletchStringAlch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -298,7 +313,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="BuildOakLarders" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="MagicAlch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -306,11 +321,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Construction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Construction/BuildOakLarders.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/MagicAlch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -319,7 +334,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="RegionFinder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="StringBow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -327,11 +342,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tools" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tools/RegionFinder.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/StringBow.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -341,19 +356,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.AlKharidAgility" />
-      <item itemvalue="Python.BuildBookcases" />
-      <item itemvalue="Python.BuildOakLarders" />
-      <item itemvalue="Python.BirdSnare" />
-      <item itemvalue="Python.RegionFinder" />
+      <item itemvalue="Python.AlKharidAgility (1)" />
+      <item itemvalue="Python.FaladorAgility" />
+      <item itemvalue="Python.FletchStringAlch" />
+      <item itemvalue="Python.MagicAlch" />
+      <item itemvalue="Python.StringBow" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.AlKharidAgility" />
-        <item itemvalue="Python.BuildOakLarders" />
-        <item itemvalue="Python.BuildBookcases" />
-        <item itemvalue="Python.BirdSnare" />
-        <item itemvalue="Python.RegionFinder" />
+        <item itemvalue="Python.FaladorAgility" />
+        <item itemvalue="Python.AlKharidAgility (1)" />
+        <item itemvalue="Python.FletchStringAlch" />
+        <item itemvalue="Python.MagicAlch" />
+        <item itemvalue="Python.StringBow" />
       </list>
     </recent_temporary>
   </component>

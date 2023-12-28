@@ -22,6 +22,8 @@ items in inventory: - None
 items in bank:      - In tab with White Feather icon:
                         - Knife
                         - Logs
+                        - Bow strings
+                        - Unstrung bows
                     - In Tab with Gold Coin Stack icon:
                         - Nature runes
                         - Strung bows
@@ -29,7 +31,12 @@ Setup:              - Zoom all the way in and click the compass to center North 
                       all the way up
                     - Inventory tab open an visible
 Objects to mark:    - Both Bankers on right side at grand exchange
-
+                        - With: NPC Indicator settings:
+                            - Highlight Hull
+                            - Highlight tile
+                            - Highlight outline
+                            - Highlight and Fill color: Cyan (FF00FFFF)
+                            - Border width 2
 """
 
 import Common as Common
@@ -79,11 +86,11 @@ def fletch_string_alch(item_count, get_timing=False):
     seconds_per_string_bow_iteration = StringBow.string_bows(item_count, get_timing)
 
     # Setup for alching items
-    Common.watch_click_image(withdraw_all_images, 0.7, 'Change Withdraw Quantity to All',
+    Common.watch_click_image(withdraw_all_images, 0.7, 'Change Withdraw Quantity to All', sleep_time_after_click=1,
                              current_step_region=Common.Bank_bottom_options_region)
-    Common.watch_click_image(withdraw_note_images, 0.7, 'Change Withdraw Type to Note',
+    Common.watch_click_image(withdraw_note_images, 0.7, 'Change Withdraw Type to Note', sleep_time_after_click=1,
                              current_step_region=Common.Bank_bottom_options_region)
-    Common.watch_click_image(gold_tab_images, 0.7, 'Switch to Gold Tab',
+    Common.watch_click_image(gold_tab_images, 0.7, 'Switch to Gold Tab', sleep_time_after_click=1,
                              current_step_region=Common.Top_half_game_screen_region)
     Common.watch_click_image(nature_rune_images, 0.6, 'Withdraw Nature Runes, make sure they are in inventory',
                              current_step_region=Common.Bank_region, sleep_time_after_click=1,
@@ -91,11 +98,11 @@ def fletch_string_alch(item_count, get_timing=False):
                              next_step_confidence=0.6)
     Common.watch_click_image(bank_bow_images, 0.7,
                              'Withdraw strung bows and make sure they are in inventory as noted bows',
-                             current_step_region=Common.Bank_region,
+                             current_step_region=Common.Bank_region, sleep_time_after_click=1,
                              next_step_image_paths=noted_bow_images, next_step_region=Common.Inventory_region)
     Common.watch_click_image(bank_close_images, 0.9, 'Close bank', sleep_time_after_click=1)
     Common.watch_click_image(spellbook_images, 0.7, 'Open Magic Spellbook Tab',
-                             current_step_region=Common.Inventory_bar_region)
+                             current_step_region=Common.Inventory_bar_region, sleep_time_after_click=1)
     seconds_per_alch_item_iteration = MagicAlch.alch_items(item_count, noted_bow_images, get_timing)
 
     if get_timing:
