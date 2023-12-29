@@ -23,7 +23,7 @@ location:           - Near Falador rooftop agility minimap icon but not on it
                     - Zoom out, hold up arrow to get camera all the way up
                     - Zoom all the way out
                     - Zoom minimap out all the way
-Menus:              - Inventory open
+Menus:              - Inventory closed
 equip items:        - Lightest gear
 items in inventory: - Stamina potions
 items in bank:      - N/A
