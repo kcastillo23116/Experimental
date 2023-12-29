@@ -42,7 +42,7 @@ import Display
 start1_images = ['Images/Agility/Falador/Start1.png']
 tightrope1_images = ['Images/Agility/Falador/Tightrope1.png']
 handhold_images = ['Images/Agility/Falador/Handhold.png']
-agility_icon = ['Images/Agility/Falador/AgilityIcon.png']
+agility_icon = ['Images/Agility/Falador/AgilityIcon1.png', 'Images/Agility/Falador/AgilityIcon2.png']
 gap1_images = ['Images/Agility/Falador/Gap1_1.png', 'Images/Agility/Falador/Gap1_2.png']
 gap2_images = ['Images/Agility/Falador/Gap2.png']
 tightrope2_images = ['Images/Agility/Falador/Tightrope2.png']
@@ -77,7 +77,7 @@ def falador_agility():
 
             Common.watch_click_image(gap3_images, 0.7, 'Click Gap3 while looking for Ledge1',
                                      False, 4, 10, ledge1_images,
-                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
+                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.6)
 
             # Only look at the building between Gap3 and Ledge1 since there can be other marks nearby that mess
             # things up if they're clicked on
@@ -85,12 +85,14 @@ def falador_agility():
             check_for_mark_of_grace(region=ledge1_building_region)
 
             Common.watch_click_image(ledge1_images, 0.6, 'Click Ledge1 while looking for Ledge2',
-                                     False, 4, 10, ledge2_images,
-                                     Common.Center_game_screen_region, Common.Main_game_screen_region, 0.6)
+                                     False, 4, 10,
+                                     current_step_region=Common.Center_game_screen_region,
+                                     next_step_image_paths=ledge2_images,next_step_region=Common.Main_game_screen_region,
+                                     next_step_confidence=0.5)
 
             check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
-            Common.watch_click_image(ledge2_images, 0.6, 'Click Ledge2 while looking for Ledge3',
+            Common.watch_click_image(ledge2_images, 0.5, 'Click Ledge2 while looking for Ledge3',
                                      False, 3, 10, ledge3_images,
                                      Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
 
@@ -183,3 +185,4 @@ def check_for_mark_of_grace(region=Common.Main_game_screen_region):
 
 if __name__ == '__main__':
     falador_agility()
+    print('Laps Done!')
