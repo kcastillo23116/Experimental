@@ -17,8 +17,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn on runlite Agility plugin
 Monitors:           - 4k or 3K display
 bank settings:      - N/A
-location:           - Near Falador rooftop agility minimap icon but not on it
-                      so player white dot doesn't block icon on minimap
+location:           - At end of Falador agility course. Southwest of agility icon
                     - Click compass, so it's at default north
                     - Zoom out, hold up arrow to get camera all the way up
                     - Zoom all the way out
@@ -38,11 +37,15 @@ Objects to mark:    - N/A
 import Common as Common
 import Display
 
+# Constants to update
+is_agility_at_least_level_66 = True  # Used to skip failed obstacle checks since can't fail if at least level 66 agility
+
 # region IMAGES
 start1_images = ['Images/Agility/Falador/Start1.png']
 tightrope1_images = ['Images/Agility/Falador/Tightrope1.png']
 handhold_images = ['Images/Agility/Falador/Handhold.png']
-agility_icon = ['Images/Agility/Falador/AgilityIcon1.png', 'Images/Agility/Falador/AgilityIcon2.png']
+agility_icon = ['Images/Agility/Falador/AgilityIcon1.png', 'Images/Agility/Falador/AgilityIcon2.png',
+                'Images/Agility/Falador/AgilityIcon3.png']
 gap1_images = ['Images/Agility/Falador/Gap1_1.png', 'Images/Agility/Falador/Gap1_2.png']
 gap2_images = ['Images/Agility/Falador/Gap2.png']
 tightrope2_images = ['Images/Agility/Falador/Tightrope2.png']
@@ -53,6 +56,7 @@ ledge2_images = ['Images/Agility/Falador/Ledge2_1.png', 'Images/Agility/Falador/
 ledge3_images = ['Images/Agility/Falador/Ledge3.png']
 ledge4_images = ['Images/Agility/Falador/Ledge4.png']
 ledge5_images = ['Images/Agility/Falador/Ledge5.png']
+start2_images = ['Images/Agility/Falador/Start2.png']
 mark_of_grace_images = ['Images/Agility/Falador/MarkOfGrace.png']
 # endregion IMAGES
 
@@ -71,11 +75,11 @@ def falador_agility():
         while True:
             failable_tightrope2()
 
-            Common.watch_click_image(tightrope3_images, 0.7, 'Click Tightrope3 while looking for Gap3',
+            Common.watch_click_image(tightrope3_images, 0.6, 'Click Tightrope3 while looking for Gap3',
                                      False, 5, 10, gap3_images,
-                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
+                                     Common.Center_game_screen_region, Common.Center_game_screen_region, 0.6)
 
-            Common.watch_click_image(gap3_images, 0.7, 'Click Gap3 while looking for Ledge1',
+            Common.watch_click_image(gap3_images, 0.6, 'Click Gap3 while looking for Ledge1',
                                      False, 4, 10, ledge1_images,
                                      Common.Center_game_screen_region, Common.Center_game_screen_region, 0.6)
 
@@ -94,9 +98,9 @@ def falador_agility():
 
             Common.watch_click_image(ledge2_images, 0.5, 'Click Ledge2 while looking for Ledge3',
                                      False, 3, 10, ledge3_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.6)
 
-            Common.watch_click_image(ledge3_images, 0.7, 'Click Ledge3 while looking for Ledge4',
+            Common.watch_click_image(ledge3_images, 0.6, 'Click Ledge3 while looking for Ledge4',
                                      False, 3, 10, ledge4_images,
                                      Common.Main_game_screen_region, Common.Main_game_screen_region, 0.5)
 
@@ -104,12 +108,12 @@ def falador_agility():
 
             Common.watch_click_image(ledge4_images, 0.5, 'Click Ledge4 while looking for Ledge5',
                                      False, 4, 10, ledge5_images,
-                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.6)
 
-            Common.watch_click_image(ledge5_images, 0.7,
-                                     'Click Ledge5 while looking for AgilityIcon on the minimap',
-                                     False, 4, 10, agility_icon,
-                                     Common.Main_game_screen_region, Common.Minimap_region, 0.7)
+            Common.watch_click_image(ledge5_images, 0.6,
+                                     'Click Ledge5 while looking for Start2',
+                                     False, 4, 10, start2_images,
+                                     Common.Main_game_screen_region, Common.Main_game_screen_region, 0.6)
 
             if count >= laps_needed:
                 break
@@ -125,31 +129,36 @@ def falador_agility():
 
 # Run steps till failable Handholds obstacle and restart steps if it fails
 def failable_handhold():
-    Common.watch_click_image(agility_icon, 0.7,
-                             'Click agility icon on minimap  while looking for Start1',
-                             False, 6, 10, start1_images,
-                             Common.Minimap_region, Common.Main_game_screen_region, 0.7)
+    Common.watch_click_image(start2_images, 0.6,
+                             'Start2 while looking for Tightrope1',
+                             False, 6, 10, tightrope1_images,
+                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.6)
 
-    Common.watch_click_image(start1_images, 0.7, 'Click Start1 while looking for Tightrope1',
-                             False, 4, 10, tightrope1_images,
-                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+    # Common.watch_click_image(start1_images, 0.6, 'Click Start1 while looking for Tightrope1',
+    #                          False, 4, 10, tightrope1_images,
+    #                          Common.Center_game_screen_region, Common.Center_game_screen_region, 0.6)
 
     Common.watch_click_image(tightrope1_images, 0.7, 'Click Tightrope1 while looking for Handholds',
                              False, 8, 10, handhold_images,
-                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.7)
+                             Common.Main_game_screen_region, Common.Main_game_screen_region, 0.6)
 
     check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
-    # Obstacle can fail before level 66 agility
-    Common.watch_click_image(handhold_images, 0.7, 'Click Handholds',
-                             False, 9, 10, current_step_region=Common.Main_game_screen_region)
+    # If agility is at least level 66 we can just do a regular click and check for next step
+    # Otherwise we check if the obstacle failed and reset from start, since this obstacle can fail before 66 agility
+    if is_agility_at_least_level_66:
+        Common.watch_click_image(handhold_images, 0.6, 'Click Handholds and look for Gap1',
+                                 False, 9, 10, current_step_region=Common.Main_game_screen_region,
+                                 next_step_image_paths=gap1_images, next_step_region=Common.Center_game_screen_region,
+                                 next_step_confidence=0.6)
+    else:
+        Common.watch_click_image(handhold_images, 0.6, 'Click Handholds',
+                                 False, 9, 10, current_step_region=Common.Main_game_screen_region)
 
-    # Check if next step is not on screen to see if we failed the Handhold obstacle. If did fail, start steps over
-    # Else we didn't fail the handhold obstacle and we should check for a mark of grace and grab it if it's available
-    if not Common.is_image_on_screen(gap1_images, 0.7, 0,
-                                     'Checking for Gap 1 in case it failed and we need to reset',
-                                     Common.Center_game_screen_region):
-        failable_handhold()
+        if not Common.is_image_on_screen(gap1_images, 0.6, 0,
+                                         'Checking for Gap 1 in case it failed and we need to reset',
+                                         Common.Center_game_screen_region):
+            failable_handhold()
 
 
 # Run steps till failable tightrope2 obstacle and restart steps if it fails
@@ -167,15 +176,22 @@ def failable_tightrope2():
                              False, 4, 10, tightrope2_images,
                              Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
 
-    # Can fail level before 66 agility
-    Common.watch_click_image(tightrope2_images, 0.7, 'Click Tightrope2',
-                             False, 9, 10, current_step_region=Common.Center_game_screen_region)
+    # If agility is at least level 66 we can just do a regular click and check for next step
+    # Otherwise we check if the obstacle failed and reset from start, since this obstacle can fail before 66 agility
+    if is_agility_at_least_level_66:
+        Common.watch_click_image(tightrope2_images, 0.6, 'Click Tightrope2 while looking for tightrope 3',
+                                 False, 9, 10, current_step_region=Common.Center_game_screen_region,
+                                 next_step_image_paths=tightrope3_images, next_step_region=Common.Center_game_screen_region,
+                                 next_step_confidence=0.6)
+    else:
+        # Can fail this obstacle before 66 agility
+        Common.watch_click_image(tightrope2_images, 0.6, 'Click Tightrope2',
+                                 False, 9, 10, current_step_region=Common.Center_game_screen_region)
 
-    # Check if next step is not on screen to see if we failed the Tightrope2 obstacle. If did fail, start steps over
-    if not Common.is_image_on_screen(tightrope3_images, 0.7, 0,
-                                     'Checking for Tightrope3 in case it failed and we need to reset',
-                                     Common.Main_game_screen_region):
-        failable_tightrope2()
+        if not Common.is_image_on_screen(tightrope3_images, 0.7, 0,
+                                         'Checking for Tightrope3 in case it failed and we need to reset',
+                                         Common.Main_game_screen_region):
+            failable_tightrope2()
 
 
 def check_for_mark_of_grace(region=Common.Main_game_screen_region):
