@@ -18,6 +18,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
 Monitors:           - 4k or 3K display
 bank settings:      - N/A
 location:           - At end of Falador agility course. Southwest of agility icon
+                        - World location Runelite plugin: 3029, 3333, 0
                     - Click compass, so it's at default north
                     - Zoom out, hold up arrow to get camera all the way up
                     - Zoom all the way out
