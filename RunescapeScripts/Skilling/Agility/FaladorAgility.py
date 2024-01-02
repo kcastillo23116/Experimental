@@ -47,8 +47,10 @@ tightrope1_images = ['Images/Agility/Falador/Tightrope1.png']
 handhold_images = ['Images/Agility/Falador/Handhold.png']
 agility_icon = ['Images/Agility/Falador/AgilityIcon1.png', 'Images/Agility/Falador/AgilityIcon2.png',
                 'Images/Agility/Falador/AgilityIcon3.png']
-gap1_images = ['Images/Agility/Falador/Gap1_1.png', 'Images/Agility/Falador/Gap1_2.png']
-gap2_images = ['Images/Agility/Falador/Gap2.png']
+gap1_images = ['Images/Agility/Falador/Gap1_3.png', 'Images/Agility/Falador/Gap1_1.png',
+               'Images/Agility/Falador/Gap1_2.png']
+gap2_images = ['Images/Agility/Falador/Gap2_1.png', 'Images/Agility/Falador/Gap2_2.png',
+               'Images/Agility/Falador/Gap2_3.png']
 tightrope2_images = ['Images/Agility/Falador/Tightrope2.png']
 tightrope3_images = ['Images/Agility/Falador/Tightrope3.png']
 gap3_images = ['Images/Agility/Falador/Gap3.png']
@@ -151,12 +153,12 @@ def failable_handhold():
         Common.watch_click_image(handhold_images, 0.6, 'Click Handholds and look for Gap1',
                                  False, 9, 10, current_step_region=Common.Main_game_screen_region,
                                  next_step_image_paths=gap1_images, next_step_region=Common.Center_game_screen_region,
-                                 next_step_confidence=0.6)
+                                 next_step_confidence=0.55)
     else:
         Common.watch_click_image(handhold_images, 0.6, 'Click Handholds',
                                  False, 9, 10, current_step_region=Common.Main_game_screen_region)
 
-        if not Common.is_image_on_screen(gap1_images, 0.6, 0,
+        if not Common.is_image_on_screen(gap1_images, 0.55, 0,
                                          'Checking for Gap 1 in case it failed and we need to reset',
                                          Common.Center_game_screen_region):
             failable_handhold()
@@ -168,14 +170,14 @@ def failable_tightrope2():
 
     check_for_mark_of_grace(region=Common.Center_game_screen_region)
 
-    Common.watch_click_image(gap1_images, 0.7, 'Click Gap1 while looking for Gap2',
+    Common.watch_click_image(gap1_images, 0.55, 'Click Gap1 while looking for Gap2',
                              False, 4, 10, current_step_region=Common.Center_game_screen_region,
                              next_step_image_paths=gap2_images, next_step_region=Common.Main_game_screen_region,
-                             next_step_confidence=0.6)
+                             next_step_confidence=0.55)
 
-    Common.watch_click_image(gap2_images, 0.6, 'Click Gap2 while looking for Tightrope2',
+    Common.watch_click_image(gap2_images, 0.55, 'Click Gap2 while looking for Tightrope2',
                              False, 4, 10, tightrope2_images,
-                             Common.Center_game_screen_region, Common.Center_game_screen_region, 0.7)
+                             Common.Center_game_screen_region, Common.Center_game_screen_region, 0.6)
 
     # If agility is at least level 66 we can just do a regular click and check for next step
     # Otherwise we check if the obstacle failed and reset from start, since this obstacle can fail before 66 agility
