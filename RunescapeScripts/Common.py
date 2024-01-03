@@ -28,6 +28,7 @@ Center_game_screen_region = None
 
 Inventory_region = None
 Inventory_bar_region = None
+Inventory_last_slot_region = None
 
 Minimap_region = None
 Minimap_vitals_region = None
@@ -59,6 +60,7 @@ def set_regions():
 
     global Inventory_region
     global Inventory_bar_region
+    global Inventory_last_slot_region
 
     global Minimap_region
     global Minimap_vitals_region
@@ -99,6 +101,7 @@ def set_regions():
 
         Inventory_region = (3190, 1230, 586, 756)
         Inventory_bar_region = (2651, 1994, 1133, 92)
+        Inventory_last_slot_region = (3644, 1872, 85, 90)
 
         Minimap_region = (3353, 86, 424, 416)
         Minimap_vitals_region = (3200, 139, 283, 357)
