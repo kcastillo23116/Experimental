@@ -27,28 +27,31 @@ Objects to mark: - Marker Color and Fill Color default magenta (FFD400FF)
                  - Shortcut rocks
                  - Both Dense Runestone rocks
                  - Rockslide north of northern essence rock
+                 - Rockslide east of northern essence rock
                  - Dark Altar
                  - Blood Altar
                  - Reference: "Images\Runecrafting\BloodRunes\MarkingReference.png"
 
 """
-from time import sleep
 
-import pyautogui
+from time import sleep
 import Common as Common
 import Display
 
 # Constants
-runes_crafted_per_run = 48
+runes_crafted_per_run = 196
 
 runestone_images = ['Images/Runecrafting/BloodRunes/RuneStone3.png', 'Images/Runecrafting/BloodRunes/RuneStone4.png',
                     'Images/Runecrafting/BloodRunes/RuneStone1.png', 'Images/Runecrafting/BloodRunes/RuneStone2.png']
 dense_essence_images = ['Images/Runecrafting/BloodRunes/DenseEssence.png']
-rockslide_images = ['Images/Runecrafting/BloodRunes/RockSlide1.png', 'Images/Runecrafting/BloodRunes/RockSlide2.png']
+rockslide1_images = ['Images/Runecrafting/BloodRunes/RockSlide1_1.png',
+                     'Images/Runecrafting/BloodRunes/RockSlide1_2.png']
+rockslide2_images = ['Images/Runecrafting/BloodRunes/RockSlide2.png']
 rock_shortcut1_images = ['Images/Runecrafting/BloodRunes/RockShortcut1.png']
 dark_altar_images = ['Images/Runecrafting/BloodRunes/DarkAltar.png']
 chisel_images = ['Images/Runecrafting/BloodRunes/Chisel.png']
 dark_essence_images = ['Images/Runecrafting/BloodRunes/DarkEssence.png']
+max_fragments_images = ['Images/Runecrafting/BloodRunes/MaxFragments.png']
 rock_shortcut2_images = ['Images/Runecrafting/BloodRunes/RockShortcut2.png']
 blood_altar_images = ['Images/Runecrafting/BloodRunes/BloodAltar.png']
 
@@ -58,6 +61,7 @@ runestone_minimap = [3585, 359]
 blood_altar_path_minimap = [3658, 423]
 blood_altar_icon_minimap = [3487, 373]
 rock_shortcut_3 = [2892, 110]
+max_fragment_confirm = [779, 1944]
 
 
 def prepare_dark_essence():
@@ -69,7 +73,7 @@ def prepare_dark_essence():
                                  False, 15, 10, None,
                                  Common.Main_game_screen_region)
 
-    Common.watch_click_image(rockslide_images, 0.7, 'Click rockslide and look for Rock Shortcut 1',
+    Common.watch_click_image(rockslide1_images, 0.7, 'Click rockslide and look for Rock Shortcut 1',
                              False, 11, 10,
                              current_step_region=Common.Main_game_screen_region,
                              next_step_image_paths=rock_shortcut1_images,
@@ -88,26 +92,44 @@ def prepare_dark_essence():
                              False, 7, 10,
                              current_step_region=Common.Main_game_screen_region)
 
-    chisel_dark_essence()
 
-
+# Chisel all dark essence in inventory one by one so it's processed faster stop if no more essence in inventory
 def chisel_dark_essence():
-    Common.watch_click_image(chisel_images, 0.7, 'Click chisel in inventory',
-                             False, 2, 10,
-                             current_step_region=Common.Inventory_region)
-    Common.watch_click_image(dark_essence_images, 0.7, 'Click dark essence in inventory',
-                             False, 60, 10,
-                             current_step_region=Common.Inventory_region)
+
+    while Common.is_image_on_screen(dark_essence_images, 0.7, 0,
+                                    'Looking for dark essence in inventory to see if we need to keep chiseling it',
+                                    Common.Inventory_region, False):
+        Common.watch_click_image(chisel_images, 0.7, 'Click chisel in inventory',
+                                 False, 1, 10,
+                                 current_step_region=Common.Inventory_region)
+        Common.watch_click_image(dark_essence_images, 0.7, 'Click dark essence in inventory',
+                                 False, 1, 10,
+                                 current_step_region=Common.Inventory_region)
+
+        # # If max fragment message is displayed confirm it so character can keep moving and break out of loop since no
+        # # more essence can be chiseled
+        # if Common.is_image_on_screen(max_fragments_images, 0.7, 0,
+        #                              'Look for max fragments message',
+        #                              Common.Chatbox_region, False):
+        #     Common.move_mouse_and_left_click(max_fragment_confirm[0], max_fragment_confirm[1], 0,
+        #                                      'Confirm max fragment message')
+        #     break
 
 
 def walk_back_to_runestones():
     Common.move_mouse_and_left_click(runestone_path_minimap[0], runestone_path_minimap[1], 0,
-                                     'Click minimap to walk back to runestone shortcut')
-    sleep(15)
+                                     'Click minimap to walk back to Rock Shortcut 2')
+    sleep(1)
 
-    Common.watch_click_image(rock_shortcut2_images, 0.7, 'Click Rock Shortcut 2',
-                             False, 8, 10,
-                             current_step_region=Common.Main_game_screen_region)
+    chisel_dark_essence()
+
+    # Keep looking for rock shortcut 2 so we don't go to next step before clicking it when our dark essence fragments
+    # are maxed out earlier than expected
+    Common.watch_click_image(rock_shortcut2_images, 0.7, 'Click Rock Shortcut 2 while looking for rockslide 2',
+                             False, 3, 10,
+                             current_step_region=Common.Main_game_screen_region,
+                             next_step_image_paths=rockslide2_images, next_step_region=Common.Main_game_screen_region,
+                             next_step_confidence=0.7)
 
     Common.move_mouse_and_left_click(runestone_minimap[0], runestone_minimap[1], 0,
                                      'Click minimap to walk to runestones')
