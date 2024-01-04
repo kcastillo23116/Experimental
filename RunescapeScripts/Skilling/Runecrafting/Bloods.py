@@ -71,7 +71,7 @@ def prepare_dark_essence():
                                         Common.Inventory_last_slot_region):
         Common.watch_click_image(runestone_images, 0.7, 'Click a runestone to mine it',
                                  False, 15, 10, None,
-                                 Common.Main_game_screen_region)
+                                 Common.All_game_screen_region)
 
     Common.watch_click_image(rockslide1_images, 0.7, 'Click rockslide and look for Rock Shortcut 1',
                              False, 11, 10,
@@ -106,15 +106,6 @@ def chisel_dark_essence():
                                  False, 1, 10,
                                  current_step_region=Common.Inventory_region)
 
-        # # If max fragment message is displayed confirm it so character can keep moving and break out of loop since no
-        # # more essence can be chiseled
-        # if Common.is_image_on_screen(max_fragments_images, 0.7, 0,
-        #                              'Look for max fragments message',
-        #                              Common.Chatbox_region, False):
-        #     Common.move_mouse_and_left_click(max_fragment_confirm[0], max_fragment_confirm[1], 0,
-        #                                      'Confirm max fragment message')
-        #     break
-
 
 def walk_back_to_runestones():
     Common.move_mouse_and_left_click(runestone_path_minimap[0], runestone_path_minimap[1], 0,
@@ -133,7 +124,7 @@ def walk_back_to_runestones():
 
     Common.move_mouse_and_left_click(runestone_minimap[0], runestone_minimap[1], 0,
                                      'Click minimap to walk to runestones')
-    sleep(10)
+    sleep(12)
 
 
 def craft_blood_runes():
