@@ -31,6 +31,10 @@ Objects to mark: - Marker Color and Fill Color default magenta (FFD400FF)
                  - Dark Altar
                  - Blood Altar
                  - Reference: "Images\Runecrafting\BloodRunes\MarkingReference.png"
+                 - Inventory tag Runelite Plugin:
+                    - Ouline and Fill enabled
+                    - Fill Opacity: 50
+                    - Dark essence marked with default magenta (D400FF)
 
 """
 
@@ -54,6 +58,8 @@ dark_essence_images = ['Images/Runecrafting/BloodRunes/DarkEssence.png']
 max_fragments_images = ['Images/Runecrafting/BloodRunes/MaxFragments.png']
 rock_shortcut2_images = ['Images/Runecrafting/BloodRunes/RockShortcut2.png']
 blood_altar_images = ['Images/Runecrafting/BloodRunes/BloodAltar.png']
+rock_shortcut3_images = ['Images/Runecrafting/BloodRunes/RockShortcut3_1.png',
+                         'Images/Runecrafting/BloodRunes/RockShortcut3_2.png']
 
 dark_altar_path_minimap = [3399, 226]
 runestone_path_minimap = [3757, 295]
@@ -88,9 +94,11 @@ def prepare_dark_essence():
                                      'Click minimap to walk toward dark altar')
     sleep(10)
 
-    Common.watch_click_image(dark_altar_images, 0.7, 'Click Dark Altar',
+    Common.watch_click_image(dark_altar_images, 0.7, 'Click Dark Altar till we see dark essence in inventory',
                              False, 9, 10,
-                             current_step_region=Common.Main_game_screen_region)
+                             current_step_region=Common.Main_game_screen_region,
+                             next_step_image_paths=dark_essence_images, next_step_region=Common.Inventory_region,
+                             next_step_confidence=0.8)
 
 
 # Chisel all dark essence in inventory one by one so it's processed faster stop if no more essence in inventory
@@ -161,9 +169,13 @@ def craft_blood_runes():
                                      False, 2, 10,
                                      current_step_region=Common.Main_game_screen_region)
 
-            Common.move_mouse_and_left_click(rock_shortcut_3[0], rock_shortcut_3[1], 0,
-                                             'Click rock shortcut 3 coordinates')
-            sleep(18)
+            Common.watch_click_image(rock_shortcut3_images, 0.7,
+                                     'Click Rock Shortcut 3 while looking for runestone mines',
+                                     False, 19, 10,
+                                     current_step_region=Common.All_game_screen_region,
+                                     next_step_image_paths=runestone_images,
+                                     next_step_region=Common.All_game_screen_region,
+                                     next_step_confidence=0.7)
 
             Display.stop_timer(start_time, loops_till_done)
 
