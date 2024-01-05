@@ -89,7 +89,7 @@ def prepare_dark_essence():
     sleep(10)
 
     Common.watch_click_image(dark_altar_images, 0.7, 'Click Dark Altar',
-                             False, 7, 10,
+                             False, 9, 10,
                              current_step_region=Common.Main_game_screen_region)
 
 
@@ -145,11 +145,11 @@ def craft_blood_runes():
 
             Common.move_mouse_and_left_click(blood_altar_path_minimap[0], blood_altar_path_minimap[1], 0,
                                              'Click minimap to walk toward blood altar')
-            sleep(50)
+            sleep(52)
 
             Common.move_mouse_and_left_click(blood_altar_icon_minimap[0], blood_altar_icon_minimap[1], 0,
                                              'Click minimap to walk to blood altar')
-            sleep(15)
+            sleep(17)
 
             Common.watch_click_image(blood_altar_images, 0.7, 'Click Blood Altar',
                                      False, 2, 10,
