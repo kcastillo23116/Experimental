@@ -39,6 +39,8 @@ Bank_bottom_options_region = None
 Chatbox_region = None
 Chatbox_options_region = None
 
+Status_message_top_left = None
+
 # Images
 empty_inventory_images = ['Images/General/EmptyInventory.png']
 low_hp_images = ['Images/General/LowHealth.png']
@@ -70,6 +72,8 @@ def set_regions():
 
     global Chatbox_region
     global Chatbox_options_region
+
+    global Status_message_top_left
 
     # Set regions for 3K or 4K laptop resolution if neither resolution is set raise an error
     # Use RegionFinder.py script to get these
@@ -111,6 +115,8 @@ def set_regions():
 
         Chatbox_region = (7, 1671, 1347, 355)
         Chatbox_options_region = (6, 2016, 1357, 68)
+
+        Status_message_top_left = (19, 92, 326, 133)
     else:
         raise ValueError('\t Unsupported resolution unable to set regions correctly ', width, height)
 
