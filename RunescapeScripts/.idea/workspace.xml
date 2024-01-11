@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Skilling/Cooking/BakePieSpell.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bankstanding/TanLeatherSpell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/Cooking/BakePieSpell.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Cooking/BakePieSpell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,17 +215,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Skilling/Cooking",
+    "last_opened_file_path": "C:/Repos/Experimental/RunescapeScripts/Bankstanding",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Repos\Experimental\RunescapeScripts\Bankstanding" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Cooking" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Fishing" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Runecrafting" />
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Agility" />
-      <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Construction" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Agility" />
@@ -234,7 +235,7 @@
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.BakePieSpell">
+  <component name="RunManager" selected="Python.TanLeatherSpell">
     <configuration name="BakePieSpell" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -298,27 +299,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="FaladorAgility" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="runescape_macros" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Skilling/Agility" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Skilling/Agility/FaladorAgility.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="RegionFinder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,20 +320,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="TanLeatherSpell" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="runescape_macros" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bankstanding" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bankstanding/TanLeatherSpell.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.BakePieSpell" />
       <item itemvalue="Python.BarbarianVillageFish" />
+      <item itemvalue="Python.TanLeatherSpell" />
       <item itemvalue="Python.Bloods" />
-      <item itemvalue="Python.FaladorAgility" />
       <item itemvalue="Python.RegionFinder" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TanLeatherSpell" />
         <item itemvalue="Python.BakePieSpell" />
         <item itemvalue="Python.BarbarianVillageFish" />
         <item itemvalue="Python.RegionFinder" />
         <item itemvalue="Python.Bloods" />
-        <item itemvalue="Python.FaladorAgility" />
       </list>
     </recent_temporary>
   </component>
