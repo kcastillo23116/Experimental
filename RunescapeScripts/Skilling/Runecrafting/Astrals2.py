@@ -181,8 +181,6 @@ def check_repair_pouches(iteration):
 
 def craft_astrals():
     try:
-        heal_hp()
-
         # Get how many from user
         item_count_string = input("How many astrals do you want to craft? ")
 
