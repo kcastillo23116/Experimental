@@ -98,7 +98,7 @@ lobster_images = ['Images/Runecrafting/Astral/Lobster.png']
 home_teleport_images = ['Images/Runecrafting/Astral/HomeTeleport.png']
 pool_images = ['Images/Runecrafting/Astral/Pool.png']
 
-astral_altar = [1035, 323]
+astral_altar = [1064, 331]
 
 
 def open_bank1():
@@ -140,11 +140,11 @@ def pouch_astral_runes():
 
 
 def heal_hp():
-    is_hp_low = Common.is_image_on_screen(low_health_images, 0.6, 0, 'Check if health is low',
+    is_hp_low = Common.is_image_on_screen(low_health_images, 0.8, 0, 'Check if health is low',
                                           Common.Minimap_vitals_region)
     # If HP is low grab lobster and heal
     if is_hp_low:
-        Common.watch_click_image(lobster_images, 0.7, 'Click bank lobster', True,
+        Common.watch_click_image(lobster_images, 0.7, 'Click bank lobster', False,
                                  1, 10, None, Common.Bank_region)
         Banking.close_bank()
         Common.watch_click_image(lobster_images, 0.7, 'Click lobster to heal', False,
@@ -181,6 +181,8 @@ def check_repair_pouches(iteration):
 
 def craft_astrals():
     try:
+        heal_hp()
+
         # Get how many from user
         item_count_string = input("How many astrals do you want to craft? ")
 
@@ -275,8 +277,10 @@ def craft_astrals():
             pouch_astral_runes()
             go_to_bank_from_teleport()
 
-            # Display timer here so it's not inflated by stamina restore run
+            # Display timer here so it's not inflated by stamina restore run and low hp check and heal
             Display.stop_timer(start_time, loops_till_done)
+
+            heal_hp()
 
             # Teleport to house and restore stamina every couple of runs
             if x % 6 == 0:
