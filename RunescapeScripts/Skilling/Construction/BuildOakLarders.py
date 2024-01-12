@@ -23,6 +23,7 @@ items in inventory: - Noted Oak Planks
                     - Saw
 items in bank:      - N/A
 Setup:              - Right click compass and click Look South
+                    - Make sure runelite camera plugin is disabled
                     - Zoom out all the way
                     - Entity hider to hide players
                     - Use runelite menu entry swapper plugin to reassign portal left click to build mode
@@ -105,14 +106,18 @@ def build_bookshelves():
                                          current_step_region=Common.Main_game_screen_region,
                                          current_step_grayscale=False, double_click=False)
 
-                # If exchange all option is visible good to stop looking for Phail and move on
-                if Common.is_image_on_screen(exchange_all_images, 0.6, 0,
-                                             'Checking for Exchange All option in chatbox', Common.Chatbox_region):
+                is_exchange_all_on_screen = Common.is_image_on_screen(exchange_all_images, 0.6, 0,
+                                                                      'Checking for Exchange All option in chatbox',
+                                                                      Common.Chatbox_region)
+                is_plank_in_inventory = Common.is_image_on_screen(plank_images, 0.6, 0,
+                                                                  'Checking if plank is in last inventory slot',
+                                                                  Common.Inventory_last_slot_region)
+                # If exchange all option is visible or plank is in inventory good to stop looking for Phail and move on
+                if is_exchange_all_on_screen or is_plank_in_inventory:
                     break
 
             # Press three to get un-noted planks from Phials
-            pyautogui.keyDown('3')
-            pyautogui.keyUp('3')
+            pyautogui.press('3')
             sleep(1)
 
             Common.watch_click_image(portal_in_images, 0.6,
@@ -137,8 +142,7 @@ def build_bookshelves():
                                          current_step_grayscale=False, double_click=False)
 
                 # Press one to build the larder
-                pyautogui.keyDown(build_key)
-                pyautogui.keyUp(build_key)
+                pyautogui.press(build_key)
                 sleep(seconds_to_build)
 
                 Common.move_mouse_and_right_click(larder_x_coordinate, larder_y_coordinate, 0,
@@ -151,8 +155,7 @@ def build_bookshelves():
                                          current_step_grayscale=False, double_click=False)
 
                 # Press one to remove the larder
-                pyautogui.keyDown('1')
-                pyautogui.keyUp('1')
+                pyautogui.press('1')
                 sleep(3)
 
             Display.stop_timer(start_time, iterations_needed)
