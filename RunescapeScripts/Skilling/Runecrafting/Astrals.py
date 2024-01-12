@@ -13,6 +13,8 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                         - FF00FFDD for all object (cyan)
                       - Highlight clickbox enabled with all others disabled
                       - Remember color per object
+                    - GPU plugin draw distance set to 66
+                    - Camera plugin Expand outer zoom limit: 200
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
@@ -20,6 +22,7 @@ location:           - Lunar Isle Moonclan teleport spot
                     - Click compass, so it's at default north
                     - Zoom out, hold up arrow to get camera all the way up
                     - Zoom all the way out
+                    - Zoom minimap all the way out
 Menus:              - Inventory menu open
                     - Set defensive attack mode and auto retaliate off (in case attacked by trolls)
                     - Set Spell filters to uncheck "show spells you lack the runes to cast"
@@ -34,9 +37,12 @@ items in inventory: - Law runes
                     - Medium Rune essence pouch
 items in bank:      - Rune essence
                     - Stamina potions (4)
-                    - Abyssal Book
+                    - Abyssal Book so dark mage repairs with NPC Contact spell (Can be anywhere in bank)
 Setup:           - Open bank to tab with all items
-Objects to mark: - Middle bank teller
+Objects to mark: - Enable highlight outline
+                 - Marker color to default magenta (FFD400FF)
+                 - Border width: 6
+                 - Middle bank teller
                  - Astral altar
 
 """

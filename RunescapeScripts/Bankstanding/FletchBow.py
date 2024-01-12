@@ -8,6 +8,7 @@ client:             - RuneLite with resizeable modern layout in runescape settin
                     - Turn off menu opacity in runecape options: Interfaces > resizable > Transparent side panel
                     - Turn on entity hider in runelite
                     - 117HD OFF
+                    - Disable Item Stats Runelite plugin so no tooltips when mouse is on inventory item
 Monitors:           - 4k middle monitor with all three on
 bank settings:      - Withdraw As: Item
                     - Quantity: All
