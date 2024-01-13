@@ -75,7 +75,6 @@ giant_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchGiant.png']
 large_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchLarge.png']
 med_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchMedium.png']
 small_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchSmall.png']
-rune_pouch_images = ['Images/Runecrafting/Astral/RunePouch.png']
 stamina_potion_bank = ['Images/Astral/StaminaPotion.png']
 stamina_potion_images = ['Images/Runecrafting/Astral/StaminaPotion.png',
                          'Images/Runecrafting/Astral/StaminaPotion2.png',
@@ -129,14 +128,6 @@ def cast_lunar_teleport():
 
     Common.watch_click_image(teleport_images, 0.7, 'Click teleport', False, 5,
                              10, None, Common.Inventory_region)
-
-
-def pouch_astral_runes():
-    Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals in inventory',
-                             False, 1, 10, None, Common.Inventory_region)
-
-    Common.watch_click_image(rune_pouch_images, 0.7, 'Click rune pouch in inventory',
-                             False, 1, 10, None, Common.Inventory_region)
 
 
 def heal_hp():
@@ -233,9 +224,10 @@ def craft_astrals():
             Common.move_mouse_and_left_click(astral_altar[0], astral_altar[1], 0, 'Move to Astral altar')
             sleep(27)
 
-            Common.watch_click_image(altar1_images, 0.7, 'Click astral altar1', False,
-                                     5, 10, None,
-                                     Common.Main_game_screen_region)
+            Common.watch_click_image(altar1_images, 0.7, 'Click astral altar1 while looking for astral altar2',
+                                     False, 5, 10, current_step_region=Common.Main_game_screen_region,
+                                     next_step_image_paths=altar2_images, next_step_confidence=0.7,
+                                     next_step_region=Common.Main_game_screen_region)
 
             # Empty pouches
             pyautogui.keyDown('shift')
@@ -272,7 +264,6 @@ def craft_astrals():
             cast_lunar_teleport()
             check_repair_pouches(x)
             click_inventory_tab()
-            pouch_astral_runes()
             go_to_bank_from_teleport()
 
             # Display timer here so it's not inflated by stamina restore run and low hp check and heal
@@ -281,7 +272,7 @@ def craft_astrals():
             heal_hp()
 
             # Teleport to house and restore stamina every couple of runs
-            if x % 6 == 0:
+            if x % 5 == 0:
                 Common.watch_click_image(home_teleport_images, 0.7, 'Withdraw home teleport tablet', False,
                                          1, 10, None,
                                          Common.Bank_region)
@@ -299,6 +290,9 @@ def craft_astrals():
                 cast_lunar_teleport()
                 click_inventory_tab()
                 go_to_bank_from_teleport()
+
+            Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals in inventory to deposit them',
+                                     False, 1, 10, None, Common.Inventory_region)
 
     # Image not found error, stop loop and print message
     except ValueError as error:

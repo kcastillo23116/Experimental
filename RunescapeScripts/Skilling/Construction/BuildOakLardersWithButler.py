@@ -32,7 +32,6 @@ Setup:              - Right click compass and click Look South
                       door at top left
                         - Reference: Images\Construction\LarderLocationReference.png
 Objects to mark:    - Rope Bell pull
-                    - TAG ALL Demon butler so it doesn't get untagged when coming back and forth
                     - Empty Larder space
                     - Object Marker plugin settings:
                         - Note: To get object marker to fill have to set stuff below and THEN toggle the markers
