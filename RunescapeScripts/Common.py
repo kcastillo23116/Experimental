@@ -423,6 +423,31 @@ def drop_inventory_items(items_to_drop_images, grayscale=False):
     pyautogui.keyUp('shift')
 
 
+def open_inventory(expected_item_image_paths):
+    inventory_tab_images = ['Images/Common/InventoryTab.png']
+
+    Common.watch_click_image(inventory_tab_images, 0.7,
+                             'Click inventory tab while looking for expected item',
+                             False, 1, 10,
+                             current_step_region=Common.Inventory_bar_region,
+                             next_step_image_paths=expected_item_image_paths,
+                             next_step_region=Common.Inventory_region,
+                             next_step_confidence=0.7)
+
+
+def open_spellbook(expected_spell_image_paths):
+    inventory_tab_images = ['Images/Common/Spellbook.png']
+
+    Common.watch_click_image(inventory_tab_images, 0.7,
+                             'Click spellbook while looking for expected spell',
+                             False, 1, 10,
+                             current_step_region=Common.Inventory_bar_region,
+                             next_step_image_paths=expected_spell_image_paths,
+                             next_step_region=Common.Inventory_region,
+                             next_step_confidence=0.7)
+
+
+
 # WARNING: Doesn't read numbers correctly consistently
 # Reads HP from Runelite mini bars plugin and returns current HP number
 # Note: Make sure that region for bounding box does not contain any white or lighter colors

@@ -113,7 +113,7 @@ def build_larders_with_butler():
                                          current_step_region=Common.Main_game_screen_region,
                                          current_step_grayscale=False, double_click=False)
 
-                # Press one to build the larder
+                # Press key to build the larder
                 pyautogui.press(build_key)
                 sleep(seconds_to_build)
 
