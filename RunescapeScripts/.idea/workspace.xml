@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="882c9368-4ed4-413a-87a7-68fc599fabad" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Skilling/Prayer/OfferBonesHouseAltar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skilling/Construction/BuildOakLardersWithButler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Construction/BuildOakLardersWithButler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Skilling/Runecrafting/Astrals2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Skilling/Runecrafting/Astrals2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +234,7 @@
       <recent name="C:\Repos\Experimental\RunescapeScripts\Skilling\Herblore" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.OfferBonesHouseAltar">
+  <component name="RunManager" selected="Python.Astrals2">
     <configuration name="Astrals2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="runescape_macros" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -351,9 +349,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Astrals2" />
         <item itemvalue="Python.OfferBonesHouseAltar" />
         <item itemvalue="Python.BuildOakLardersWithButler" />
-        <item itemvalue="Python.Astrals2" />
         <item itemvalue="Python.BuildOakLarders" />
         <item itemvalue="Python.TanLeatherSpell" />
       </list>

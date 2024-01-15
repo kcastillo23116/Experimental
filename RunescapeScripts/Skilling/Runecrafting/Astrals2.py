@@ -42,6 +42,7 @@ Setup:           - Open bank to tab with all items
                  - Change banked player house tablet left click to withdraw 1 using runelite menu swapper plugin
                  - Change banked lobster left click to withdraw 1 using runelite menu swapper plugin
                  - Disable Regeneration Meter runelite plugin so it doesn't get in the way of checking HP
+                 - Get Lunar spellbook at Lunar Island astral altar
                  - Mark following inventory items using Inventory Tags runelite plugin:
                     - Small pouch: Yellow
                     - Medium pouch: Red
