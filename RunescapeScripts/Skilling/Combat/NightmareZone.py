@@ -40,6 +40,7 @@ Setup:           - Nightmare zone hard rumble with recommend enemies and gear fr
                     - Overload Potions 1-4: Red
                 - Drop a million gold or more in nightmare zone coffer
                 - Disable overload potion notification in runelite nightmare zone plugin
+                - Go in to nightmare zone and turn on melee protect prayer
 Objects to mark: - Enable Highlight hull and Highlight clickbox
                  - Marker color to default magenta (FFD400FF)
                  - Border width: 6
@@ -82,14 +83,20 @@ def nightmare_combat_training():
         start = timeit.default_timer()
 
         Common.watch_click_image(overload_potion_images, 0.7, 'Click first overload potion',
-                                 sleep_time_after_click=0,
+                                 sleep_time_after_click=5,
                                  current_step_region=Common.Inventory_region)
         overload_potion_start_time = timeit.default_timer()
 
+        # Subtract 5 to account for time it takes for overload potion twitch effect to wear off
+        seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds - 5
+
         while True:
             Common.watch_click_image(prayer_potion_images, 0.7, 'Click prayer potion',
-                                     sleep_time_after_click=prayer_potion_dose_duration_seconds,
+                                     sleep_time_after_click=seconds_till_next_prayer_potion_seconds,
                                      current_step_region=Common.Inventory_region)
+
+            # reset time till next prayer potion
+            seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds
 
             # Calculate elapsed seconds using start time
             elapsed_seconds = timeit.default_timer() - start
@@ -98,8 +105,13 @@ def nightmare_combat_training():
             elapsed_seconds_since_overload_potion = timeit.default_timer() - overload_potion_start_time
             if elapsed_seconds_since_overload_potion >= overload_potion_dose_duration_seconds:
                 Common.watch_click_image(overload_potion_images, 0.7, 'Click overload potion after 5 minutes',
-                                         sleep_time_after_click=0,
+                                         sleep_time_after_click=5,
                                          current_step_region=Common.Inventory_region)
+
+                overload_potion_start_time = timeit.default_timer()
+
+                # Subtract time it takes for overload potion twitch effect to wear off
+                seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds - 6
 
             # If time elapsed is greater than total prayer pots break out of loop and stop script
             if elapsed_seconds > total_prayer_potion_seconds:
