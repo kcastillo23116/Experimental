@@ -18,240 +18,289 @@ client:             - RuneLite with resizeable modern layout in runescape settin
 Monitors:           4k middle monitor with all three on
 bank settings:      Withdraw As: Item
                     Quantity: All
-location:           - Lunar Isle Moonclan teleport spot
-                    - Click compass, so it's at default north
+location:           - Lunar Isle Moonclan teleport middle bank stall
+                    - Right Click compass and face south
                     - Zoom out, hold up arrow to get camera all the way up
                     - Zoom all the way out
                     - Zoom minimap all the way out
-Menus:              - Inventory menu open
+Menus:              - Inventory menu Open
                     - Set defensive attack mode and auto retaliate off (in case attacked by trolls)
                     - Set Spell filters to uncheck "show spells you lack the runes to cast"
-                    - Shift click NPC contact spell and set to Dark Mage via Runelite menu entry swapper plugin
-                       - Note: May have to contact dark mage once before this is available
 equip items:        - Dust battlestaff
                     - Seal of passage necklace
-                    - lightest weight gear
-items in inventory: - Law runes
-                    - Cosmic runes
-                    - Large Rune essence pouch
-                    - Medium Rune essence pouch
+                    - Full graceful set
+items in inventory: - Giant/Large/Medium/small Rune essences pouches
+                    - Cosmic and Law runes in rune pouch
 items in bank:      - Rune essence
-                    - Stamina potions (4)
+                    - Teleport home tablets
                     - Abyssal Book so dark mage repairs with NPC Contact spell (Can be anywhere in bank)
 Setup:           - Open bank to tab with all items
-Objects to mark: - Enable highlight outline
+                 - With bank window open, swap the left click for each rune pouch to Fill option
+                 - Shift click NPC contact spell and set left click to Dark Mage via Runelite menu entry swapper plugin
+                       - Note: May have to contact dark mage once before this is available
+                 - Make sure inventory menu is not open
+                 - Change banked player house tablet left click to withdraw 1 using runelite menu swapper plugin
+                 - Change banked lobster left click to withdraw 1 using runelite menu swapper plugin
+                 - Disable Regeneration Meter runelite plugin so it doesn't get in the way of checking HP
+                 - Get Lunar spellbook at Lunar Island astral altar
+                 - Mark following inventory items using Inventory Tags runelite plugin:
+                    - Small pouch: Yellow
+                    - Medium pouch: Red
+                    - Large pouch: Teal
+                    - Giant pouch: Magenta
+                    - Rune pouch: Blue (0043FF)
+                - Disable Rune Pouch plugin so runes in pouch are not shown
+Objects to mark: - Enable Highlight hull and Highlight clickbox
                  - Marker color to default magenta (FFD400FF)
                  - Border width: 6
                  - Middle bank teller
                  - Astral altar
-
+                 - Revitalisation pool or above in Player house for stamina recovery
 """
+from time import sleep
+
 import pyautogui
 
+import Banking
 import Common as Common
+import Display
 
 # Constants
-runtime = 60
-runes_crafted_per_run = 48
+runes_crafted_per_run = 100
 
-# Get how many from user
-itemCountString = input("How many items do you have? ")
+bank1_images = ['Images/Runecrafting/Astral/BankBooth1.png']
+bank2_images = ['Images/Runecrafting/Astral/BankBooth2.png']
+tiara_bank_tab_images = ['Images/Runecrafting/Astral/TiaraBankTab.png']
+rune_essence_images = ['Images/Runecrafting/Astral/RuneEssence.png']
+giant_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchGiant.png']
+large_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchLarge.png']
+med_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchMedium.png']
+small_rune_pouch_images = ['Images/Runecrafting/Astral/RunePouchSmall.png']
+stamina_potion_bank = ['Images/Astral/StaminaPotion.png']
+stamina_potion_images = ['Images/Runecrafting/Astral/StaminaPotion.png',
+                         'Images/Runecrafting/Astral/StaminaPotion2.png',
+                         'Images/Runecrafting/Astral/StaminaPotion4.png']
 
-# Calculate how many loops needed
-itemCount = int(itemCountString)
-loopsTillDone = round(itemCount / runes_crafted_per_run)
+altar1_images = ['Images/Runecrafting/Astral/Altar1.png']
+altar2_images = ['Images/Runecrafting/Astral/Altar2.png']
+inventory_tab_images = ['Images/Runecrafting/Astral/InventoryTab.png']
+lunar_spellbook_images = ['Images/Runecrafting/Astral/LunarSpellbook.png']
+astral_rune_images = ['Images/Runecrafting/Astral/AstralRune.png']
+teleport_images = ['Images/Runecrafting/Astral/Teleport.png']
 
-try:
-    # region BANK IMAGES
-    bank_icon_images = ['Images/Runecrafting/BankIcon.png',
-                        'Images/Runecrafting/BankIcon2.png']
-    bank_images1 = ['Images/Runecrafting/bank.png']
-    bank_images2 = ['Images/Runecrafting/bank2.png']
-    rune_essence_images = ['Images/Runecrafting/RuneEssence.png']
-    bank_close_images = ['Images/BankClose.png',
-                         'Images/BankClose2.png']
-    giant_rune_pouch_images = ['Images/Runecrafting/GiantRunePouch.png']
-    large_rune_pouch_images = ['Images/Runecrafting/LargeRunePouch.png']
-    med_rune_pouch_images = ['Images/Runecrafting/MediumRunePouch.png']
-    stamina_potion_bank = ['Images/StaminaPotion.png']
-    stamina_potion_images = ['Images/Runecrafting/StaminaPotion.png',
-                             'Images/Runecrafting/StaminaPotion2.png',
-                             'Images/Runecrafting/StaminaPotion4.png']
-    withdraw_one_images = ['Images/Withdraw1Option.png']
-    vial_images = ['Images/Vial.png']
-    # endregion BANK IMAGES
+npc_contact_images = ['Images/Runecrafting/Astral/NpcContact.png']
+dark_mage_images = ['Images/Runecrafting/Astral/DarkMage.png']
+continue_images = ['Images/Runecrafting/Astral/Continue.png']
+fix_pouches_images = ['Images/Runecrafting/Astral/Repair.png']
 
-    # region MOVEMENT IMAGES
-    map_images1 = ['Images/Runecrafting/map1.png']
-    map_images2 = ['Images/Runecrafting/map2.png']
-    map_images3 = ['Images/Runecrafting/map3.png']
-    map_images4 = ['Images/Runecrafting/map4.png']
-    map_images5 = ['Images/Runecrafting/map5.png']
-    pillar_images = ['Images/Runecrafting/Pillar.png']
-    altar_images = ['Images/Runecrafting/Altar.png']
-    altar_images2 = ['Images/Runecrafting/Altar2.png']
-    lunar_spellbook_images = ['Images/Runecrafting/LunarSpellbook.png']
-    astral_rune_images = ['Images/Runecrafting/AstralRune.png']
-    teleport_images = ['Images/Runecrafting/Teleport.png']
-    inventory_images = ['Images/Runecrafting/Inventory.png']
+low_health_images = ['Images/Runecrafting/Astral/LowHealth.png']
+lobster_images = ['Images/Runecrafting/Astral/Lobster.png']
+home_teleport_images = ['Images/Runecrafting/Astral/HomeTeleport.png']
+pool_images = ['Images/Runecrafting/Astral/Pool.png']
 
-    npc_contact_images = ['Images/Runecrafting/NpcContact.png']
-    dark_mage_images = ['Images/Runecrafting/DarkMage.png']
-    continue_images = ['Images/Runecrafting/Continue.png']
-    fix_pouches_images = ['Images/Runecrafting/Repair.png']
+astral_altar = [1064, 331]
 
-    low_health_images = ['Images/Runecrafting/LowHealth.png']
-    lobster_images = ['Images/Runecrafting/Lobster.png']
-    # endregion MOVEMENT IMAGES
 
-    def click_bank():
-        try:
-            Common.watch_click_image(bank_images1, 0.4, 'Click bank 1', False, 6, 10,
-                                     None, Common.Top_half_game_screen_region)
-            # If bank is not opened try clicking bank teller from second spot
-            if Common.is_image_on_screen(bank_close_images) is False:
-                Common.watch_click_image(bank_images2, 0.4, 'Click bank while looking for close button', False, 2, 10,
-                                         bank_close_images, Common.Top_half_game_screen_region)
-        except ValueError as val_error:
-            raise val_error
+def open_bank1():
+    Common.watch_click_image(bank1_images, 0.7, 'Click bank booth and look for bank options', False,
+                             1, 10, current_step_region=Common.Main_game_screen_region,
+                             next_step_image_paths=Banking.bank_withdraw_note_images, next_step_confidence=0.4,
+                             next_step_region=Common.Bank_bottom_options_region)
 
-    for x in range(loopsTillDone):
-        Common.print_runtime(loopsTillDone, runtime, x)
 
-        # region BANK STUFF
-        click_bank()
+def click_inventory_tab():
+    Common.watch_click_image(inventory_tab_images, 0.7, 'Switch back to inventory tab', False,
+                             2, 10, None, Common.Inventory_bar_region)
 
-        # Deposit astrals after first run since won't have any at start of first run
-        if x != 0:
-            Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals to deposit', False, 0,
-                                     10, None, Common.Inventory_region)
 
-        # If HP is low grab two lobsters and heal
-        if Common.is_image_on_screen(low_health_images, 0.6, 0, 'Check if health is low', Common.Minimap_vitals_region):
-            Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
+def go_to_bank_from_teleport():
+    Common.watch_click_image(bank2_images, 0.7, 'Click bank booth 2 while looking for bank booth 1',
+                             False, 7, 10, current_step_region=Common.Main_game_screen_region,
+                             next_step_image_paths=bank1_images,
+                             next_step_region=Common.Main_game_screen_region,
+                             next_step_confidence=0.7)
+    open_bank1()
+
+
+def cast_lunar_teleport():
+    Common.watch_click_image(lunar_spellbook_images, 0.7, 'Open spellbook while looking for teleport',
+                             False, 2, 10, teleport_images,
+                             Common.Inventory_bar_region, Common.Inventory_region)
+
+    Common.watch_click_image(teleport_images, 0.7, 'Click teleport', False, 5,
+                             10, None, Common.Inventory_region)
+
+
+def heal_hp():
+    is_hp_low = Common.is_image_on_screen(low_health_images, 0.8, 0, 'Check if health is low',
+                                          Common.Minimap_vitals_region)
+    # If HP is low grab lobster and heal
+    if is_hp_low:
+        Common.watch_click_image(lobster_images, 0.7, 'Click bank lobster', False,
+                                 1, 10, None, Common.Bank_region)
+        Banking.close_bank()
+        Common.watch_click_image(lobster_images, 0.7, 'Click lobster to heal', False,
+                                 2, 10, None, Common.Inventory_region)
+
+        open_bank1()
+
+
+def check_repair_pouches(iteration):
+    # Repair pouches every 9 runs before pouch degrades and changes colors
+    # Do (pouch uses before breaks - 2) to fix it before it degrades so visual change doesn't mess up script
+    # Note: Pouches repaired at second dark mage dialog:
+    # "Fine. A simple transfiguration spell should resolve things"
+    if iteration % 9 == 0:
+        Common.watch_click_image(npc_contact_images, 0.7, 'Click on NPC Contact spell', False,
+                                 6, 10, None, Common.Inventory_region)
+
+        pyautogui.press('space')
+        print('press space to continue conversation 1')
+        sleep(2)
+
+        pyautogui.press('1')
+        print('press 1 to select fix pouches options')
+        sleep(2)
+
+        pyautogui.press('space')
+        print('press space to continue conversation 2')
+        sleep(2)
+
+        pyautogui.press('space')
+        print('press space to continue conversation 3')
+        sleep(2)
+
+
+def craft_astrals():
+    try:
+        # Get how many from user
+        item_count_string = input("How many astrals do you want to craft? ")
+
+        # Calculate how many loops needed
+        item_count = int(item_count_string)
+        loops_till_done = round(item_count / runes_crafted_per_run)
+
+        open_bank1()
+
+        Common.watch_click_image(tiara_bank_tab_images, 0.7, 'Click tiara bank tab', False,
+                                 1, 10, None, Common.Top_half_game_screen_region)
+
+        for x in range(loops_till_done):
+            start_time = Display.start_timer()
+
+            Common.watch_click_image(rune_essence_images, 0.7, 'Withdraw rune essence 1', False,
+                                     0, 10, None,
                                      Common.Bank_region)
-            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-                                     Common.Bank_region)
-            Common.watch_click_image(lobster_images, 0.7, 'Right click lobster', True, 0, 10, None,
-                                     Common.Bank_region)
-            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-                                     Common.Bank_region)
-            Common.watch_click_image(bank_close_images, 0.9, 'Close bank')
-            Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
+            sleep(1.5)
+
+            Common.watch_click_image(small_rune_pouch_images, 0.7, 'Fill small rune pouch', False,
+                                     0, 10, None,
                                      Common.Inventory_region)
-            Common.watch_click_image(lobster_images, 0.7, 'Click lobster to eat', False, 2, 10, None,
+            sleep(1.5)
+            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False,
+                                     0, 10, None,
                                      Common.Inventory_region)
-            Common.watch_click_image(bank_images2, 0.5, 'Click bank while looking for close button', False, 2, 10,
-                                     bank_close_images, Common.Top_half_game_screen_region)
+            sleep(1.5)
+            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False,
+                                     0, 10, None,
+                                     Common.Inventory_region)
+            sleep(1.5)
 
-        # Get new stamina potion every 4 runs
-        if x % 4 == 0:
-            # Only deposit vial after first run since won't be present till after first run
-            if x != 0:
-                Common.watch_click_image(vial_images, 0.7, 'Deposit vial', False, 0, 10, None,
+            Common.watch_click_image(rune_essence_images, 0.7, 'Withdraw rune essence 2', False,
+                                     0, 10, None,
+                                     Common.Bank_region)
+            sleep(1.5)
+
+            Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Fill giant rune pouch', False,
+                                     0, 10, None,
+                                     Common.Inventory_region)
+            sleep(1.5)
+
+            Common.watch_click_image(rune_essence_images, 0.7, 'Withdraw rune essence 3', False,
+                                     1, 10, None,
+                                     Common.Bank_region)
+
+            Banking.close_bank()
+
+            Common.move_mouse_and_left_click(astral_altar[0], astral_altar[1], 0, 'Move to Astral altar')
+            sleep(27)
+
+            Common.watch_click_image(altar1_images, 0.7, 'Click astral altar1 while looking for astral altar2',
+                                     False, 5, 10, current_step_region=Common.Main_game_screen_region,
+                                     next_step_image_paths=altar2_images, next_step_confidence=0.7,
+                                     next_step_region=Common.Main_game_screen_region)
+
+            # Empty pouches
+            pyautogui.keyDown('shift')
+            Common.watch_click_image(small_rune_pouch_images, 0.7, 'Empty small rune pouch', False,
+                                     0, 10, None,
+                                     Common.Inventory_region)
+            sleep(1.5)
+
+            Common.watch_click_image(med_rune_pouch_images, 0.7, 'Empty medium rune pouch', False,
+                                     0, 10, None,
+                                     current_step_region=Common.Inventory_region)
+            sleep(1.5)
+
+            Common.watch_click_image(large_rune_pouch_images, 0.7, 'Empty large rune pouch', False,
+                                     0, 10, None,
+                                     current_step_region=Common.Inventory_region)
+            sleep(1.5)
+
+            Common.watch_click_image(altar2_images, 0.6, 'Click astral altar2', False,
+                                     0, 10, None,
+                                     Common.Main_game_screen_region)
+            sleep(1.5)
+
+            Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Empty giant rune pouch', False,
+                                     0, 10, None,
+                                     current_step_region=Common.Inventory_region)
+            sleep(1.5)
+
+            pyautogui.keyUp('shift')
+
+            Common.watch_click_image(altar2_images, 0.6, 'Click altar 2 to craft more runes', False,
+                                     3, 10, None, Common.Main_game_screen_region)
+
+            cast_lunar_teleport()
+            check_repair_pouches(x)
+            click_inventory_tab()
+            go_to_bank_from_teleport()
+
+            # Display timer here so it's not inflated by stamina restore run and low hp check and heal
+            Display.stop_timer(start_time, loops_till_done)
+
+            heal_hp()
+
+            # Teleport to house and restore stamina every couple of runs
+            if x % 5 == 0:
+                Common.watch_click_image(home_teleport_images, 0.7, 'Withdraw home teleport tablet', False,
+                                         1, 10, None,
+                                         Common.Bank_region)
+
+                Banking.close_bank()
+
+                Common.watch_click_image(home_teleport_images, 0.7, 'Use home teleport tablet', False,
+                                         7, 10, None,
                                          Common.Inventory_region)
-            Common.watch_click_image(stamina_potion_bank, 0.7, 'Get Stamina potion', True, 0, 10, None,
-                                     Common.Bank_region)
-            Common.watch_click_image(withdraw_one_images, 0.9, 'Withdraw one', False, 0, 10, None,
-                                     Common.Bank_region)
 
-        # Get rune essence and fill pouches
-        Common.watch_click_image(rune_essence_images, 0.7, 'Get rune essence', False, 0, 10, None,
-                                 Common.Bank_region)
+                # Use stamina pool
+                Common.watch_click_image(pool_images, 0.7, 'Use pool to restore stamina', False,
+                                         7, 10, None,
+                                         Common.Main_game_screen_region)
+                cast_lunar_teleport()
+                click_inventory_tab()
+                go_to_bank_from_teleport()
 
-        Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
+            Common.watch_click_image(astral_rune_images, 0.7, 'Click astrals in inventory to deposit them',
+                                     False, 1, 10, None, Common.Inventory_region)
 
-        Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Fill giant rune pouch', False, 1, 10, None,
-                                 Common.Inventory_region)
-        Common.watch_click_image(large_rune_pouch_images, 0.7, 'Fill large rune pouch', False, 1, 10, None,
-                                 Common.Inventory_region)
+    # Image not found error, stop loop and print message
+    except ValueError as error:
+        print(error, 'Stopping process')
 
-        Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
-                                 Common.Top_half_game_screen_region)
-        Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
-                                 Common.Bank_region)
-        Common.watch_click_image(bank_close_images, 0.9, 'Close bank', False, 1)
 
-        Common.watch_click_image(med_rune_pouch_images, 0.7, 'Fill medium rune pouch', False, 1, 10, None,
-                                 Common.Inventory_region)
-
-        Common.watch_click_image(bank_images2, 0.7, 'Click bank', False, 0, 10, bank_close_images,
-                                 Common.Top_half_game_screen_region)
-        Common.watch_click_image(rune_essence_images, 0.7, 'Get more rune essence', False, 0, 10, None,
-                                 Common.Bank_region)
-
-        # endregion BANK STUFF
-
-        # region MOVEMENT
-        Common.watch_click_image(map_images1, 0.7, 'Move to map1 while looking for map2', False, 4,
-                                 10, map_images2, Common.Minimap_region, Common.Minimap_region)
-        Common.watch_click_image(map_images2, 0.7, 'Move to map2 while looking for map3', False, 6,
-                                 10, map_images3, Common.Minimap_region, Common.Minimap_region)
-        Common.watch_click_image(map_images3, 0.7, 'Move to map3 while looking for map4', False, 6,
-                                 10, map_images4, Common.Minimap_region, Common.Minimap_region, 0.7)
-        Common.watch_click_image(map_images4, 0.7, 'Move to map4 while looking for map5', False, 5,
-                                 10, map_images5, Common.Minimap_region, Common.Minimap_region, 0.5)
-        Common.watch_click_image(map_images5, 0.5, 'Move to map5 while looking for pillar', False, 7,
-                                 10, pillar_images, Common.Minimap_region, Common.Top_half_game_screen_region, 0.5)
-
-        Common.watch_click_image(pillar_images, 0.5, 'Click pillar while  looking for altar', False, 5,
-                                 10, altar_images, Common.Top_half_game_screen_region,
-                                 Common.Center_game_screen_region, 0.5)
-        Common.watch_click_image(altar_images2, 0.5, 'Click altar while looking for astrals in inv', False, 2,
-                                 10, astral_rune_images, Common.Center_game_screen_region,
-                                 Common.Inventory_region, 0.5)
-
-        # Empty pouches
-        pyautogui.keyDown('shift')
-        Common.watch_click_image(giant_rune_pouch_images, 0.7, 'Empty giant rune pouch', False, 0, 10, None,
-                                 Common.Inventory_region)
-        Common.watch_click_image(large_rune_pouch_images, 0.7, 'Empty large rune pouch', False, 0, 10, None,
-                                 Common.Inventory_region)
-        pyautogui.keyUp('shift')
-
-        Common.watch_click_image(altar_images2, 0.7, 'Click altar 2 to craft more runes', False, 2,
-                                 10, None, Common.Center_game_screen_region)
-
-        pyautogui.keyDown('shift')
-
-        Common.watch_click_image(med_rune_pouch_images, 0.7, 'Empty medium rune pouch', False, 0, 10, None,
-                                 Common.Inventory_region)
-        pyautogui.keyUp('shift')
-
-        Common.watch_click_image(altar_images2, 0.7, 'Click altar 2 to craft more runes again', False, 2,
-                                 10, None, Common.Center_game_screen_region)
-
-        Common.watch_click_image(lunar_spellbook_images, 0.7, 'Open spellbook while looking for teleport', False, 0,
-                                 10, teleport_images, Common.Inventory_bar_region, Common.Inventory_region)
-        Common.watch_click_image(teleport_images, 0.7, 'Click teleport', False, 4,
-                                 10, None, Common.Inventory_region)
-
-        # Repair pouches every 11 runs before pouch degrades and changes colors
-        # Do (pouch uses before breaks - 2) to fix it before it degrades so visual change doesn't mess up script
-        # Note: Pouches repaired at second dark mage dialog:
-        # "Fine. A simple transfiguration spell should resolve things"
-        if x % 9 == 0:
-            Common.watch_click_image(npc_contact_images, 0.7, 'Click on NPC Contact spell', False, 6,
-                                     10, None, Common.Inventory_region)
-            Common.watch_click_image(continue_images, 0.7, 'Click continue conversation', False, 1,
-                                     10, None, Common.Chatbox_region)
-            Common.watch_click_image(fix_pouches_images, 0.7, 'Click fix pouches', False, 2,
-                                     10, None, Common.Chatbox_region)
-            Common.watch_click_image(continue_images, 0.7, 'Click continue conversation', False, 2,
-                                     10, None, Common.Chatbox_region)
-            Common.watch_click_image(continue_images, 0.7, 'Click continue conversation', False, 2,
-                                     10, None, Common.Chatbox_region)
-
-        Common.watch_click_image(inventory_images, 0.7, 'Switch back to inventory tab', False, 0,
-                                 10, None, Common.Inventory_bar_region)
-
-        # Drink stamina potion every run
-        # if x % 2 == 0:
-        Common.watch_click_image(stamina_potion_images, 0.8, 'Drink Stamina potion', False, 0, 10, None,
-                                 Common.Inventory_region)
-
-        # region MOVEMENT
-
-# Image not found error, stop loop and print message
-except ValueError as error:
-    print(error, 'Stopping process')
+# Only run code below if running this script
+if __name__ == '__main__':
+    craft_astrals()
+    print('Done crafting astral runes!')

@@ -5,7 +5,7 @@
 1. Setup config file with below:
 	```json
 	    -Config:
-		    client_title: Runelite - Inuyasha0984
+		    client_title: Runelite - <username>
 		    enable_on_start: false
 		    file_path_to_client: \.runelite\
 		    pc_profile: C:\Users\kcast\.runelite\
