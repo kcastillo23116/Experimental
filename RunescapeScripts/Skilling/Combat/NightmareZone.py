@@ -47,6 +47,8 @@ Objects to mark: - Enable Highlight hull and Highlight clickbox
                  - N/A
 """
 import timeit
+from time import sleep
+
 import Common as Common
 import Display
 
@@ -65,55 +67,71 @@ overload_potion_images = ['Images/Combat/OverloadPotion3.png', 'Images/Combat/Ov
 quick_prayer_icon = [3338, 292]
 
 
+class PotionTimes:
+    def __init__(self, prayer_potion_seconds, overload_potion_start):
+        self.seconds_till_next_prayer_potion = prayer_potion_seconds
+        self.overload_potion_start_time = prayer_potion_seconds
+
+
+def drink_prayer_potion():
+    Common.watch_click_image(prayer_potion_images, 0.7, 'Click prayer potion',
+                             sleep_time_after_click=0,
+                             current_step_region=Common.Inventory_region)
+    seconds_till_next_prayer_potion = prayer_potion_dose_duration_seconds
+
+    return seconds_till_next_prayer_potion
+
+
+# Drink overload potion and set new overload potion start time and prayer potion duration
+def drink_overload_potion():
+    Common.watch_click_image(overload_potion_images, 0.7, 'Click overload potion after 5 minutes and '
+                                                          'wait 5 seconds for twitch effect to wear off',
+                             sleep_time_after_click=5,
+                             current_step_region=Common.Inventory_region)
+
+    overload_potion_start_time = timeit.default_timer()
+
+    # Subtract time it takes for overload potion twitch effect to wear off
+    potion_times = PotionTimes(prayer_potion_dose_duration_seconds - 6, overload_potion_start_time)
+
+    return potion_times
+
+
 def nightmare_combat_training():
     try:
         # Get how many from user
         item_count_string = input("How many prayer pots do you have? ")
-
         # Calculate how long all prayer pots will last
         item_count = int(item_count_string)
-
-        # Number of four dose prayer potions Multiplied by seconds of prayer per dose then
-        # Multiplied four since each potion has four doses
+        # Number of four dose prayer potions multiplied by seconds of prayer per dose then
+        # multiplied four since each potion has four doses
         total_prayer_potion_seconds = round(item_count * prayer_potion_dose_duration_seconds * 4)
 
         # Display countdown timer
         Display.start_timer_thread_total_time(total_prayer_potion_seconds)
 
-        start = timeit.default_timer()
+        training_start = timeit.default_timer()
 
-        Common.watch_click_image(overload_potion_images, 0.7, 'Click first overload potion',
-                                 sleep_time_after_click=5,
-                                 current_step_region=Common.Inventory_region)
-        overload_potion_start_time = timeit.default_timer()
+        drink_prayer_potion()
 
-        # Subtract 5 to account for time it takes for overload potion twitch effect to wear off
-        seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds - 5
+        potion_times = drink_overload_potion()
+        seconds_till_next_prayer_potion = potion_times.seconds_till_next_prayer_potion
+        overload_potion_start_time = potion_times.overload_potion_start_time
 
         while True:
-            Common.watch_click_image(prayer_potion_images, 0.7, 'Click prayer potion',
-                                     sleep_time_after_click=seconds_till_next_prayer_potion_seconds,
-                                     current_step_region=Common.Inventory_region)
-
-            # reset time till next prayer potion
-            seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds
-
-            # Calculate elapsed seconds using start time
-            elapsed_seconds = timeit.default_timer() - start
+            sleep(seconds_till_next_prayer_potion)
+            seconds_till_next_prayer_potion = drink_prayer_potion()
 
             # Drink overload potion if dose has run out
-            elapsed_seconds_since_overload_potion = timeit.default_timer() - overload_potion_start_time
-            if elapsed_seconds_since_overload_potion >= overload_potion_dose_duration_seconds:
-                Common.watch_click_image(overload_potion_images, 0.7, 'Click overload potion after 5 minutes',
-                                         sleep_time_after_click=5,
-                                         current_step_region=Common.Inventory_region)
+            seconds_since_overload_potion = timeit.default_timer() - overload_potion_start_time
+            if seconds_since_overload_potion >= overload_potion_dose_duration_seconds:
+                potion_times = drink_overload_potion()
+                overload_potion_start_time = potion_times.overload_potion_start_time
+                seconds_till_next_prayer_potion = potion_times.seconds_till_next_prayer_potion
 
-                overload_potion_start_time = timeit.default_timer()
-
-                # Subtract time it takes for overload potion twitch effect to wear off
-                seconds_till_next_prayer_potion_seconds = prayer_potion_dose_duration_seconds - 6
-
-            # If time elapsed is greater than total prayer pots break out of loop and stop script
+            # Calculate elapsed seconds since start of training to see if we're out of prayer potions
+            # If time elapsed is greater than duration of total prayer pots, break out of loop and stop script
+            elapsed_seconds = timeit.default_timer() - training_start
             if elapsed_seconds > total_prayer_potion_seconds:
                 print('Out of prayer pots!')
                 break
