@@ -55,8 +55,8 @@ import Display
 # Constants
 # Use numbers from this calculator to determine how many seconds prayer pot lasts.
 # Be sure to include prayer bonus stat from gear
-# https://oldschool.runescape.wiki/w/Calculator:Prayer/Prayer_drain
-prayer_potion_dose_duration_seconds = 81
+# https://oldschool.tools/calculators/prayer-drain
+prayer_potion_dose_duration_seconds = 81.6
 overload_potion_dose_duration_seconds = 300  # Lasts 5 minutes
 
 prayer_potion_images = ['Images/Combat/PrayerPotion3.png', 'Images/Combat/PrayerPotion2.png',
@@ -119,6 +119,7 @@ def nightmare_combat_training():
         overload_potion_start_time = potion_times.overload_potion_start_time
 
         while True:
+            print('Sleeping for ' + str(seconds_till_next_prayer_potion) + ' seconds')
             sleep(seconds_till_next_prayer_potion)
             seconds_till_next_prayer_potion = drink_prayer_potion()
 
